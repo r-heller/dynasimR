@@ -1,6 +1,6 @@
-# Autonomy-level trade-off plot: KIA reduction vs. IHL compliance
+# Autonomy-level trade-off plot: event reduction vs. compliance
 
-Autonomy-level trade-off plot: KIA reduction vs. IHL compliance
+Autonomy-level trade-off plot: event reduction vs. compliance
 
 ## Usage
 

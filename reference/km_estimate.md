@@ -1,8 +1,7 @@
 # Kaplan-Meier estimator for simulation data
 
-Estimates survival functions from simulated casualty outcomes. Supports
-three endpoints (survival-to-Role-2, overall survival,
-time-to-first-care) and arbitrary stratification.
+Estimates survival functions from simulated entity outcomes. Supports
+several endpoints for both output profiles.
 
 ## Usage
 
@@ -10,7 +9,7 @@ time-to-first-care) and arbitrary stratification.
 km_estimate(
   data,
   scenarios = NULL,
-  endpoint = c("role2", "overall", "ttd", "ais_conversion", "discharge", "phase_c"),
+  endpoint = c("stage2", "overall", "service", "regression", "completion", "phase_c"),
   stratify_by = "scenario",
   ci_method = "log",
   n_bootstrap = 0,
@@ -23,7 +22,7 @@ km_estimate(
 - data:
 
   A `dynasimR_data` object or a tibble/data.frame containing
-  casualty-level columns.
+  entity-level columns.
 
 - scenarios:
 
@@ -32,13 +31,14 @@ km_estimate(
 
 - endpoint:
 
-  Character. One of `"role2"`, `"overall"`, `"ttd"`, `"ais_conversion"`,
-  `"discharge"`, `"phase_c"`. The latter three are REHASIM-only.
+  Character. One of `"stage2"`, `"overall"`, `"service"`,
+  `"regression"`, `"completion"`, `"phase_c"`. The latter three are
+  Profile-B-only endpoints.
 
 - stratify_by:
 
   Character vector. Strata variables, e.g. `"scenario"` or
-  `c("scenario", "identity")`.
+  `c("scenario", "group")`.
 
 - ci_method:
 
@@ -64,7 +64,8 @@ An S3 object of class `dynasimR_km` (list) with slots `fit`, `tidy`,
 ``` r
 if (FALSE) { # \dontrun{
 sim <- load_example_data()
-km <- km_estimate(sim, endpoint = "role2", stratify_by = "scenario")
+km <- km_estimate(sim, endpoint = "stage2",
+                  stratify_by = "scenario")
 print(km)
 plot_km(km)
 } # }

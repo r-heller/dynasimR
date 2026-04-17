@@ -25,7 +25,7 @@ plot_timeline(data, metric, scenarios = NULL, group = NULL)
 
 - group:
 
-  Character. Additional grouping variable, e.g. `"identity"`. Default
+  Character. Additional grouping variable, e.g. `"group"`. Default
   `NULL`.
 
 ## Value

@@ -1,8 +1,8 @@
-# Supply-Demand Index (SDI) per region (REHASIM)
+# Supply-Demand Index (SDI) per region
 
 Computes a per-region Supply-Demand Index: the ratio of available
-rehabilitation capacity to demand. Values \> 1 indicate oversupply,
-values \< 1 undersupply.
+service capacity to demand. Values \> 1 indicate oversupply, values \< 1
+undersupply.
 
 ## Usage
 

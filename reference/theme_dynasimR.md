@@ -1,7 +1,7 @@
 # ggplot2 theme for dynasimR figures
 
-A minimalist, Springer-Nature-friendly ggplot2 theme tuned for a 174 mm
-single-column layout at 11 pt base size.
+A minimalist ggplot2 theme tuned for publication-quality single and
+double-column output at 11 pt base size.
 
 ## Usage
 

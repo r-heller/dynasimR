@@ -1,7 +1,7 @@
 # Load the package-bundled example dataset
 
 Convenience wrapper around
-[`read_simulation()`](https://rabanheller.github.io/dynasimR/reference/read_simulation.md)
+[`read_simulation()`](https://r-heller.github.io/dynasimR/reference/read_simulation.md)
 pointing at the CSVs shipped in `inst/extdata/`.
 
 ## Usage
@@ -22,9 +22,9 @@ print(sim)
 #> 
 #> ── dynasimR_data ───────────────────────────────────────────────────────────────
 #> • Scenarios: 4
-#> • Simulation: "MEDTACS"
+#> • Profile: "Profile_A"
 #> • Summary rows: 200
-#> • Casualty events: 16000
-#> • Loaded: "2026-04-17 15:25"
+#> • Entity events: 16000
+#> • Loaded: "2026-04-17 15:46"
 #> • Path: /home/runner/work/_temp/Library/dynasimR/extdata
 ```

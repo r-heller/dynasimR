@@ -14,7 +14,7 @@ validate_dynasimR_data(x, strict = FALSE)
 
 - x:
 
-  A `dynasimR_data` object (list with `summary`, `casualties`,
+  A `dynasimR_data` object (list with `summary`, `entities`,
   `timeseries`).
 
 - strict:

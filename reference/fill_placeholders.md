@@ -3,10 +3,10 @@
 Substitutes `[XX_*]` placeholders in a LaTeX source file with
 automatically computed simulation statistics. The mapping from
 placeholder to computation is assembled inside this function from
-[`doctrine_effect()`](https://rabanheller.github.io/dynasimR/reference/doctrine_effect.md),
-[`al_efficiency()`](https://rabanheller.github.io/dynasimR/reference/al_efficiency.md)
+[`policy_effect()`](https://r-heller.github.io/dynasimR/reference/policy_effect.md),
+[`al_efficiency()`](https://r-heller.github.io/dynasimR/reference/al_efficiency.md)
 and
-[`compute_ihl_index()`](https://rabanheller.github.io/dynasimR/reference/compute_ihl_index.md).
+[`compute_compliance_index()`](https://r-heller.github.io/dynasimR/reference/compute_compliance_index.md).
 
 ## Usage
 
@@ -16,9 +16,9 @@ fill_placeholders(
   tex_file,
   output_file = NULL,
   dry_run = FALSE,
-  muf_scenario = "M-S08",
-  milnec_scenario = "M-S07",
-  baseline_scenario = "M-S00"
+  policy_a_scenario = "A-S08",
+  policy_b_scenario = "A-S07",
+  baseline_scenario = "A-S00"
 )
 ```
 
@@ -41,17 +41,17 @@ fill_placeholders(
   Logical. If `TRUE`, print replacements but do not write a file.
   Default `FALSE`.
 
-- muf_scenario:
+- policy_a_scenario:
 
-  Character. MUF scenario ID. Default `"M-S08"`.
+  Character. Policy A scenario ID. Default `"A-S08"`.
 
-- milnec_scenario:
+- policy_b_scenario:
 
-  Character. MilNec scenario ID. Default `"M-S07"`.
+  Character. Policy B scenario ID. Default `"A-S07"`.
 
 - baseline_scenario:
 
-  Character. Baseline scenario ID. Default `"M-S00"`.
+  Character. Baseline scenario ID. Default `"A-S00"`.
 
 ## Value
 

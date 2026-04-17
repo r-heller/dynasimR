@@ -1,4 +1,4 @@
-# Cost-effectiveness plane and CEAC curve (REHASIM)
+# Cost-effectiveness plane and CEAC curve
 
 Plots the cost-effectiveness plane (delta cost vs. delta outcome) for a
 set of scenarios and, optionally, a cost-effectiveness acceptability
@@ -11,7 +11,7 @@ plot_cost_effectiveness(
   data,
   reference,
   scenarios,
-  outcome_col = "rtd_rate",
+  outcome_col = "completion_rate",
   cost_col = "cost",
   wtp = seq(0, 2e+05, length.out = 40),
   show_ceac = FALSE
@@ -34,7 +34,7 @@ plot_cost_effectiveness(
 
 - outcome_col:
 
-  Character. Outcome column. Default `"rtd_rate"`.
+  Character. Outcome column. Default `"completion_rate"`.
 
 - cost_col:
 

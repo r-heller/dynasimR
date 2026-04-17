@@ -1,8 +1,9 @@
-# Weibull survival parameters by triage category
+# Example Weibull event-time parameters by priority category
 
-Literature-derived Weibull shape and scale parameters for modelling
-time-to-death in combat casualties, stratified by Triage category
-(T1-T4).
+Illustrative Weibull shape and scale parameters for modelling
+time-to-event trajectories, stratified by priority category (P1-P4).
+Values are provided as a starting point and can be replaced by
+domain-specific values for a particular application.
 
 ## Usage
 
@@ -16,7 +17,7 @@ A tibble with 4 rows and the following columns:
 
 - category:
 
-  Character. Triage category (`"T1"`..`"T4"`).
+  Character. Priority category (`"P1"`..`"P4"`).
 
 - k:
 
@@ -24,13 +25,12 @@ A tibble with 4 rows and the following columns:
 
 - lambda:
 
-  Numeric. Weibull scale parameter in minutes.
+  Numeric. Weibull scale parameter (time units).
 
 - source:
 
-  Character. Primary literature source.
+  Character. Source note.
 
 ## Source
 
-Eastridge et al. (2012) J Trauma 73:S431; Kotwal et al. (2016) JAMA Surg
-151:15.
+Package example data.

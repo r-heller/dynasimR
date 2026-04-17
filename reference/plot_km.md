@@ -1,8 +1,6 @@
-# Kaplan-Meier survival curves
+# Kaplan-Meier curves
 
-Plots a `dynasimR_km` object. Use the options to control
-confidence-interval ribbons, log-rank p-value annotation and the colour
-grouping.
+Plots a `dynasimR_km` object.
 
 ## Usage
 
@@ -16,7 +14,7 @@ plot_km(
   color_by = "scenario",
   title = NULL,
   subtitle = NULL,
-  xlab = "Time post-injury [min]",
+  xlab = "Time",
   ylab = "Survival probability",
   xlim = NULL,
   manuscript_width = 174,
@@ -36,8 +34,7 @@ plot_km(
 
 - show_risktable:
 
-  Logical. Show risk table (requires survminer). Default `FALSE` (for
-  simpler output without survminer).
+  Logical. Show risk table (requires survminer). Default `FALSE`.
 
 - show_pval:
 
@@ -49,8 +46,8 @@ plot_km(
 
 - color_by:
 
-  Character. Aesthetic grouping. One of `"scenario"`, `"identity"`,
-  `"doctrine"`. Default `"scenario"`.
+  Character. Aesthetic grouping. One of `"scenario"`, `"group"`,
+  `"policy"`. Default `"scenario"`.
 
 - title, subtitle, xlab, ylab:
 
@@ -62,8 +59,7 @@ plot_km(
 
 - manuscript_width:
 
-  Numeric. mm width hint (not directly used here, kept for API
-  symmetry). Default `174`.
+  Numeric. mm width hint. Default `174`.
 
 - ...:
 

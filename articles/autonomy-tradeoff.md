@@ -7,24 +7,25 @@ sim <- load_example_data()
 
 ## AL-Efficiency ratio
 
-We trade off KIA reduction versus IHL compliance. The default AL
-scenario mapping requires the full MEDTACS-SIM sweep; here we
-demonstrate with the two AL points in the shipped example data.
+We trade off event-rate reduction versus the Compliance Index. The
+default AL scenario mapping requires the full sweep; here we demonstrate
+with the two AL points in the shipped example data.
 
 ``` r
 al <- al_efficiency(
   sim,
-  al_scenarios = c("0" = "M-S00", "1" = "M-S01"),
-  ihl_threshold = 0.80,
-  n_bootstrap   = 200
+  al_scenarios         = c("0" = "A-S00", "1" = "A-S01"),
+  compliance_threshold = 0.80,
+  n_bootstrap          = 200
 )
 al$tradeoff_table
 #> # A tibble: 2 × 10
-#>      al scenario kia_median kia_ci_lo kia_ci_hi kia_reduction_pct ihl_index
-#>   <int> <chr>         <dbl>     <dbl>     <dbl>             <dbl>     <dbl>
-#> 1     0 M-S00         0.341     0.328     0.353              0        0.781
-#> 2     1 M-S01         0.272     0.260     0.290              6.91     0.847
-#> # ℹ 3 more variables: above_threshold <lgl>, al_ratio <dbl>, n_reps <int>
+#>      al scenario event_median event_ci_lo event_ci_hi event_reduction_pct
+#>   <int> <chr>           <dbl>       <dbl>       <dbl>               <dbl>
+#> 1     0 A-S00           0.341       0.328       0.353                0   
+#> 2     1 A-S01           0.272       0.260       0.290                6.91
+#> # ℹ 4 more variables: compliance <dbl>, above_threshold <lgl>, al_ratio <dbl>,
+#> #   n_reps <int>
 ```
 
 ## Trade-off plot
@@ -38,22 +39,22 @@ plot_al_tradeoff(al)
 
 ## Interpretation
 
-The `optimal_al` slot holds the AL level with the highest KIA reduction
-while staying above the IHL threshold:
+The `optimal_al` slot holds the AL level with the highest event-rate
+reduction while staying above the compliance threshold:
 
 ``` r
 al$optimal_al
 #> [1] 1
 ```
 
-IHL violations (if any):
+Compliance violations (if any):
 
 ``` r
-al$ihl_violations
+al$compliance_violations
 #> # A tibble: 1 × 11
-#>      al scenario kia_median kia_ci_lo kia_ci_hi kia_reduction_pct ihl_index
-#>   <int> <chr>         <dbl>     <dbl>     <dbl>             <dbl>     <dbl>
-#> 1     0 M-S00         0.341     0.328     0.353                 0     0.781
-#> # ℹ 4 more variables: above_threshold <lgl>, al_ratio <dbl>, n_reps <int>,
-#> #   ihl_deficit <dbl>
+#>      al scenario event_median event_ci_lo event_ci_hi event_reduction_pct
+#>   <int> <chr>           <dbl>       <dbl>       <dbl>               <dbl>
+#> 1     0 A-S00           0.341       0.328       0.353                   0
+#> # ℹ 5 more variables: compliance <dbl>, above_threshold <lgl>, al_ratio <dbl>,
+#> #   n_reps <int>, compliance_deficit <dbl>
 ```

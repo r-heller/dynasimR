@@ -8,7 +8,7 @@ package directly and pass the results here for visualisation.
 ## Usage
 
 ``` r
-morris_screening(data, outcome = "kia_rate", inputs)
+morris_screening(data, outcome = "event_rate", inputs)
 ```
 
 ## Arguments
@@ -19,7 +19,8 @@ morris_screening(data, outcome = "kia_rate", inputs)
 
 - outcome:
 
-  Character. Column name of the outcome to screen. Default `"kia_rate"`.
+  Character. Column name of the outcome to screen. Default
+  `"event_rate"`.
 
 - inputs:
 

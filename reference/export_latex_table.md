@@ -1,8 +1,8 @@
-# Export a tibble as a Springer Nature compatible LaTeX table
+# Export a tibble as a publication-quality LaTeX table
 
-Produces a `booktabs`-style table with the sn-jnl.cls requirement of
-using `\\botrule` instead of `\\bottomrule` and escaping `<`/`>` in
-cells. Optionally appends a `tablenotes` footnote.
+Produces a `booktabs`-style table using `\\botrule` instead of
+`\\bottomrule` and escaping `<`/`>` in cells. Optionally appends a
+`tablenotes` footnote.
 
 ## Usage
 

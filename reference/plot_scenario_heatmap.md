@@ -10,7 +10,7 @@ scenarios.
 plot_scenario_heatmap(
   data,
   scenarios = NULL,
-  metrics = c("kia_rate", "ihl_compliance_index")
+  metrics = c("event_rate", "compliance_index")
 )
 ```
 
@@ -27,7 +27,7 @@ plot_scenario_heatmap(
 - metrics:
 
   Character vector. Numeric outcome columns. Default
-  `c("kia_rate", "ihl_compliance_index")`.
+  `c("event_rate", "compliance_index")`.
 
 ## Value
 

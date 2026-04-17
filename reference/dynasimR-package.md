@@ -1,95 +1,89 @@
 # dynasimR: Dynamic Agent-Node Simulation Analysis
 
-Analysis and visualisation layer for discrete-event, agent-based and
-node-actor simulation outputs. Primary application is the MEDTACS-SIM
-military medical simulation (chain of resuscitation, doctrine effects,
-autonomy trade-offs) and the REHASIM rehabilitation flow simulation (FIM
-trajectories, waiting-gap index, supply-demand).
-
-## Details
-
-The package is schema-harmonised so that both simulations can be
-analysed with the same API. See the vignettes for worked examples.
+A domain-neutral analysis and visualisation layer for discrete-event,
+agent-based and node-actor simulation outputs. The package is
+schema-harmonised so that two interchangeable output profiles (Profile A
+and Profile B) can be analysed with a single API.
 
 ## Key functions
 
 - Data I/O:
 
-  [`read_simulation()`](https://rabanheller.github.io/dynasimR/reference/read_simulation.md),
-  [`load_example_data()`](https://rabanheller.github.io/dynasimR/reference/load_example_data.md),
-  [`validate_dynasimR_data()`](https://rabanheller.github.io/dynasimR/reference/validate_dynasimR_data.md)
+  [`read_simulation()`](https://r-heller.github.io/dynasimR/reference/read_simulation.md),
+  [`load_example_data()`](https://r-heller.github.io/dynasimR/reference/load_example_data.md),
+  [`validate_dynasimR_data()`](https://r-heller.github.io/dynasimR/reference/validate_dynasimR_data.md)
 
-- Survival:
+- Time-to-event:
 
-  [`km_estimate()`](https://rabanheller.github.io/dynasimR/reference/km_estimate.md),
-  [`cox_model()`](https://rabanheller.github.io/dynasimR/reference/cox_model.md)
+  [`km_estimate()`](https://r-heller.github.io/dynasimR/reference/km_estimate.md),
+  [`cox_model()`](https://r-heller.github.io/dynasimR/reference/cox_model.md)
 
-- Doctrine:
+- Policy:
 
-  [`doctrine_effect()`](https://rabanheller.github.io/dynasimR/reference/doctrine_effect.md)
+  [`policy_effect()`](https://r-heller.github.io/dynasimR/reference/policy_effect.md)
 
 - Autonomy:
 
-  [`al_efficiency()`](https://rabanheller.github.io/dynasimR/reference/al_efficiency.md)
+  [`al_efficiency()`](https://r-heller.github.io/dynasimR/reference/al_efficiency.md)
 
-- IHL:
+- Compliance:
 
-  [`compute_ihl_index()`](https://rabanheller.github.io/dynasimR/reference/compute_ihl_index.md)
+  [`compute_compliance_index()`](https://r-heller.github.io/dynasimR/reference/compute_compliance_index.md)
 
-- Patient flow:
+- Entity flow:
 
-  [`role_throughput()`](https://rabanheller.github.io/dynasimR/reference/role_throughput.md),
-  [`detect_bottlenecks()`](https://rabanheller.github.io/dynasimR/reference/detect_bottlenecks.md)
+  [`stage_throughput()`](https://r-heller.github.io/dynasimR/reference/stage_throughput.md),
+  [`detect_bottlenecks()`](https://r-heller.github.io/dynasimR/reference/detect_bottlenecks.md)
 
-- UAV:
+- Resource:
 
-  [`uav_comparison()`](https://rabanheller.github.io/dynasimR/reference/uav_comparison.md)
+  [`resource_comparison()`](https://r-heller.github.io/dynasimR/reference/resource_comparison.md)
 
 - Sensitivity:
 
-  [`morris_screening()`](https://rabanheller.github.io/dynasimR/reference/morris_screening.md),
-  [`tornado_data()`](https://rabanheller.github.io/dynasimR/reference/tornado_data.md)
+  [`morris_screening()`](https://r-heller.github.io/dynasimR/reference/morris_screening.md),
+  [`tornado_data()`](https://r-heller.github.io/dynasimR/reference/tornado_data.md)
 
-- REHASIM:
+- Profile B helpers:
 
-  [`fim_trajectory_analysis()`](https://rabanheller.github.io/dynasimR/reference/fim_trajectory_analysis.md),
-  [`compute_waiting_gap_index()`](https://rabanheller.github.io/dynasimR/reference/compute_waiting_gap_index.md),
-  [`mil_civil_effect()`](https://rabanheller.github.io/dynasimR/reference/mil_civil_effect.md),
-  [`spatial_supply_demand()`](https://rabanheller.github.io/dynasimR/reference/spatial_supply_demand.md),
-  [`compute_rtd_analysis()`](https://rabanheller.github.io/dynasimR/reference/compute_rtd_analysis.md)
+  [`progress_trajectory()`](https://r-heller.github.io/dynasimR/reference/progress_trajectory.md),
+  [`compute_wait_gap_index()`](https://r-heller.github.io/dynasimR/reference/compute_wait_gap_index.md),
+  [`group_effect()`](https://r-heller.github.io/dynasimR/reference/group_effect.md),
+  [`spatial_supply_demand()`](https://r-heller.github.io/dynasimR/reference/spatial_supply_demand.md),
+  [`compute_completion_analysis()`](https://r-heller.github.io/dynasimR/reference/compute_completion_analysis.md)
 
 - Plots:
 
-  [`plot_km()`](https://rabanheller.github.io/dynasimR/reference/plot_km.md),
-  [`plot_forest()`](https://rabanheller.github.io/dynasimR/reference/plot_forest.md),
-  [`plot_al_tradeoff()`](https://rabanheller.github.io/dynasimR/reference/plot_al_tradeoff.md),
-  [`plot_scenario_heatmap()`](https://rabanheller.github.io/dynasimR/reference/plot_scenario_heatmap.md),
-  [`plot_doctrine()`](https://rabanheller.github.io/dynasimR/reference/plot_doctrine.md),
-  [`plot_timeline()`](https://rabanheller.github.io/dynasimR/reference/plot_timeline.md),
-  [`plot_map()`](https://rabanheller.github.io/dynasimR/reference/plot_map.md),
-  [`plot_fim_curves()`](https://rabanheller.github.io/dynasimR/reference/plot_fim_curves.md),
-  [`plot_sdi_map()`](https://rabanheller.github.io/dynasimR/reference/plot_sdi_map.md),
-  [`plot_cost_effectiveness()`](https://rabanheller.github.io/dynasimR/reference/plot_cost_effectiveness.md)
+  [`plot_km()`](https://r-heller.github.io/dynasimR/reference/plot_km.md),
+  [`plot_forest()`](https://r-heller.github.io/dynasimR/reference/plot_forest.md),
+  [`plot_al_tradeoff()`](https://r-heller.github.io/dynasimR/reference/plot_al_tradeoff.md),
+  [`plot_scenario_heatmap()`](https://r-heller.github.io/dynasimR/reference/plot_scenario_heatmap.md),
+  [`plot_policy()`](https://r-heller.github.io/dynasimR/reference/plot_policy.md),
+  [`plot_timeline()`](https://r-heller.github.io/dynasimR/reference/plot_timeline.md),
+  [`plot_map()`](https://r-heller.github.io/dynasimR/reference/plot_map.md),
+  [`plot_progress_curves()`](https://r-heller.github.io/dynasimR/reference/plot_progress_curves.md),
+  [`plot_sdi_map()`](https://r-heller.github.io/dynasimR/reference/plot_sdi_map.md),
+  [`plot_cost_effectiveness()`](https://r-heller.github.io/dynasimR/reference/plot_cost_effectiveness.md)
 
 - Export:
 
-  [`export_figure()`](https://rabanheller.github.io/dynasimR/reference/export_figure.md),
-  [`export_latex_table()`](https://rabanheller.github.io/dynasimR/reference/export_latex_table.md),
-  [`fill_placeholders()`](https://rabanheller.github.io/dynasimR/reference/fill_placeholders.md)
+  [`export_figure()`](https://r-heller.github.io/dynasimR/reference/export_figure.md),
+  [`export_latex_table()`](https://r-heller.github.io/dynasimR/reference/export_latex_table.md),
+  [`fill_placeholders()`](https://r-heller.github.io/dynasimR/reference/fill_placeholders.md)
 
 - Shiny:
 
-  [`launch_app()`](https://rabanheller.github.io/dynasimR/reference/launch_app.md),
-  [`check_app_dependencies()`](https://rabanheller.github.io/dynasimR/reference/check_app_dependencies.md)
+  [`launch_app()`](https://r-heller.github.io/dynasimR/reference/launch_app.md),
+  [`check_app_dependencies()`](https://r-heller.github.io/dynasimR/reference/check_app_dependencies.md)
 
 ## See also
 
 Useful links:
 
-- <https://github.com/rabanheller/dynasimR>
+- <https://github.com/r-heller/dynasimR>
 
-- Report bugs at <https://github.com/rabanheller/dynasimR/issues>
+- Report bugs at <https://github.com/r-heller/dynasimR/issues>
 
 ## Author
 
-**Maintainer**: Raban A. Heller <rabanheller@bundeswehr.org>
+**Maintainer**: Raban A. Heller <r-heller@example.org>

@@ -34,8 +34,8 @@
   <button class="nav-link dropdown-toggle" type="button" id="dropdown-articles" data-bs-toggle="dropdown" aria-expanded="false" aria-haspopup="true">Articles</button>
   <ul class="dropdown-menu" aria-labelledby="dropdown-articles">
 <li><a class="dropdown-item" href="../articles/getting-started.html">Getting started with dynasimR</a></li>
-    <li><a class="dropdown-item" href="../articles/patient-flow-analysis.html">Patient flow analysis</a></li>
-    <li><a class="dropdown-item" href="../articles/doctrine-effects.html">Doctrine effects: MUF vs. Military Necessity</a></li>
+    <li><a class="dropdown-item" href="../articles/entity-flow-analysis.html">Entity flow analysis</a></li>
+    <li><a class="dropdown-item" href="../articles/policy-effects.html">Policy effects: Policy A vs. Policy B</a></li>
     <li><a class="dropdown-item" href="../articles/autonomy-tradeoff.html">Autonomy-level trade-off (AL0-AL5)</a></li>
     <li><a class="dropdown-item" href="../articles/manuscript-export.html">Manuscript export workflow</a></li>
   </ul>
@@ -46,7 +46,7 @@
 <li class="nav-item"><form class="form-inline" role="search">
  <input class="form-control" type="search" name="search-input" id="search-input" autocomplete="off" aria-label="Search site" placeholder="Search for" data-search-index="../search.json">
 </form></li>
-<li class="nav-item"><a class="external-link nav-link" href="https://github.com/rabanheller/dynasimR/" aria-label="GitHub"><span class="fa fab fa-github fa-lg"></span></a></li>
+<li class="nav-item"><a class="external-link nav-link" href="https://github.com/r-heller/dynasimR/" aria-label="GitHub"><span class="fa fab fa-github fa-lg"></span></a></li>
       </ul>
 </div>
 
@@ -62,14 +62,14 @@
       <img src="../logo.svg" class="logo" alt=""><h1>Getting started with dynasimR</h1>
             
       
-      <small class="dont-index">Source: <a href="https://github.com/rabanheller/dynasimR/blob/main/vignettes/getting-started.Rmd" class="external-link"><code>vignettes/getting-started.Rmd</code></a></small>
+      <small class="dont-index">Source: <a href="https://github.com/r-heller/dynasimR/blob/main/vignettes/getting-started.Rmd" class="external-link"><code>vignettes/getting-started.Rmd</code></a></small>
       <div class="d-none name"><code>getting-started.Rmd</code></div>
     </div>
 
     
     
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/rabanheller/dynasimR" class="external-link">dynasimR</a></span><span class="op">)</span></span></code></pre></div>
+<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/r-heller/dynasimR" class="external-link">dynasimR</a></span><span class="op">)</span></span></code></pre></div>
 <div class="section level2">
 <h2 id="load-data">Load data<a class="anchor" aria-label="anchor" href="#load-data"></a>
 </h2>
@@ -79,44 +79,45 @@
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; <span style="color: #00BBBB;">──</span> <span style="font-weight: bold;">dynasimR_data</span> <span style="color: #00BBBB;">───────────────────────────────────────────────────────────────</span></span></span>
 <span><span class="co">#&gt; <span style="color: #00BBBB;">•</span> Scenarios: <span style="color: #0000BB;">4</span></span></span>
-<span><span class="co">#&gt; <span style="color: #00BBBB;">•</span> Simulation: <span style="color: #0000BB;">"MEDTACS"</span></span></span>
+<span><span class="co">#&gt; <span style="color: #00BBBB;">•</span> Profile: <span style="color: #0000BB;">"Profile_A"</span></span></span>
 <span><span class="co">#&gt; <span style="color: #00BBBB;">•</span> Summary rows: <span style="color: #0000BB;">200</span></span></span>
-<span><span class="co">#&gt; <span style="color: #00BBBB;">•</span> Casualty events: <span style="color: #0000BB;">16000</span></span></span>
-<span><span class="co">#&gt; <span style="color: #00BBBB;">•</span> Loaded: <span style="color: #0000BB;">"2026-04-17 15:25"</span></span></span>
+<span><span class="co">#&gt; <span style="color: #00BBBB;">•</span> Entity events: <span style="color: #0000BB;">16000</span></span></span>
+<span><span class="co">#&gt; <span style="color: #00BBBB;">•</span> Loaded: <span style="color: #0000BB;">"2026-04-17 15:46"</span></span></span>
 <span><span class="co">#&gt; <span style="color: #00BBBB;">•</span> Path: <span style="color: #0000BB;">/home/runner/work/_temp/Library/dynasimR/extdata</span></span></span></code></pre></div>
 </div>
 <div class="section level2">
-<h2 id="survival-analysis">Survival analysis<a class="anchor" aria-label="anchor" href="#survival-analysis"></a>
+<h2 id="time-to-event-analysis">Time-to-event analysis<a class="anchor" aria-label="anchor" href="#time-to-event-analysis"></a>
 </h2>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">km</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/km_estimate.html">km_estimate</a></span><span class="op">(</span><span class="va">sim</span>, endpoint <span class="op">=</span> <span class="st">"role2"</span>, stratify_by <span class="op">=</span> <span class="st">"scenario"</span><span class="op">)</span></span>
-<span><span class="fu"><a href="../reference/plot_km.html">plot_km</a></span><span class="op">(</span><span class="va">km</span>, title <span class="op">=</span> <span class="st">"Survival-to-Role-2"</span><span class="op">)</span></span>
+<code class="sourceCode R"><span><span class="va">km</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/km_estimate.html">km_estimate</a></span><span class="op">(</span><span class="va">sim</span>, endpoint <span class="op">=</span> <span class="st">"stage2"</span>,</span>
+<span>                  stratify_by <span class="op">=</span> <span class="st">"scenario"</span><span class="op">)</span></span>
+<span><span class="fu"><a href="../reference/plot_km.html">plot_km</a></span><span class="op">(</span><span class="va">km</span>, title <span class="op">=</span> <span class="st">"Time-to-stage-2"</span><span class="op">)</span></span>
 <span><span class="co">#&gt; Warning: Removed 2 rows containing missing values or values outside the scale range</span></span>
 <span><span class="co">#&gt; (`geom_ribbon()`).</span></span></code></pre></div>
 <p><img src="getting-started_files/figure-html/unnamed-chunk-3-1.png" class="r-plt" alt="" width="576"></p>
 </div>
 <div class="section level2">
-<h2 id="doctrine-effect">Doctrine effect<a class="anchor" aria-label="anchor" href="#doctrine-effect"></a>
+<h2 id="policy-effect">Policy effect<a class="anchor" aria-label="anchor" href="#policy-effect"></a>
 </h2>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">doc</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/doctrine_effect.html">doctrine_effect</a></span><span class="op">(</span><span class="va">sim</span>,</span>
-<span>  muf_scenario    <span class="op">=</span> <span class="st">"M-S08"</span>,</span>
-<span>  milnec_scenario <span class="op">=</span> <span class="st">"M-S07"</span>,</span>
-<span>  n_bootstrap     <span class="op">=</span> <span class="fl">200</span><span class="op">)</span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/base/cat.html" class="external-link">cat</a></span><span class="op">(</span><span class="va">doc</span><span class="op">$</span><span class="va">narrative</span><span class="op">)</span></span>
-<span><span class="co">#&gt; Under Medical Urgency First doctrine (scenario M-S08), a KIA-rate reduction of 7.4 percentage points (95\%-CI: -9 to -5.6) was observed versus prioritisation of own forces (scenario M-S07) (Wilcoxon test: W = 215, p &lt; 0.001). The IHL-Compliance Index was higher under MUF doctrine (0.919 vs. 0.658).</span></span></code></pre></div>
+<code class="sourceCode R"><span><span class="va">pol</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/policy_effect.html">policy_effect</a></span><span class="op">(</span><span class="va">sim</span>,</span>
+<span>  policy_a_scenario <span class="op">=</span> <span class="st">"A-S08"</span>,</span>
+<span>  policy_b_scenario <span class="op">=</span> <span class="st">"A-S07"</span>,</span>
+<span>  n_bootstrap       <span class="op">=</span> <span class="fl">200</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/cat.html" class="external-link">cat</a></span><span class="op">(</span><span class="va">pol</span><span class="op">$</span><span class="va">narrative</span><span class="op">)</span></span>
+<span><span class="co">#&gt; Under policy A (scenario A-S08), an event-rate reduction of 7.4 percentage points (95\%-CI: -9 to -5.6) was observed versus policy B (scenario A-S07) (Wilcoxon test: W = 215, p &lt; 0.001). The Compliance Index was higher under policy A (0.919 vs. 0.658).</span></span></code></pre></div>
 </div>
 <div class="section level2">
 <h2 id="autonomy-trade-off">Autonomy trade-off<a class="anchor" aria-label="anchor" href="#autonomy-trade-off"></a>
 </h2>
 <p>Only two AL points are present in the shipped example data, but the
-machinery is the same with the full MEDTACS-SIM output.</p>
+machinery is the same for a full AL sweep.</p>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">al</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/al_efficiency.html">al_efficiency</a></span><span class="op">(</span></span>
 <span>  <span class="va">sim</span>,</span>
-<span>  al_scenarios  <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"0"</span> <span class="op">=</span> <span class="st">"M-S00"</span>, <span class="st">"1"</span> <span class="op">=</span> <span class="st">"M-S01"</span><span class="op">)</span>,</span>
-<span>  ihl_threshold <span class="op">=</span> <span class="fl">0.80</span>,</span>
-<span>  n_bootstrap   <span class="op">=</span> <span class="fl">200</span></span>
+<span>  al_scenarios         <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"0"</span> <span class="op">=</span> <span class="st">"A-S00"</span>, <span class="st">"1"</span> <span class="op">=</span> <span class="st">"A-S01"</span><span class="op">)</span>,</span>
+<span>  compliance_threshold <span class="op">=</span> <span class="fl">0.80</span>,</span>
+<span>  n_bootstrap          <span class="op">=</span> <span class="fl">200</span></span>
 <span><span class="op">)</span></span>
 <span><span class="fu"><a href="../reference/plot_al_tradeoff.html">plot_al_tradeoff</a></span><span class="op">(</span><span class="va">al</span><span class="op">)</span></span>
 <span><span class="co">#&gt; `height` was translated to `width`.</span></span></code></pre></div>
@@ -127,18 +128,18 @@ machinery is the same with the full MEDTACS-SIM output.</p>
 </h2>
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/export_latex_table.html">export_latex_table</a></span><span class="op">(</span></span>
-<span>  data     <span class="op">=</span> <span class="va">doc</span><span class="op">$</span><span class="va">effect_sizes</span>,</span>
-<span>  filename <span class="op">=</span> <span class="st">"doctrine_table.tex"</span>,</span>
-<span>  caption  <span class="op">=</span> <span class="st">"Doctrine effect sizes."</span>,</span>
-<span>  label    <span class="op">=</span> <span class="st">"doctrine"</span></span>
+<span>  data     <span class="op">=</span> <span class="va">pol</span><span class="op">$</span><span class="va">effect_sizes</span>,</span>
+<span>  filename <span class="op">=</span> <span class="st">"policy_table.tex"</span>,</span>
+<span>  caption  <span class="op">=</span> <span class="st">"Policy effect sizes."</span>,</span>
+<span>  label    <span class="op">=</span> <span class="st">"policy"</span></span>
 <span><span class="op">)</span></span></code></pre></div>
 </div>
 <div class="section level2">
 <h2 id="launching-the-dashboard">Launching the dashboard<a class="anchor" aria-label="anchor" href="#launching-the-dashboard"></a>
 </h2>
 <div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="../reference/launch_app.html">launch_app</a></span><span class="op">(</span><span class="op">)</span>                                   <span class="co"># example data</span></span>
-<span><span class="fu"><a href="../reference/launch_app.html">launch_app</a></span><span class="op">(</span>data_dir <span class="op">=</span> <span class="st">"~/medtacs-sim/data/raw"</span><span class="op">)</span></span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu"><a href="../reference/launch_app.html">launch_app</a></span><span class="op">(</span><span class="op">)</span>                                        <span class="co"># example data</span></span>
+<span><span class="fu"><a href="../reference/launch_app.html">launch_app</a></span><span class="op">(</span>data_dir <span class="op">=</span> <span class="st">"~/my-simulation/data/raw"</span><span class="op">)</span></span></code></pre></div>
 </div>
   </main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>
     </nav></aside>

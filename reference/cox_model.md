@@ -7,9 +7,9 @@ Cox proportional-hazards model for simulation data
 ``` r
 cox_model(
   data,
-  endpoint = c("role2", "overall", "ttd"),
-  covariates = c("scenario", "injury_severity", "identity"),
-  reference_scenario = "M-S00"
+  endpoint = c("stage2", "overall", "service"),
+  covariates = c("scenario", "severity", "group"),
+  reference_scenario = "A-S00"
 )
 ```
 
@@ -17,22 +17,22 @@ cox_model(
 
 - data:
 
-  A `dynasimR_data` object or casualty tibble.
+  A `dynasimR_data` object or entity tibble.
 
 - endpoint:
 
   See
-  [`km_estimate()`](https://rabanheller.github.io/dynasimR/reference/km_estimate.md).
+  [`km_estimate()`](https://r-heller.github.io/dynasimR/reference/km_estimate.md).
 
 - covariates:
 
   Character vector. Covariates entering the Cox model. Default
-  `c("scenario","injury_severity","identity")`.
+  `c("scenario","severity","group")`.
 
 - reference_scenario:
 
   Character. Reference level for the `scenario` factor. Default
-  `"M-S00"`. Use `"R-S00"` for REHASIM.
+  `"A-S00"`. Use `"B-S00"` for Profile B.
 
 ## Value
 

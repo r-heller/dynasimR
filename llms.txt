@@ -14,7 +14,7 @@ resource allocation and policy comparisons.
 
 ``` r
 # install.packages("remotes")
-remotes::install_github("rabanheller/dynasimR")
+remotes::install_github("r-heller/dynasimR")
 ```
 
 ## Quick start
@@ -53,16 +53,16 @@ launch_app()
 
 ## Feature map
 
-| Analysis goal                         | Key function                                                                                                                                                       |
-|---------------------------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| Entity flow through processing stages | `stage_throughput()`                                                                                                                                               |
-| Time-to-event stratified by scenario  | [`km_estimate()`](https://rabanheller.github.io/dynasimR/reference/km_estimate.md), [`cox_model()`](https://rabanheller.github.io/dynasimR/reference/cox_model.md) |
-| Policy A vs. policy B comparison      | `policy_effect()`                                                                                                                                                  |
-| Autonomy-level trade-off (AL0-AL5)    | [`al_efficiency()`](https://rabanheller.github.io/dynasimR/reference/al_efficiency.md)                                                                             |
-| Compliance Index                      | `compute_compliance_index()`                                                                                                                                       |
-| Profile B progress trajectory         | `progress_trajectory()`                                                                                                                                            |
-| Profile B wait-gap index              | `compute_wait_gap_index()`                                                                                                                                         |
-| Manuscript placeholder fill           | [`fill_placeholders()`](https://rabanheller.github.io/dynasimR/reference/fill_placeholders.md)                                                                     |
+| Analysis goal                         | Key function                                                                                                                                                 |
+|---------------------------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| Entity flow through processing stages | [`stage_throughput()`](https://r-heller.github.io/dynasimR/reference/stage_throughput.md)                                                                    |
+| Time-to-event stratified by scenario  | [`km_estimate()`](https://r-heller.github.io/dynasimR/reference/km_estimate.md), [`cox_model()`](https://r-heller.github.io/dynasimR/reference/cox_model.md) |
+| Policy A vs. policy B comparison      | [`policy_effect()`](https://r-heller.github.io/dynasimR/reference/policy_effect.md)                                                                          |
+| Autonomy-level trade-off (AL0-AL5)    | [`al_efficiency()`](https://r-heller.github.io/dynasimR/reference/al_efficiency.md)                                                                          |
+| Compliance Index                      | [`compute_compliance_index()`](https://r-heller.github.io/dynasimR/reference/compute_compliance_index.md)                                                    |
+| Profile B progress trajectory         | [`progress_trajectory()`](https://r-heller.github.io/dynasimR/reference/progress_trajectory.md)                                                              |
+| Profile B wait-gap index              | [`compute_wait_gap_index()`](https://r-heller.github.io/dynasimR/reference/compute_wait_gap_index.md)                                                        |
+| Manuscript placeholder fill           | [`fill_placeholders()`](https://r-heller.github.io/dynasimR/reference/fill_placeholders.md)                                                                  |
 
 ## Requirements
 
@@ -70,7 +70,7 @@ launch_app()
 - Required imports: dplyr, tidyr, purrr, readr, tibble, ggplot2,
   survival, rlang, cli, glue
 - Shiny app requires the `Suggests:` dependencies — install with
-  [`dynasimR::check_app_dependencies()`](https://rabanheller.github.io/dynasimR/reference/check_app_dependencies.md)
+  [`dynasimR::check_app_dependencies()`](https://r-heller.github.io/dynasimR/reference/check_app_dependencies.md)
 
 ## License
 
@@ -82,128 +82,126 @@ MIT (c) R. Heller
 
 Load, validate and inspect simulation outputs.
 
-- [`read_simulation()`](https://rabanheller.github.io/dynasimR/reference/read_simulation.md)
+- [`read_simulation()`](https://r-heller.github.io/dynasimR/reference/read_simulation.md)
   : Load simulation outputs into the dynasimR standard format
-- [`load_example_data()`](https://rabanheller.github.io/dynasimR/reference/load_example_data.md)
+- [`load_example_data()`](https://r-heller.github.io/dynasimR/reference/load_example_data.md)
   : Load the package-bundled example dataset
-- [`validate_dynasimR_data()`](https://rabanheller.github.io/dynasimR/reference/validate_dynasimR_data.md)
+- [`validate_dynasimR_data()`](https://r-heller.github.io/dynasimR/reference/validate_dynasimR_data.md)
   : Validate a dynasimR_data object
-- [`scenario_meta`](https://rabanheller.github.io/dynasimR/reference/scenario_meta.md)
-  : Scenario metadata for MEDTACS-SIM and REHASIM
-- [`survival_params`](https://rabanheller.github.io/dynasimR/reference/survival_params.md)
-  : Weibull survival parameters by triage category
+- [`scenario_meta`](https://r-heller.github.io/dynasimR/reference/scenario_meta.md)
+  : Scenario metadata for Profile A and Profile B
+- [`survival_params`](https://r-heller.github.io/dynasimR/reference/survival_params.md)
+  : Example Weibull event-time parameters by priority category
 
-## Survival analysis
+## Time-to-event analysis
 
 Kaplan-Meier, Cox regression and associated plots.
 
-- [`km_estimate()`](https://rabanheller.github.io/dynasimR/reference/km_estimate.md)
+- [`km_estimate()`](https://r-heller.github.io/dynasimR/reference/km_estimate.md)
   : Kaplan-Meier estimator for simulation data
-- [`cox_model()`](https://rabanheller.github.io/dynasimR/reference/cox_model.md)
+- [`cox_model()`](https://r-heller.github.io/dynasimR/reference/cox_model.md)
   : Cox proportional-hazards model for simulation data
-- [`plot_km()`](https://rabanheller.github.io/dynasimR/reference/plot_km.md)
-  : Kaplan-Meier survival curves
-- [`plot_forest()`](https://rabanheller.github.io/dynasimR/reference/plot_forest.md)
+- [`plot_km()`](https://r-heller.github.io/dynasimR/reference/plot_km.md)
+  : Kaplan-Meier curves
+- [`plot_forest()`](https://r-heller.github.io/dynasimR/reference/plot_forest.md)
   : Forest plot of Cox hazard ratios
 
-## Doctrine effects
+## Policy effects
 
-MUF vs. Military Necessity quantification.
+Policy A vs. Policy B quantification.
 
-- [`doctrine_effect()`](https://rabanheller.github.io/dynasimR/reference/doctrine_effect.md)
-  : Quantify doctrine effect (MUF vs. Military Necessity)
-- [`plot_doctrine()`](https://rabanheller.github.io/dynasimR/reference/plot_doctrine.md)
-  : Doctrine effect bar chart with CI whiskers
+- [`policy_effect()`](https://r-heller.github.io/dynasimR/reference/policy_effect.md)
+  : Quantify policy effect (policy A vs. policy B)
+- [`plot_policy()`](https://r-heller.github.io/dynasimR/reference/plot_policy.md)
+  : Policy effect bar chart with CI whiskers
 
 ## Autonomy trade-off
 
-AL0-AL5 survival-vs-IHL analysis.
+AL0-AL5 event-vs-compliance analysis.
 
-- [`al_efficiency()`](https://rabanheller.github.io/dynasimR/reference/al_efficiency.md)
-  : Compute AL-Efficiency ratio (survival advantage vs. IHL compliance)
-- [`plot_al_tradeoff()`](https://rabanheller.github.io/dynasimR/reference/plot_al_tradeoff.md)
-  : Autonomy-level trade-off plot: KIA reduction vs. IHL compliance
-- [`plot_radar()`](https://rabanheller.github.io/dynasimR/reference/plot_radar.md)
+- [`al_efficiency()`](https://r-heller.github.io/dynasimR/reference/al_efficiency.md)
+  : Compute AL-Efficiency ratio (event reduction vs. compliance)
+- [`plot_al_tradeoff()`](https://r-heller.github.io/dynasimR/reference/plot_al_tradeoff.md)
+  : Autonomy-level trade-off plot: event reduction vs. compliance
+- [`plot_radar()`](https://r-heller.github.io/dynasimR/reference/plot_radar.md)
   : Radar chart of metrics across scenarios
 
-## IHL / Patient flow
+## Compliance / Entity flow
 
-Compliance index, throughput, bottlenecks.
+Compliance Index, throughput, bottlenecks.
 
-- [`compute_ihl_index()`](https://rabanheller.github.io/dynasimR/reference/compute_ihl_index.md)
-  : IHL-Compliance Index
-- [`role_throughput()`](https://rabanheller.github.io/dynasimR/reference/role_throughput.md)
-  : Role-1 to Role-4 throughput analysis
-- [`detect_bottlenecks()`](https://rabanheller.github.io/dynasimR/reference/detect_bottlenecks.md)
-  : Bottleneck detection across roles of care
-- [`uav_comparison()`](https://rabanheller.github.io/dynasimR/reference/uav_comparison.md)
-  : Compare outcomes across UAV configurations
+- [`compute_compliance_index()`](https://r-heller.github.io/dynasimR/reference/compute_compliance_index.md)
+  : Compliance Index
+- [`stage_throughput()`](https://r-heller.github.io/dynasimR/reference/stage_throughput.md)
+  : Stage throughput analysis
+- [`detect_bottlenecks()`](https://r-heller.github.io/dynasimR/reference/detect_bottlenecks.md)
+  : Bottleneck detection across processing stages
+- [`resource_comparison()`](https://r-heller.github.io/dynasimR/reference/resource_comparison.md)
+  : Compare outcomes across resource configurations
 
 ## Sensitivity analysis
 
-- [`morris_screening()`](https://rabanheller.github.io/dynasimR/reference/morris_screening.md)
+- [`morris_screening()`](https://r-heller.github.io/dynasimR/reference/morris_screening.md)
   : Morris-style sensitivity screening from simulation replicates
-- [`tornado_data()`](https://rabanheller.github.io/dynasimR/reference/tornado_data.md)
+- [`tornado_data()`](https://r-heller.github.io/dynasimR/reference/tornado_data.md)
   : Tornado-diagram data from one-at-a-time perturbation
 
-## REHASIM extensions
+## Profile B helpers
 
-Rehabilitation flow analysis.
-
-- [`fim_trajectory_analysis()`](https://rabanheller.github.io/dynasimR/reference/fim_trajectory_analysis.md)
-  : FIM trajectory analysis (REHASIM)
-- [`compute_waiting_gap_index()`](https://rabanheller.github.io/dynasimR/reference/compute_waiting_gap_index.md)
-  : Waiting-Gap Index (REHASIM)
-- [`mil_civil_effect()`](https://rabanheller.github.io/dynasimR/reference/mil_civil_effect.md)
-  : Military vs. civilian prioritisation effect (REHASIM)
-- [`compute_rtd_analysis()`](https://rabanheller.github.io/dynasimR/reference/compute_rtd_analysis.md)
-  : Return-to-Duty outcome analysis (multinomial)
-- [`spatial_supply_demand()`](https://rabanheller.github.io/dynasimR/reference/spatial_supply_demand.md)
-  : Supply-Demand Index (SDI) per region (REHASIM)
-- [`plot_fim_curves()`](https://rabanheller.github.io/dynasimR/reference/plot_fim_curves.md)
-  : FIM trajectory plot (REHASIM)
-- [`plot_sdi_map()`](https://rabanheller.github.io/dynasimR/reference/plot_sdi_map.md)
-  : Supply-Demand Index choropleth (REHASIM)
-- [`plot_cost_effectiveness()`](https://rabanheller.github.io/dynasimR/reference/plot_cost_effectiveness.md)
-  : Cost-effectiveness plane and CEAC curve (REHASIM)
+- [`progress_trajectory()`](https://r-heller.github.io/dynasimR/reference/progress_trajectory.md)
+  : Progress-score trajectory analysis (Profile B)
+- [`compute_wait_gap_index()`](https://r-heller.github.io/dynasimR/reference/compute_wait_gap_index.md)
+  : Wait-Gap Index (Profile B)
+- [`group_effect()`](https://r-heller.github.io/dynasimR/reference/group_effect.md)
+  : Between-group prioritisation effect (Profile B)
+- [`compute_completion_analysis()`](https://r-heller.github.io/dynasimR/reference/compute_completion_analysis.md)
+  : Completion-outcome analysis (multinomial)
+- [`spatial_supply_demand()`](https://r-heller.github.io/dynasimR/reference/spatial_supply_demand.md)
+  : Supply-Demand Index (SDI) per region
+- [`plot_progress_curves()`](https://r-heller.github.io/dynasimR/reference/plot_progress_curves.md)
+  : Progress-score trajectory plot (Profile B)
+- [`plot_sdi_map()`](https://r-heller.github.io/dynasimR/reference/plot_sdi_map.md)
+  : Supply-Demand Index choropleth
+- [`plot_cost_effectiveness()`](https://r-heller.github.io/dynasimR/reference/plot_cost_effectiveness.md)
+  : Cost-effectiveness plane and CEAC curve
 
 ## Visualisation
 
-- [`plot_map()`](https://rabanheller.github.io/dynasimR/reference/plot_map.md)
-  : 2D casualty map snapshot
-- [`plot_scenario_heatmap()`](https://rabanheller.github.io/dynasimR/reference/plot_scenario_heatmap.md)
+- [`plot_map()`](https://r-heller.github.io/dynasimR/reference/plot_map.md)
+  : 2D entity map snapshot
+- [`plot_scenario_heatmap()`](https://r-heller.github.io/dynasimR/reference/plot_scenario_heatmap.md)
   : Scenario comparison heatmap
-- [`plot_timeline()`](https://rabanheller.github.io/dynasimR/reference/plot_timeline.md)
+- [`plot_timeline()`](https://r-heller.github.io/dynasimR/reference/plot_timeline.md)
   : Time-series plot of a simulation metric
-- [`theme_dynasimR()`](https://rabanheller.github.io/dynasimR/reference/theme_dynasimR.md)
+- [`theme_dynasimR()`](https://r-heller.github.io/dynasimR/reference/theme_dynasimR.md)
   : ggplot2 theme for dynasimR figures
-- [`dynasimR_colors()`](https://rabanheller.github.io/dynasimR/reference/dynasimR_colors.md)
-  : NATO-inspired colour palette for dynasimR plots
-- [`scale_color_identity_dynasimR()`](https://rabanheller.github.io/dynasimR/reference/scale_color_identity_dynasimR.md)
-  : Colour scale for combatant identity
-- [`scale_fill_identity_dynasimR()`](https://rabanheller.github.io/dynasimR/reference/scale_fill_identity_dynasimR.md)
-  : Fill scale for combatant identity
-- [`scale_color_doctrine_dynasimR()`](https://rabanheller.github.io/dynasimR/reference/scale_color_doctrine_dynasimR.md)
-  : Colour scale for doctrine principle
+- [`dynasimR_colors()`](https://r-heller.github.io/dynasimR/reference/dynasimR_colors.md)
+  : Colour palette for dynasimR plots
+- [`scale_color_group_dynasimR()`](https://r-heller.github.io/dynasimR/reference/scale_color_group_dynasimR.md)
+  : Colour scale for entity group
+- [`scale_fill_group_dynasimR()`](https://r-heller.github.io/dynasimR/reference/scale_fill_group_dynasimR.md)
+  : Fill scale for entity group
+- [`scale_color_policy_dynasimR()`](https://r-heller.github.io/dynasimR/reference/scale_color_policy_dynasimR.md)
+  : Colour scale for policy
 
 ## Manuscript export
 
-- [`export_figure()`](https://rabanheller.github.io/dynasimR/reference/export_figure.md)
+- [`export_figure()`](https://r-heller.github.io/dynasimR/reference/export_figure.md)
   : Export a ggplot in publication-ready format
 
-- [`export_latex_table()`](https://rabanheller.github.io/dynasimR/reference/export_latex_table.md)
-  : Export a tibble as a Springer Nature compatible LaTeX table
+- [`export_latex_table()`](https://r-heller.github.io/dynasimR/reference/export_latex_table.md)
+  : Export a tibble as a publication-quality LaTeX table
 
-- [`fill_placeholders()`](https://rabanheller.github.io/dynasimR/reference/fill_placeholders.md)
+- [`fill_placeholders()`](https://r-heller.github.io/dynasimR/reference/fill_placeholders.md)
   :
 
   Fill `[XX_*]` placeholders in a LaTeX manuscript
 
 ## Shiny dashboard
 
-- [`launch_app()`](https://rabanheller.github.io/dynasimR/reference/launch_app.md)
-  : Launch the MEDTACS-SIM Shiny dashboard
-- [`check_app_dependencies()`](https://rabanheller.github.io/dynasimR/reference/check_app_dependencies.md)
+- [`launch_app()`](https://r-heller.github.io/dynasimR/reference/launch_app.md)
+  : Launch the dynasimR Shiny dashboard
+- [`check_app_dependencies()`](https://r-heller.github.io/dynasimR/reference/check_app_dependencies.md)
   : Check availability of Shiny-app dependencies
 
 # Articles
@@ -211,12 +209,12 @@ Rehabilitation flow analysis.
 ### Workflows
 
 - [Getting started with
-  dynasimR](https://rabanheller.github.io/dynasimR/articles/getting-started.md):
-- [Patient flow
-  analysis](https://rabanheller.github.io/dynasimR/articles/patient-flow-analysis.md):
-- [Doctrine effects: MUF vs. Military
-  Necessity](https://rabanheller.github.io/dynasimR/articles/doctrine-effects.md):
+  dynasimR](https://r-heller.github.io/dynasimR/articles/getting-started.md):
+- [Entity flow
+  analysis](https://r-heller.github.io/dynasimR/articles/entity-flow-analysis.md):
+- [Policy effects: Policy A vs. Policy
+  B](https://r-heller.github.io/dynasimR/articles/policy-effects.md):
 - [Autonomy-level trade-off
-  (AL0-AL5)](https://rabanheller.github.io/dynasimR/articles/autonomy-tradeoff.md):
+  (AL0-AL5)](https://r-heller.github.io/dynasimR/articles/autonomy-tradeoff.md):
 - [Manuscript export
-  workflow](https://rabanheller.github.io/dynasimR/articles/manuscript-export.md):
+  workflow](https://r-heller.github.io/dynasimR/articles/manuscript-export.md):

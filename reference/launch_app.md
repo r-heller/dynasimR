@@ -1,4 +1,4 @@
-# Launch the MEDTACS-SIM Shiny dashboard
+# Launch the dynasimR Shiny dashboard
 
 Starts the interactive analysis app bundled with dynasimR. The app
 requires simulation data; either supply a directory via `data_dir` or
@@ -39,6 +39,6 @@ Does not return (blocks until the app is closed).
 ``` r
 if (FALSE) { # \dontrun{
 launch_app()
-launch_app(data_dir = "~/medtacs-sim/data/raw/")
+launch_app(data_dir = "~/my-simulation/data/raw/")
 } # }
 ```

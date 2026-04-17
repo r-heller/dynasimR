@@ -34,8 +34,8 @@
   <button class="nav-link dropdown-toggle" type="button" id="dropdown-articles" data-bs-toggle="dropdown" aria-expanded="false" aria-haspopup="true">Articles</button>
   <ul class="dropdown-menu" aria-labelledby="dropdown-articles">
 <li><a class="dropdown-item" href="../articles/getting-started.html">Getting started with dynasimR</a></li>
-    <li><a class="dropdown-item" href="../articles/patient-flow-analysis.html">Patient flow analysis</a></li>
-    <li><a class="dropdown-item" href="../articles/doctrine-effects.html">Doctrine effects: MUF vs. Military Necessity</a></li>
+    <li><a class="dropdown-item" href="../articles/entity-flow-analysis.html">Entity flow analysis</a></li>
+    <li><a class="dropdown-item" href="../articles/policy-effects.html">Policy effects: Policy A vs. Policy B</a></li>
     <li><a class="dropdown-item" href="../articles/autonomy-tradeoff.html">Autonomy-level trade-off (AL0-AL5)</a></li>
     <li><a class="dropdown-item" href="../articles/manuscript-export.html">Manuscript export workflow</a></li>
   </ul>
@@ -46,7 +46,7 @@
 <li class="nav-item"><form class="form-inline" role="search">
  <input class="form-control" type="search" name="search-input" id="search-input" autocomplete="off" aria-label="Search site" placeholder="Search for" data-search-index="../search.json">
 </form></li>
-<li class="nav-item"><a class="external-link nav-link" href="https://github.com/rabanheller/dynasimR/" aria-label="GitHub"><span class="fa fab fa-github fa-lg"></span></a></li>
+<li class="nav-item"><a class="external-link nav-link" href="https://github.com/r-heller/dynasimR/" aria-label="GitHub"><span class="fa fab fa-github fa-lg"></span></a></li>
       </ul>
 </div>
 
@@ -62,35 +62,36 @@
       <img src="../logo.svg" class="logo" alt=""><h1>Autonomy-level trade-off (AL0-AL5)</h1>
             
       
-      <small class="dont-index">Source: <a href="https://github.com/rabanheller/dynasimR/blob/main/vignettes/autonomy-tradeoff.Rmd" class="external-link"><code>vignettes/autonomy-tradeoff.Rmd</code></a></small>
+      <small class="dont-index">Source: <a href="https://github.com/r-heller/dynasimR/blob/main/vignettes/autonomy-tradeoff.Rmd" class="external-link"><code>vignettes/autonomy-tradeoff.Rmd</code></a></small>
       <div class="d-none name"><code>autonomy-tradeoff.Rmd</code></div>
     </div>
 
     
     
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/rabanheller/dynasimR" class="external-link">dynasimR</a></span><span class="op">)</span></span>
+<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/r-heller/dynasimR" class="external-link">dynasimR</a></span><span class="op">)</span></span>
 <span><span class="va">sim</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/load_example_data.html">load_example_data</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
 <div class="section level2">
 <h2 id="al-efficiency-ratio">AL-Efficiency ratio<a class="anchor" aria-label="anchor" href="#al-efficiency-ratio"></a>
 </h2>
-<p>We trade off KIA reduction versus IHL compliance. The default AL
-scenario mapping requires the full MEDTACS-SIM sweep; here we
-demonstrate with the two AL points in the shipped example data.</p>
+<p>We trade off event-rate reduction versus the Compliance Index. The
+default AL scenario mapping requires the full sweep; here we demonstrate
+with the two AL points in the shipped example data.</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">al</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/al_efficiency.html">al_efficiency</a></span><span class="op">(</span></span>
 <span>  <span class="va">sim</span>,</span>
-<span>  al_scenarios <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"0"</span> <span class="op">=</span> <span class="st">"M-S00"</span>, <span class="st">"1"</span> <span class="op">=</span> <span class="st">"M-S01"</span><span class="op">)</span>,</span>
-<span>  ihl_threshold <span class="op">=</span> <span class="fl">0.80</span>,</span>
-<span>  n_bootstrap   <span class="op">=</span> <span class="fl">200</span></span>
+<span>  al_scenarios         <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"0"</span> <span class="op">=</span> <span class="st">"A-S00"</span>, <span class="st">"1"</span> <span class="op">=</span> <span class="st">"A-S01"</span><span class="op">)</span>,</span>
+<span>  compliance_threshold <span class="op">=</span> <span class="fl">0.80</span>,</span>
+<span>  n_bootstrap          <span class="op">=</span> <span class="fl">200</span></span>
 <span><span class="op">)</span></span>
 <span><span class="va">al</span><span class="op">$</span><span class="va">tradeoff_table</span></span>
 <span><span class="co">#&gt; <span style="color: #949494;"># A tibble: 2 × 10</span></span></span>
-<span><span class="co">#&gt;      al scenario kia_median kia_ci_lo kia_ci_hi kia_reduction_pct ihl_index</span></span>
-<span><span class="co">#&gt;   <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>         <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>             <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span></span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">1</span>     0 M-S00         0.341     0.328     0.353              0        0.781</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">2</span>     1 M-S01         0.272     0.260     0.290              6.91     0.847</span></span>
-<span><span class="co">#&gt; <span style="color: #949494;"># ℹ 3 more variables: above_threshold &lt;lgl&gt;, al_ratio &lt;dbl&gt;, n_reps &lt;int&gt;</span></span></span></code></pre></div>
+<span><span class="co">#&gt;      al scenario event_median event_ci_lo event_ci_hi event_reduction_pct</span></span>
+<span><span class="co">#&gt;   <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>           <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>       <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>       <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>               <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span></span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">1</span>     0 A-S00           0.341       0.328       0.353                0   </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">2</span>     1 A-S01           0.272       0.260       0.290                6.91</span></span>
+<span><span class="co">#&gt; <span style="color: #949494;"># ℹ 4 more variables: compliance &lt;dbl&gt;, above_threshold &lt;lgl&gt;, al_ratio &lt;dbl&gt;,</span></span></span>
+<span><span class="co">#&gt; <span style="color: #949494;">#   n_reps &lt;int&gt;</span></span></span></code></pre></div>
 </div>
 <div class="section level2">
 <h2 id="trade-off-plot">Trade-off plot<a class="anchor" aria-label="anchor" href="#trade-off-plot"></a>
@@ -104,19 +105,19 @@ demonstrate with the two AL points in the shipped example data.</p>
 <h2 id="interpretation">Interpretation<a class="anchor" aria-label="anchor" href="#interpretation"></a>
 </h2>
 <p>The <code>optimal_al</code> slot holds the AL level with the highest
-KIA reduction while staying above the IHL threshold:</p>
+event-rate reduction while staying above the compliance threshold:</p>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">al</span><span class="op">$</span><span class="va">optimal_al</span></span>
 <span><span class="co">#&gt; [1] 1</span></span></code></pre></div>
-<p>IHL violations (if any):</p>
+<p>Compliance violations (if any):</p>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">al</span><span class="op">$</span><span class="va">ihl_violations</span></span>
+<code class="sourceCode R"><span><span class="va">al</span><span class="op">$</span><span class="va">compliance_violations</span></span>
 <span><span class="co">#&gt; <span style="color: #949494;"># A tibble: 1 × 11</span></span></span>
-<span><span class="co">#&gt;      al scenario kia_median kia_ci_lo kia_ci_hi kia_reduction_pct ihl_index</span></span>
-<span><span class="co">#&gt;   <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>         <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>             <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span></span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">1</span>     0 M-S00         0.341     0.328     0.353                 0     0.781</span></span>
-<span><span class="co">#&gt; <span style="color: #949494;"># ℹ 4 more variables: above_threshold &lt;lgl&gt;, al_ratio &lt;dbl&gt;, n_reps &lt;int&gt;,</span></span></span>
-<span><span class="co">#&gt; <span style="color: #949494;">#   ihl_deficit &lt;dbl&gt;</span></span></span></code></pre></div>
+<span><span class="co">#&gt;      al scenario event_median event_ci_lo event_ci_hi event_reduction_pct</span></span>
+<span><span class="co">#&gt;   <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>           <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>       <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>       <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>               <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span></span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">1</span>     0 A-S00           0.341       0.328       0.353                   0</span></span>
+<span><span class="co">#&gt; <span style="color: #949494;"># ℹ 5 more variables: compliance &lt;dbl&gt;, above_threshold &lt;lgl&gt;, al_ratio &lt;dbl&gt;,</span></span></span>
+<span><span class="co">#&gt; <span style="color: #949494;">#   n_reps &lt;int&gt;, compliance_deficit &lt;dbl&gt;</span></span></span></code></pre></div>
 </div>
   </main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>
     </nav></aside>

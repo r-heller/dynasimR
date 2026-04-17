@@ -21,8 +21,8 @@ export_figure(plot, filename, width_mm = 174, height_mm = 120, dpi = 300)
 
 - width_mm:
 
-  Numeric. Width in mm. `174` = Springer single-column, `88` =
-  double-column. Default `174`.
+  Numeric. Width in mm. `174` = single-column, `88` = double-column.
+  Default `174`.
 
 - height_mm:
 

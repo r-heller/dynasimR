@@ -1,8 +1,8 @@
-# Scenario metadata for MEDTACS-SIM and REHASIM
+# Scenario metadata for Profile A and Profile B
 
-Describes all simulation scenarios (MEDTACS M-S00..M-S14 and REHASIM
-R-S00..R-S20) with their research-question mapping, doctrine principle,
-UAV configuration and autonomy level.
+Describes all supported simulation scenarios (Profile A: A-S00..A-S14;
+Profile B: B-S00..B-S20) with their research-question mapping, policy,
+resource configuration and autonomy level.
 
 ## Usage
 
@@ -12,16 +12,16 @@ scenario_meta
 
 ## Format
 
-A tibble with 35 rows and the following columns:
+A tibble with 36 rows and the following columns:
 
 - id:
 
-  Character. Scenario identifier with prefix (`"M-"` for MEDTACS, `"R-"`
-  for REHASIM).
+  Character. Scenario identifier with prefix (`"A-"` for Profile A,
+  `"B-"` for Profile B).
 
-- simulation:
+- profile:
 
-  Character. `"MEDTACS"` or `"REHASIM"`.
+  Character. `"Profile_A"` or `"Profile_B"`.
 
 - label:
 
@@ -29,23 +29,23 @@ A tibble with 35 rows and the following columns:
 
 - rq:
 
-  Character. Associated research question (`"RQ1"`..`"RQ4"`, `"SENS"`,
-  `"PIPE"`).
+  Character. Associated research question tag (`"RQ1"`..`"RQ4"`,
+  `"SENS"`, `"PIPE"`).
 
-- doctrine:
+- policy:
 
-  Character. Doctrine principle (`"MUF"`, `"MIL_NEC"`, `"MIXED"`,
+  Character. Policy type (`"policy_a"`, `"policy_b"`, `"mixed"`,
   `"NA"`).
 
-- uav:
+- resource:
 
-  Character. UAV configuration (`"NONE"`, `"ISR"`, `"CASEVAC"`,
-  `"ARMED"`, `"MIXED"`).
+  Character. Auxiliary-resource configuration (`"none"`,
+  `"observation"`, `"transport"`, `"active"`, `"mixed"`).
 
 - al:
 
-  Integer. Autonomy level (0-5) or NA.
+  Integer. Autonomy level (0-5) or `NA`.
 
 ## Source
 
-MEDTACS-SIM and REHASIM concept papers (Heller 2026).
+Package example data.

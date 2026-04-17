@@ -6,7 +6,7 @@ radial (polar) coordinate system.
 ## Usage
 
 ``` r
-plot_radar(data, scenarios, metrics = c("kia_rate", "ihl_compliance_index"))
+plot_radar(data, scenarios, metrics = c("event_rate", "compliance_index"))
 ```
 
 ## Arguments

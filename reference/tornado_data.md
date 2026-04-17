@@ -7,7 +7,7 @@ baseline.
 ## Usage
 
 ``` r
-tornado_data(data, baseline, perturbations, outcome = "kia_rate")
+tornado_data(data, baseline, perturbations, outcome = "event_rate")
 ```
 
 ## Arguments
@@ -27,7 +27,7 @@ tornado_data(data, baseline, perturbations, outcome = "kia_rate")
 - outcome:
 
   Character. Column name of the outcome to measure. Default
-  `"kia_rate"`.
+  `"event_rate"`.
 
 ## Value
 

@@ -34,8 +34,8 @@
   <button class="nav-link dropdown-toggle" type="button" id="dropdown-articles" data-bs-toggle="dropdown" aria-expanded="false" aria-haspopup="true">Articles</button>
   <ul class="dropdown-menu" aria-labelledby="dropdown-articles">
 <li><a class="dropdown-item" href="../articles/getting-started.html">Getting started with dynasimR</a></li>
-    <li><a class="dropdown-item" href="../articles/patient-flow-analysis.html">Patient flow analysis</a></li>
-    <li><a class="dropdown-item" href="../articles/doctrine-effects.html">Doctrine effects: MUF vs. Military Necessity</a></li>
+    <li><a class="dropdown-item" href="../articles/entity-flow-analysis.html">Entity flow analysis</a></li>
+    <li><a class="dropdown-item" href="../articles/policy-effects.html">Policy effects: Policy A vs. Policy B</a></li>
     <li><a class="dropdown-item" href="../articles/autonomy-tradeoff.html">Autonomy-level trade-off (AL0-AL5)</a></li>
     <li><a class="dropdown-item" href="../articles/manuscript-export.html">Manuscript export workflow</a></li>
   </ul>
@@ -46,7 +46,7 @@
 <li class="nav-item"><form class="form-inline" role="search">
  <input class="form-control" type="search" name="search-input" id="search-input" autocomplete="off" aria-label="Search site" placeholder="Search for" data-search-index="../search.json">
 </form></li>
-<li class="nav-item"><a class="external-link nav-link" href="https://github.com/rabanheller/dynasimR/" aria-label="GitHub"><span class="fa fab fa-github fa-lg"></span></a></li>
+<li class="nav-item"><a class="external-link nav-link" href="https://github.com/r-heller/dynasimR/" aria-label="GitHub"><span class="fa fab fa-github fa-lg"></span></a></li>
       </ul>
 </div>
 
@@ -62,61 +62,61 @@
       <img src="../logo.svg" class="logo" alt=""><h1>Manuscript export workflow</h1>
             
       
-      <small class="dont-index">Source: <a href="https://github.com/rabanheller/dynasimR/blob/main/vignettes/manuscript-export.Rmd" class="external-link"><code>vignettes/manuscript-export.Rmd</code></a></small>
+      <small class="dont-index">Source: <a href="https://github.com/r-heller/dynasimR/blob/main/vignettes/manuscript-export.Rmd" class="external-link"><code>vignettes/manuscript-export.Rmd</code></a></small>
       <div class="d-none name"><code>manuscript-export.Rmd</code></div>
     </div>
 
     
     
 <p>This vignette shows how to get from raw simulation output to a
-Springer Nature-compatible manuscript with automatically filled
+publication-quality document with automatically filled
 <code>[XX_*]</code> placeholders.</p>
 <div class="section level2">
 <h2 id="latex-tables">1. LaTeX tables<a class="anchor" aria-label="anchor" href="#latex-tables"></a>
 </h2>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/rabanheller/dynasimR" class="external-link">dynasimR</a></span><span class="op">)</span></span>
+<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/r-heller/dynasimR" class="external-link">dynasimR</a></span><span class="op">)</span></span>
 <span><span class="va">sim</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/load_example_data.html">load_example_data</a></span><span class="op">(</span><span class="op">)</span></span>
-<span><span class="va">doc</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/doctrine_effect.html">doctrine_effect</a></span><span class="op">(</span><span class="va">sim</span>,</span>
-<span>  muf_scenario    <span class="op">=</span> <span class="st">"M-S08"</span>,</span>
-<span>  milnec_scenario <span class="op">=</span> <span class="st">"M-S07"</span><span class="op">)</span></span>
+<span><span class="va">pol</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/policy_effect.html">policy_effect</a></span><span class="op">(</span><span class="va">sim</span>,</span>
+<span>  policy_a_scenario <span class="op">=</span> <span class="st">"A-S08"</span>,</span>
+<span>  policy_b_scenario <span class="op">=</span> <span class="st">"A-S07"</span><span class="op">)</span></span>
 <span></span>
 <span><span class="fu"><a href="../reference/export_latex_table.html">export_latex_table</a></span><span class="op">(</span></span>
-<span>  data     <span class="op">=</span> <span class="va">doc</span><span class="op">$</span><span class="va">effect_sizes</span>,</span>
-<span>  filename <span class="op">=</span> <span class="st">"table_doctrine.tex"</span>,</span>
-<span>  caption  <span class="op">=</span> <span class="st">"Doctrine effect sizes (Cohen's d and risk difference)."</span>,</span>
-<span>  label    <span class="op">=</span> <span class="st">"doctrine"</span>,</span>
+<span>  data     <span class="op">=</span> <span class="va">pol</span><span class="op">$</span><span class="va">effect_sizes</span>,</span>
+<span>  filename <span class="op">=</span> <span class="st">"table_policy.tex"</span>,</span>
+<span>  caption  <span class="op">=</span> <span class="st">"Policy effect sizes (Cohen's d and risk difference)."</span>,</span>
+<span>  label    <span class="op">=</span> <span class="st">"policy"</span>,</span>
 <span>  note     <span class="op">=</span> <span class="st">"n = 50 replications per scenario."</span></span>
 <span><span class="op">)</span></span></code></pre></div>
-<p>The generated <code>.tex</code> uses <code>\botrule</code> (required
-by <code>sn-jnl.cls</code>) and escapes
-<code>&lt;</code>/<code>&gt;</code> in character cells.</p>
+<p>The generated <code>.tex</code> uses <code>\botrule</code> and
+escapes <code>&lt;</code>/<code>&gt;</code> in character cells for
+compatibility with common publisher templates.</p>
 </div>
 <div class="section level2">
-<h2 id="figures-at-springer-dimensions">2. Figures at Springer dimensions<a class="anchor" aria-label="anchor" href="#figures-at-springer-dimensions"></a>
+<h2 id="figures-at-publication-dimensions">2. Figures at publication dimensions<a class="anchor" aria-label="anchor" href="#figures-at-publication-dimensions"></a>
 </h2>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">km</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/km_estimate.html">km_estimate</a></span><span class="op">(</span><span class="va">sim</span>, endpoint <span class="op">=</span> <span class="st">"role2"</span><span class="op">)</span></span>
+<code class="sourceCode R"><span><span class="va">km</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/km_estimate.html">km_estimate</a></span><span class="op">(</span><span class="va">sim</span>, endpoint <span class="op">=</span> <span class="st">"stage2"</span><span class="op">)</span></span>
 <span><span class="fu"><a href="../reference/export_figure.html">export_figure</a></span><span class="op">(</span></span>
 <span>  plot      <span class="op">=</span> <span class="fu"><a href="../reference/plot_km.html">plot_km</a></span><span class="op">(</span><span class="va">km</span><span class="op">)</span>,</span>
 <span>  filename  <span class="op">=</span> <span class="st">"figure_km.pdf"</span>,</span>
-<span>  width_mm  <span class="op">=</span> <span class="fl">174</span>,          <span class="co"># Springer single column</span></span>
+<span>  width_mm  <span class="op">=</span> <span class="fl">174</span>,          <span class="co"># single column</span></span>
 <span>  height_mm <span class="op">=</span> <span class="fl">110</span></span>
 <span><span class="op">)</span></span></code></pre></div>
 </div>
 <div class="section level2">
 <h2 id="placeholder-substitution-in-the--tex-body">3. Placeholder substitution in the .tex body<a class="anchor" aria-label="anchor" href="#placeholder-substitution-in-the--tex-body"></a>
 </h2>
-<p>Given a source <code>sn-article.tex</code> with placeholders like
-<code>[XX_DOCTRINE_DELTA_KIA]</code>, substitute them in one call:</p>
+<p>Given a source <code>manuscript.tex</code> with placeholders like
+<code>[XX_POLICY_DELTA_EVENT]</code>, substitute them in one call:</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">reps</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/fill_placeholders.html">fill_placeholders</a></span><span class="op">(</span></span>
 <span>  sim_data          <span class="op">=</span> <span class="va">sim</span>,</span>
-<span>  tex_file          <span class="op">=</span> <span class="st">"sn-article.tex"</span>,</span>
-<span>  output_file       <span class="op">=</span> <span class="st">"sn-article_filled.tex"</span>,</span>
-<span>  muf_scenario      <span class="op">=</span> <span class="st">"M-S08"</span>,</span>
-<span>  milnec_scenario   <span class="op">=</span> <span class="st">"M-S07"</span>,</span>
-<span>  baseline_scenario <span class="op">=</span> <span class="st">"M-S00"</span></span>
+<span>  tex_file          <span class="op">=</span> <span class="st">"manuscript.tex"</span>,</span>
+<span>  output_file       <span class="op">=</span> <span class="st">"manuscript_filled.tex"</span>,</span>
+<span>  policy_a_scenario <span class="op">=</span> <span class="st">"A-S08"</span>,</span>
+<span>  policy_b_scenario <span class="op">=</span> <span class="st">"A-S07"</span>,</span>
+<span>  baseline_scenario <span class="op">=</span> <span class="st">"A-S00"</span></span>
 <span><span class="op">)</span></span>
 <span><span class="va">reps</span>          <span class="co"># named character vector of substitutions performed</span></span></code></pre></div>
 </div>
@@ -130,36 +130,36 @@ by <code>sn-jnl.cls</code>) and escapes
 </tr></thead>
 <tbody>
 <tr class="odd">
-<td><code>[XX_DOCTRINE_DELTA_KIA]</code></td>
-<td><code><a href="../reference/doctrine_effect.html">doctrine_effect()</a></code></td>
+<td><code>[XX_POLICY_DELTA_EVENT]</code></td>
+<td><code><a href="../reference/policy_effect.html">policy_effect()</a></code></td>
 </tr>
 <tr class="even">
-<td><code>[XX_DOCTRINE_DELTA_CI_LO]</code></td>
-<td><code><a href="../reference/doctrine_effect.html">doctrine_effect()</a></code></td>
+<td><code>[XX_POLICY_DELTA_CI_LO]</code></td>
+<td><code><a href="../reference/policy_effect.html">policy_effect()</a></code></td>
 </tr>
 <tr class="odd">
-<td><code>[XX_DOCTRINE_DELTA_CI_HI]</code></td>
-<td><code><a href="../reference/doctrine_effect.html">doctrine_effect()</a></code></td>
+<td><code>[XX_POLICY_DELTA_CI_HI]</code></td>
+<td><code><a href="../reference/policy_effect.html">policy_effect()</a></code></td>
 </tr>
 <tr class="even">
-<td><code>[XX_IHL_MUF]</code></td>
-<td><code><a href="../reference/compute_ihl_index.html">compute_ihl_index()</a></code></td>
+<td><code>[XX_COMPLIANCE_A]</code></td>
+<td><code><a href="../reference/compute_compliance_index.html">compute_compliance_index()</a></code></td>
 </tr>
 <tr class="odd">
-<td><code>[XX_IHL_MILNEC]</code></td>
-<td><code><a href="../reference/compute_ihl_index.html">compute_ihl_index()</a></code></td>
+<td><code>[XX_COMPLIANCE_B]</code></td>
+<td><code><a href="../reference/compute_compliance_index.html">compute_compliance_index()</a></code></td>
 </tr>
 <tr class="even">
 <td><code>[XX_OPTIMAL_AL]</code></td>
 <td><code><a href="../reference/al_efficiency.html">al_efficiency()</a></code></td>
 </tr>
 <tr class="odd">
-<td><code>[XX_KIA_BASELINE]</code></td>
-<td>median KIA at baseline scenario</td>
+<td><code>[XX_EVENT_BASELINE]</code></td>
+<td>median event rate at baseline scenario</td>
 </tr>
 <tr class="even">
-<td><code>[XX_KIA_BEST]</code></td>
-<td>min median KIA across all scenarios</td>
+<td><code>[XX_EVENT_BEST]</code></td>
+<td>min median event rate across all scenarios</td>
 </tr>
 </tbody>
 </table>

@@ -1,18 +1,18 @@
-# Compute AL-Efficiency ratio (survival advantage vs. IHL compliance)
+# Compute AL-Efficiency ratio (event reduction vs. compliance)
 
-Quantifies the trade-off between KIA-rate reduction and IHL compliance
-across UAV autonomy levels AL0-AL5. Returns the trade-off table, the
-optimal AL level (highest KIA reduction still above the IHL threshold),
-IHL violations and a detection-bias summary if available.
+Quantifies the trade-off between event-rate reduction and the Compliance
+Index across autonomy levels AL0-AL5. Returns the trade-off table, the
+optimal AL level (highest event reduction still above the compliance
+threshold) and compliance violations.
 
 ## Usage
 
 ``` r
 al_efficiency(
   data,
-  al_scenarios = c(`0` = "M-S00", `1` = "M-S05", `2` = "M-S09", `3` = "M-S10", `4` =
-    "M-S11", `5` = "M-S12"),
-  ihl_threshold = 0.8,
+  al_scenarios = c(`0` = "A-S00", `1` = "A-S05", `2` = "A-S09", `3` = "A-S10", `4` =
+    "A-S11", `5` = "A-S12"),
+  compliance_threshold = 0.8,
   reference_al = 0,
   n_bootstrap = 1000
 )
@@ -27,12 +27,12 @@ al_efficiency(
 - al_scenarios:
 
   Named character vector. Mapping AL level (as a string) to scenario ID.
-  Default assumes the MEDTACS scenarios (with the "M-" prefix).
+  Default assumes the Profile A scenarios (with the "A-" prefix).
 
-- ihl_threshold:
+- compliance_threshold:
 
-  Numeric. Minimum IHL compliance index for an AL level to be considered
-  "ethically acceptable". Default `0.80`.
+  Numeric. Minimum Compliance Index for an AL level to be considered
+  acceptable. Default `0.80`.
 
 - reference_al:
 
@@ -46,7 +46,7 @@ al_efficiency(
 ## Value
 
 An S3 object of class `dynasimR_al_analysis` with slots
-`tradeoff_table`, `optimal_al`, `ihl_violations` and `params`.
+`tradeoff_table`, `optimal_al`, `compliance_violations` and `params`.
 
 ## Examples
 

@@ -1,23 +1,23 @@
-# 2D casualty map snapshot
+# 2D entity map snapshot
 
-Scatter plot of casualty positions (requires `x` and `y` columns in the
-casualty table) coloured by identity or vital state.
+Scatter plot of entity positions (requires `x` and `y` columns in the
+entity table) coloured by group or status.
 
 ## Usage
 
 ``` r
-plot_map(data, color_by = c("identity", "vital_status"), scenarios = NULL)
+plot_map(data, color_by = c("group", "status"), scenarios = NULL)
 ```
 
 ## Arguments
 
 - data:
 
-  A `dynasimR_data` object or casualty tibble with `x`, `y` columns.
+  A `dynasimR_data` object or entity tibble with `x`, `y` columns.
 
 - color_by:
 
-  Character. `"identity"` or `"vital_status"`. Default `"identity"`.
+  Character. `"group"` or `"status"`. Default `"group"`.
 
 - scenarios:
 

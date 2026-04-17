@@ -14,7 +14,7 @@ resource allocation and policy comparisons.
 
 ``` r
 # install.packages("remotes")
-remotes::install_github("rabanheller/dynasimR")
+remotes::install_github("r-heller/dynasimR")
 ```
 
 ## Quick start
@@ -53,16 +53,16 @@ launch_app()
 
 ## Feature map
 
-| Analysis goal                         | Key function                                                                                                                                                       |
-|---------------------------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| Entity flow through processing stages | `stage_throughput()`                                                                                                                                               |
-| Time-to-event stratified by scenario  | [`km_estimate()`](https://rabanheller.github.io/dynasimR/reference/km_estimate.md), [`cox_model()`](https://rabanheller.github.io/dynasimR/reference/cox_model.md) |
-| Policy A vs. policy B comparison      | `policy_effect()`                                                                                                                                                  |
-| Autonomy-level trade-off (AL0-AL5)    | [`al_efficiency()`](https://rabanheller.github.io/dynasimR/reference/al_efficiency.md)                                                                             |
-| Compliance Index                      | `compute_compliance_index()`                                                                                                                                       |
-| Profile B progress trajectory         | `progress_trajectory()`                                                                                                                                            |
-| Profile B wait-gap index              | `compute_wait_gap_index()`                                                                                                                                         |
-| Manuscript placeholder fill           | [`fill_placeholders()`](https://rabanheller.github.io/dynasimR/reference/fill_placeholders.md)                                                                     |
+| Analysis goal                         | Key function                                                                                                                                                 |
+|---------------------------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| Entity flow through processing stages | [`stage_throughput()`](https://r-heller.github.io/dynasimR/reference/stage_throughput.md)                                                                    |
+| Time-to-event stratified by scenario  | [`km_estimate()`](https://r-heller.github.io/dynasimR/reference/km_estimate.md), [`cox_model()`](https://r-heller.github.io/dynasimR/reference/cox_model.md) |
+| Policy A vs. policy B comparison      | [`policy_effect()`](https://r-heller.github.io/dynasimR/reference/policy_effect.md)                                                                          |
+| Autonomy-level trade-off (AL0-AL5)    | [`al_efficiency()`](https://r-heller.github.io/dynasimR/reference/al_efficiency.md)                                                                          |
+| Compliance Index                      | [`compute_compliance_index()`](https://r-heller.github.io/dynasimR/reference/compute_compliance_index.md)                                                    |
+| Profile B progress trajectory         | [`progress_trajectory()`](https://r-heller.github.io/dynasimR/reference/progress_trajectory.md)                                                              |
+| Profile B wait-gap index              | [`compute_wait_gap_index()`](https://r-heller.github.io/dynasimR/reference/compute_wait_gap_index.md)                                                        |
+| Manuscript placeholder fill           | [`fill_placeholders()`](https://r-heller.github.io/dynasimR/reference/fill_placeholders.md)                                                                  |
 
 ## Requirements
 
@@ -70,7 +70,7 @@ launch_app()
 - Required imports: dplyr, tidyr, purrr, readr, tibble, ggplot2,
   survival, rlang, cli, glue
 - Shiny app requires the `Suggests:` dependencies — install with
-  [`dynasimR::check_app_dependencies()`](https://rabanheller.github.io/dynasimR/reference/check_app_dependencies.md)
+  [`dynasimR::check_app_dependencies()`](https://r-heller.github.io/dynasimR/reference/check_app_dependencies.md)
 
 ## License
 
