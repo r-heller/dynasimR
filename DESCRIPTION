@@ -24,7 +24,7 @@ License: MIT + file LICENSE
 Encoding: UTF-8
 LazyData: true
 LazyDataCompression: xz
-RoxygenNote: 7.3.2
+RoxygenNote: 7.3.3
 Roxygen: list(markdown = TRUE)
 Depends:
     R (>= 4.1.0)
@@ -65,7 +65,7 @@ Suggests:
     rmarkdown,
     covr
 VignetteBuilder: knitr
-URL: https://github.com/rabanheller/dynasimR
-BugReports: https://github.com/rabanheller/dynasimR/issues
+URL: https://github.com/r-heller/dynasimR
+BugReports: https://github.com/r-heller/dynasimR/issues
 Config/testthat/edition: 3
 Language: en-GB

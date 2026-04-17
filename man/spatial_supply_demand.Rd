@@ -2,7 +2,7 @@
 % Please edit documentation in R/spatial.R
 \name{spatial_supply_demand}
 \alias{spatial_supply_demand}
-\title{Supply-Demand Index (SDI) per region (REHASIM)}
+\title{Supply-Demand Index (SDI) per region}
 \usage{
 spatial_supply_demand(
   data,
@@ -31,6 +31,6 @@ A tibble with columns \code{region}, \code{supply_median},
 }
 \description{
 Computes a per-region Supply-Demand Index: the ratio of available
-rehabilitation capacity to demand. Values > 1 indicate oversupply,
+service capacity to demand. Values > 1 indicate oversupply,
 values < 1 undersupply.
 }

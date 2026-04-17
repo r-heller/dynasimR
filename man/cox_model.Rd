@@ -6,21 +6,21 @@
 \usage{
 cox_model(
   data,
-  endpoint = c("role2", "overall", "ttd"),
-  covariates = c("scenario", "injury_severity", "identity"),
-  reference_scenario = "M-S00"
+  endpoint = c("stage2", "overall", "service"),
+  covariates = c("scenario", "severity", "group"),
+  reference_scenario = "A-S00"
 )
 }
 \arguments{
-\item{data}{A \code{dynasimR_data} object or casualty tibble.}
+\item{data}{A \code{dynasimR_data} object or entity tibble.}
 
 \item{endpoint}{See \code{\link[=km_estimate]{km_estimate()}}.}
 
 \item{covariates}{Character vector. Covariates entering the Cox
-model. Default \code{c("scenario","injury_severity","identity")}.}
+model. Default \code{c("scenario","severity","group")}.}
 
 \item{reference_scenario}{Character. Reference level for the
-\code{scenario} factor. Default \code{"M-S00"}. Use \code{"R-S00"} for REHASIM.}
+\code{scenario} factor. Default \code{"A-S00"}. Use \code{"B-S00"} for Profile B.}
 }
 \value{
 An S3 object of class \code{dynasimR_cox} with slots \code{fit},

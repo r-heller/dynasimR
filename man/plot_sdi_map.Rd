@@ -2,7 +2,7 @@
 % Please edit documentation in R/plot_sdi_map.R
 \name{plot_sdi_map}
 \alias{plot_sdi_map}
-\title{Supply-Demand Index choropleth (REHASIM)}
+\title{Supply-Demand Index choropleth}
 \usage{
 plot_sdi_map(sdi)
 }

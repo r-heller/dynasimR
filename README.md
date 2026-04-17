@@ -1,7 +1,7 @@
 # dynasimR — Dynamic Agent-Node Simulation Analysis <img src="man/figures/logo.png" align="right" height="139" alt="dynasimR logo" />
 
 <!-- badges: start -->
-[![R-CMD-check](https://github.com/rabanheller/dynasimR/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/rabanheller/dynasimR/actions/workflows/R-CMD-check.yaml)
+[![R-CMD-check](https://github.com/r-heller/dynasimR/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/r-heller/dynasimR/actions/workflows/R-CMD-check.yaml)
 [![Lifecycle: experimental](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://lifecycle.r-lib.org/articles/stages.html#experimental)
 [![License: MIT](https://img.shields.io/badge/license-MIT-green.svg)](https://opensource.org/licenses/MIT)
 <!-- badges: end -->
@@ -20,7 +20,7 @@ resource allocation and policy comparisons.
 
 ```r
 # install.packages("remotes")
-remotes::install_github("rabanheller/dynasimR")
+remotes::install_github("r-heller/dynasimR")
 ```
 
 ## Quick start

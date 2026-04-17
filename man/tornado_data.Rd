@@ -4,22 +4,22 @@
 \alias{tornado_data}
 \title{Tornado-diagram data from one-at-a-time perturbation}
 \usage{
-tornado_data(data, baseline, perturbations, outcome = "kia_rate")
+tornado_data(data, baseline, perturbations, outcome = "event_rate")
 }
 \arguments{
 \item{data}{A \code{dynasimR_data} object or summary tibble.}
 
 \item{baseline}{Character. Scenario ID of the baseline.}
 
-\item{perturbations}{Character vector. Scenario IDs of one-at-a-time
-perturbations.}
+\item{perturbations}{Character vector. Scenario IDs of
+one-at-a-time perturbations.}
 
 \item{outcome}{Character. Column name of the outcome to measure.
-Default \code{"kia_rate"}.}
+Default \code{"event_rate"}.}
 }
 \value{
-A tibble suitable for a tornado plot with columns \code{scenario},
-\code{delta}, \code{lo}, \code{hi}, sorted by absolute delta.
+A tibble suitable for a tornado plot with columns
+\code{scenario}, \code{delta}, \code{lo}, \code{hi}, sorted by absolute delta.
 }
 \description{
 Given a baseline scenario and perturbation scenarios, computes the

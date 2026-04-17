@@ -6,34 +6,30 @@
 \alias{dynasimR}
 \title{dynasimR: Dynamic Agent-Node Simulation Analysis}
 \description{
-Analysis and visualisation layer for discrete-event, agent-based and
-node-actor simulation outputs. Primary application is the
-MEDTACS-SIM military medical simulation (chain of resuscitation,
-doctrine effects, autonomy trade-offs) and the REHASIM rehabilitation
-flow simulation (FIM trajectories, waiting-gap index, supply-demand).
-}
-\details{
-The package is schema-harmonised so that both simulations can be
-analysed with the same API. See the vignettes for worked examples.
+A domain-neutral analysis and visualisation layer for
+discrete-event, agent-based and node-actor simulation outputs.
+The package is schema-harmonised so that two interchangeable
+output profiles (Profile A and Profile B) can be analysed with a
+single API.
 }
 \section{Key functions}{
 
 \describe{
 \item{Data I/O}{\code{\link[=read_simulation]{read_simulation()}}, \code{\link[=load_example_data]{load_example_data()}},
 \code{\link[=validate_dynasimR_data]{validate_dynasimR_data()}}}
-\item{Survival}{\code{\link[=km_estimate]{km_estimate()}}, \code{\link[=cox_model]{cox_model()}}}
-\item{Doctrine}{\code{\link[=doctrine_effect]{doctrine_effect()}}}
+\item{Time-to-event}{\code{\link[=km_estimate]{km_estimate()}}, \code{\link[=cox_model]{cox_model()}}}
+\item{Policy}{\code{\link[=policy_effect]{policy_effect()}}}
 \item{Autonomy}{\code{\link[=al_efficiency]{al_efficiency()}}}
-\item{IHL}{\code{\link[=compute_ihl_index]{compute_ihl_index()}}}
-\item{Patient flow}{\code{\link[=role_throughput]{role_throughput()}}, \code{\link[=detect_bottlenecks]{detect_bottlenecks()}}}
-\item{UAV}{\code{\link[=uav_comparison]{uav_comparison()}}}
+\item{Compliance}{\code{\link[=compute_compliance_index]{compute_compliance_index()}}}
+\item{Entity flow}{\code{\link[=stage_throughput]{stage_throughput()}}, \code{\link[=detect_bottlenecks]{detect_bottlenecks()}}}
+\item{Resource}{\code{\link[=resource_comparison]{resource_comparison()}}}
 \item{Sensitivity}{\code{\link[=morris_screening]{morris_screening()}}, \code{\link[=tornado_data]{tornado_data()}}}
-\item{REHASIM}{\code{\link[=fim_trajectory_analysis]{fim_trajectory_analysis()}},
-\code{\link[=compute_waiting_gap_index]{compute_waiting_gap_index()}}, \code{\link[=mil_civil_effect]{mil_civil_effect()}},
-\code{\link[=spatial_supply_demand]{spatial_supply_demand()}}, \code{\link[=compute_rtd_analysis]{compute_rtd_analysis()}}}
+\item{Profile B helpers}{\code{\link[=progress_trajectory]{progress_trajectory()}},
+\code{\link[=compute_wait_gap_index]{compute_wait_gap_index()}}, \code{\link[=group_effect]{group_effect()}},
+\code{\link[=spatial_supply_demand]{spatial_supply_demand()}}, \code{\link[=compute_completion_analysis]{compute_completion_analysis()}}}
 \item{Plots}{\code{\link[=plot_km]{plot_km()}}, \code{\link[=plot_forest]{plot_forest()}}, \code{\link[=plot_al_tradeoff]{plot_al_tradeoff()}},
-\code{\link[=plot_scenario_heatmap]{plot_scenario_heatmap()}}, \code{\link[=plot_doctrine]{plot_doctrine()}}, \code{\link[=plot_timeline]{plot_timeline()}},
-\code{\link[=plot_map]{plot_map()}}, \code{\link[=plot_fim_curves]{plot_fim_curves()}}, \code{\link[=plot_sdi_map]{plot_sdi_map()}},
+\code{\link[=plot_scenario_heatmap]{plot_scenario_heatmap()}}, \code{\link[=plot_policy]{plot_policy()}}, \code{\link[=plot_timeline]{plot_timeline()}},
+\code{\link[=plot_map]{plot_map()}}, \code{\link[=plot_progress_curves]{plot_progress_curves()}}, \code{\link[=plot_sdi_map]{plot_sdi_map()}},
 \code{\link[=plot_cost_effectiveness]{plot_cost_effectiveness()}}}
 \item{Export}{\code{\link[=export_figure]{export_figure()}}, \code{\link[=export_latex_table]{export_latex_table()}},
 \code{\link[=fill_placeholders]{fill_placeholders()}}}
@@ -44,13 +40,13 @@ analysed with the same API. See the vignettes for worked examples.
 \seealso{
 Useful links:
 \itemize{
-  \item \url{https://github.com/rabanheller/dynasimR}
-  \item Report bugs at \url{https://github.com/rabanheller/dynasimR/issues}
+  \item \url{https://github.com/r-heller/dynasimR}
+  \item Report bugs at \url{https://github.com/r-heller/dynasimR/issues}
 }
 
 }
 \author{
-\strong{Maintainer}: Raban A. Heller \email{rabanheller@bundeswehr.org}
+\strong{Maintainer}: Raban A. Heller \email{r-heller@example.org}
 
 }
 \keyword{internal}

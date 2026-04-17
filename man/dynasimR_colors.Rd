@@ -2,18 +2,18 @@
 % Please edit documentation in R/themes.R
 \name{dynasimR_colors}
 \alias{dynasimR_colors}
-\title{NATO-inspired colour palette for dynasimR plots}
+\title{Colour palette for dynasimR plots}
 \usage{
 dynasimR_colors()
 }
 \value{
-A named list with entries \code{FRIEND}, \code{FOE}, \code{CIVILIAN},
-\code{SAVED}, \code{KIA}, \code{NEUTRAL}, \code{ACCENT}, \code{BG}.
+A named list with entries \code{GROUP_A}, \code{GROUP_B}, \code{GROUP_C},
+\code{POSITIVE}, \code{NEGATIVE}, \code{NEUTRAL}, \code{ACCENT}, \code{BG}.
 }
 \description{
 Returns a named list of hex colours used by all \verb{plot_*} functions.
 }
 \examples{
 pal <- dynasimR_colors()
-pal$FRIEND
+pal$GROUP_A
 }

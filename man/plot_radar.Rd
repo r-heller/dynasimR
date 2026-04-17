@@ -4,7 +4,7 @@
 \alias{plot_radar}
 \title{Radar chart of metrics across scenarios}
 \usage{
-plot_radar(data, scenarios, metrics = c("kia_rate", "ihl_compliance_index"))
+plot_radar(data, scenarios, metrics = c("event_rate", "compliance_index"))
 }
 \arguments{
 \item{data}{A \code{dynasimR_data} object or summary tibble.}

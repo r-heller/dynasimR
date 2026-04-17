@@ -2,16 +2,16 @@
 % Please edit documentation in R/plot_map.R
 \name{plot_map}
 \alias{plot_map}
-\title{2D casualty map snapshot}
+\title{2D entity map snapshot}
 \usage{
-plot_map(data, color_by = c("identity", "vital_status"), scenarios = NULL)
+plot_map(data, color_by = c("group", "status"), scenarios = NULL)
 }
 \arguments{
-\item{data}{A \code{dynasimR_data} object or casualty tibble with \code{x},
+\item{data}{A \code{dynasimR_data} object or entity tibble with \code{x},
 \code{y} columns.}
 
-\item{color_by}{Character. \code{"identity"} or \code{"vital_status"}.
-Default \code{"identity"}.}
+\item{color_by}{Character. \code{"group"} or \code{"status"}.
+Default \code{"group"}.}
 
 \item{scenarios}{Character vector. Scenario IDs to include.
 Default \code{NULL} = all.}
@@ -20,6 +20,6 @@ Default \code{NULL} = all.}
 A ggplot2 object.
 }
 \description{
-Scatter plot of casualty positions (requires \code{x} and \code{y} columns in
-the casualty table) coloured by identity or vital state.
+Scatter plot of entity positions (requires \code{x} and \code{y} columns in
+the entity table) coloured by group or status.
 }

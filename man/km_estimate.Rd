@@ -7,7 +7,7 @@
 km_estimate(
   data,
   scenarios = NULL,
-  endpoint = c("role2", "overall", "ttd", "ais_conversion", "discharge", "phase_c"),
+  endpoint = c("stage2", "overall", "service", "regression", "completion", "phase_c"),
   stratify_by = "scenario",
   ci_method = "log",
   n_bootstrap = 0,
@@ -16,17 +16,17 @@ km_estimate(
 }
 \arguments{
 \item{data}{A \code{dynasimR_data} object or a tibble/data.frame
-containing casualty-level columns.}
+containing entity-level columns.}
 
 \item{scenarios}{Character vector. Restrict to these scenario IDs.
 Default \code{NULL} = all.}
 
-\item{endpoint}{Character. One of \code{"role2"}, \code{"overall"}, \code{"ttd"},
-\code{"ais_conversion"}, \code{"discharge"}, \code{"phase_c"}. The latter three
-are REHASIM-only.}
+\item{endpoint}{Character. One of \code{"stage2"}, \code{"overall"},
+\code{"service"}, \code{"regression"}, \code{"completion"}, \code{"phase_c"}.
+The latter three are Profile-B-only endpoints.}
 
 \item{stratify_by}{Character vector. Strata variables, e.g.
-\code{"scenario"} or \code{c("scenario", "identity")}.}
+\code{"scenario"} or \code{c("scenario", "group")}.}
 
 \item{ci_method}{Character. Passed to \code{\link[survival:survfit]{survival::survfit()}} as
 \code{conf.type}. Default \code{"log"}.}
@@ -42,14 +42,14 @@ An S3 object of class \code{dynasimR_km} (list) with slots
 \code{params}.
 }
 \description{
-Estimates survival functions from simulated casualty outcomes.
-Supports three endpoints (survival-to-Role-2, overall survival,
-time-to-first-care) and arbitrary stratification.
+Estimates survival functions from simulated entity outcomes.
+Supports several endpoints for both output profiles.
 }
 \examples{
 \dontrun{
 sim <- load_example_data()
-km <- km_estimate(sim, endpoint = "role2", stratify_by = "scenario")
+km <- km_estimate(sim, endpoint = "stage2",
+                  stratify_by = "scenario")
 print(km)
 plot_km(km)
 }

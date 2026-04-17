@@ -11,7 +11,7 @@ export_figure(plot, filename, width_mm = 174, height_mm = 120, dpi = 300)
 
 \item{filename}{Character. Output path (extension determines format).}
 
-\item{width_mm}{Numeric. Width in mm. \code{174} = Springer single-column,
+\item{width_mm}{Numeric. Width in mm. \code{174} = single-column,
 \code{88} = double-column. Default \code{174}.}
 
 \item{height_mm}{Numeric. Height in mm. Default \code{120}.}

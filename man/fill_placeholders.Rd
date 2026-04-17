@@ -9,9 +9,9 @@ fill_placeholders(
   tex_file,
   output_file = NULL,
   dry_run = FALSE,
-  muf_scenario = "M-S08",
-  milnec_scenario = "M-S07",
-  baseline_scenario = "M-S00"
+  policy_a_scenario = "A-S08",
+  policy_b_scenario = "A-S07",
+  baseline_scenario = "A-S00"
 )
 }
 \arguments{
@@ -25,13 +25,14 @@ fill_placeholders(
 \item{dry_run}{Logical. If \code{TRUE}, print replacements but do not
 write a file. Default \code{FALSE}.}
 
-\item{muf_scenario}{Character. MUF scenario ID. Default \code{"M-S08"}.}
+\item{policy_a_scenario}{Character. Policy A scenario ID.
+Default \code{"A-S08"}.}
 
-\item{milnec_scenario}{Character. MilNec scenario ID.
-Default \code{"M-S07"}.}
+\item{policy_b_scenario}{Character. Policy B scenario ID.
+Default \code{"A-S07"}.}
 
 \item{baseline_scenario}{Character. Baseline scenario ID.
-Default \code{"M-S00"}.}
+Default \code{"A-S00"}.}
 }
 \value{
 Named character vector of the replacements (invisibly).
@@ -40,5 +41,6 @@ Named character vector of the replacements (invisibly).
 Substitutes \verb{[XX_*]} placeholders in a LaTeX source file with
 automatically computed simulation statistics. The mapping from
 placeholder to computation is assembled inside this function from
-\code{\link[=doctrine_effect]{doctrine_effect()}}, \code{\link[=al_efficiency]{al_efficiency()}} and \code{\link[=compute_ihl_index]{compute_ihl_index()}}.
+\code{\link[=policy_effect]{policy_effect()}}, \code{\link[=al_efficiency]{al_efficiency()}} and
+\code{\link[=compute_compliance_index]{compute_compliance_index()}}.
 }

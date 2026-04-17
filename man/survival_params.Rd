@@ -3,26 +3,27 @@
 \docType{data}
 \name{survival_params}
 \alias{survival_params}
-\title{Weibull survival parameters by triage category}
+\title{Example Weibull event-time parameters by priority category}
 \format{
 A tibble with 4 rows and the following columns:
 \describe{
-\item{category}{Character. Triage category (\code{"T1"}..\code{"T4"}).}
+\item{category}{Character. Priority category
+(\code{"P1"}..\code{"P4"}).}
 \item{k}{Numeric. Weibull shape parameter.}
-\item{lambda}{Numeric. Weibull scale parameter in minutes.}
-\item{source}{Character. Primary literature source.}
+\item{lambda}{Numeric. Weibull scale parameter (time units).}
+\item{source}{Character. Source note.}
 }
 }
 \source{
-Eastridge et al. (2012) J Trauma 73:S431; Kotwal et al.
-(2016) JAMA Surg 151:15.
+Package example data.
 }
 \usage{
 survival_params
 }
 \description{
-Literature-derived Weibull shape and scale parameters for modelling
-time-to-death in combat casualties, stratified by Triage category
-(T1-T4).
+Illustrative Weibull shape and scale parameters for modelling
+time-to-event trajectories, stratified by priority category
+(P1-P4). Values are provided as a starting point and can be
+replaced by domain-specific values for a particular application.
 }
 \keyword{datasets}

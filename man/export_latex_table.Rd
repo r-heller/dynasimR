@@ -2,7 +2,7 @@
 % Please edit documentation in R/write_manuscript.R
 \name{export_latex_table}
 \alias{export_latex_table}
-\title{Export a tibble as a Springer Nature compatible LaTeX table}
+\title{Export a tibble as a publication-quality LaTeX table}
 \usage{
 export_latex_table(
   data,
@@ -21,8 +21,8 @@ export_latex_table(
 
 \item{caption}{Character. Table caption.}
 
-\item{label}{Character. LaTeX label (without the \verb{tab:} prefix; it
-will be added).}
+\item{label}{Character. LaTeX label (without the \verb{tab:} prefix;
+it will be added).}
 
 \item{note}{Character. Optional footnote text.}
 
@@ -36,9 +36,9 @@ first column and \code{"r"} for the rest.}
 The LaTeX source, invisibly.
 }
 \description{
-Produces a \code{booktabs}-style table with the sn-jnl.cls requirement of
-using \verb{\\\\botrule} instead of \verb{\\\\bottomrule} and escaping \code{<}/\code{>} in
-cells. Optionally appends a \code{tablenotes} footnote.
+Produces a \code{booktabs}-style table using \verb{\\\\botrule} instead of
+\verb{\\\\bottomrule} and escaping \code{<}/\code{>} in cells. Optionally appends
+a \code{tablenotes} footnote.
 }
 \examples{
 \dontrun{

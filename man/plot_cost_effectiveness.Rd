@@ -2,13 +2,13 @@
 % Please edit documentation in R/plot_cost_effectiveness.R
 \name{plot_cost_effectiveness}
 \alias{plot_cost_effectiveness}
-\title{Cost-effectiveness plane and CEAC curve (REHASIM)}
+\title{Cost-effectiveness plane and CEAC curve}
 \usage{
 plot_cost_effectiveness(
   data,
   reference,
   scenarios,
-  outcome_col = "rtd_rate",
+  outcome_col = "completion_rate",
   cost_col = "cost",
   wtp = seq(0, 2e+05, length.out = 40),
   show_ceac = FALSE
@@ -22,7 +22,8 @@ plot_cost_effectiveness(
 \item{scenarios}{Character vector. Scenarios to evaluate against
 \code{reference}.}
 
-\item{outcome_col}{Character. Outcome column. Default \code{"rtd_rate"}.}
+\item{outcome_col}{Character. Outcome column.
+Default \code{"completion_rate"}.}
 
 \item{cost_col}{Character. Cost column. Default \code{"cost"}.}
 

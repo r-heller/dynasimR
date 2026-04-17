@@ -14,7 +14,7 @@ plot_timeline(data, metric, scenarios = NULL, group = NULL)
 \item{scenarios}{Character vector. Scenario IDs. Default \code{NULL}.}
 
 \item{group}{Character. Additional grouping variable, e.g.
-\code{"identity"}. Default \code{NULL}.}
+\code{"group"}. Default \code{NULL}.}
 }
 \value{
 A ggplot2 object.

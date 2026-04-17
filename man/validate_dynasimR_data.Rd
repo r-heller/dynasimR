@@ -7,7 +7,7 @@
 validate_dynasimR_data(x, strict = FALSE)
 }
 \arguments{
-\item{x}{A \code{dynasimR_data} object (list with \code{summary}, \code{casualties},
+\item{x}{A \code{dynasimR_data} object (list with \code{summary}, \code{entities},
 \code{timeseries}).}
 
 \item{strict}{Logical. If \code{TRUE}, missing required columns abort;

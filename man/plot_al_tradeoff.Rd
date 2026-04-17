@@ -2,7 +2,7 @@
 % Please edit documentation in R/plot_autonomy.R
 \name{plot_al_tradeoff}
 \alias{plot_al_tradeoff}
-\title{Autonomy-level trade-off plot: KIA reduction vs. IHL compliance}
+\title{Autonomy-level trade-off plot: event reduction vs. compliance}
 \usage{
 plot_al_tradeoff(al_result, label_points = TRUE, highlight_optimal = TRUE)
 }
@@ -19,5 +19,5 @@ Default \code{TRUE}.}
 A ggplot2 object.
 }
 \description{
-Autonomy-level trade-off plot: KIA reduction vs. IHL compliance
+Autonomy-level trade-off plot: event reduction vs. compliance
 }

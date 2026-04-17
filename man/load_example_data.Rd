@@ -10,8 +10,8 @@ load_example_data()
 A \code{dynasimR_data} object.
 }
 \description{
-Convenience wrapper around \code{\link[=read_simulation]{read_simulation()}} pointing at the CSVs
-shipped in \verb{inst/extdata/}.
+Convenience wrapper around \code{\link[=read_simulation]{read_simulation()}} pointing at the
+CSVs shipped in \verb{inst/extdata/}.
 }
 \examples{
 sim <- load_example_data()

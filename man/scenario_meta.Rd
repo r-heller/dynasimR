@@ -3,32 +3,34 @@
 \docType{data}
 \name{scenario_meta}
 \alias{scenario_meta}
-\title{Scenario metadata for MEDTACS-SIM and REHASIM}
+\title{Scenario metadata for Profile A and Profile B}
 \format{
-A tibble with 35 rows and the following columns:
+A tibble with 36 rows and the following columns:
 \describe{
 \item{id}{Character. Scenario identifier with prefix
-(\code{"M-"} for MEDTACS, \code{"R-"} for REHASIM).}
-\item{simulation}{Character. \code{"MEDTACS"} or \code{"REHASIM"}.}
+(\code{"A-"} for Profile A, \code{"B-"} for Profile B).}
+\item{profile}{Character. \code{"Profile_A"} or \code{"Profile_B"}.}
 \item{label}{Character. Human-readable scenario name.}
-\item{rq}{Character. Associated research question
+\item{rq}{Character. Associated research question tag
 (\code{"RQ1"}..\code{"RQ4"}, \code{"SENS"}, \code{"PIPE"}).}
-\item{doctrine}{Character. Doctrine principle
-(\code{"MUF"}, \code{"MIL_NEC"}, \code{"MIXED"}, \code{"NA"}).}
-\item{uav}{Character. UAV configuration
-(\code{"NONE"}, \code{"ISR"}, \code{"CASEVAC"}, \code{"ARMED"}, \code{"MIXED"}).}
-\item{al}{Integer. Autonomy level (0-5) or NA.}
+\item{policy}{Character. Policy type
+(\code{"policy_a"}, \code{"policy_b"}, \code{"mixed"}, \code{"NA"}).}
+\item{resource}{Character. Auxiliary-resource configuration
+(\code{"none"}, \code{"observation"}, \code{"transport"}, \code{"active"},
+\code{"mixed"}).}
+\item{al}{Integer. Autonomy level (0-5) or \code{NA}.}
 }
 }
 \source{
-MEDTACS-SIM and REHASIM concept papers (Heller 2026).
+Package example data.
 }
 \usage{
 scenario_meta
 }
 \description{
-Describes all simulation scenarios (MEDTACS M-S00..M-S14 and REHASIM
-R-S00..R-S20) with their research-question mapping, doctrine
-principle, UAV configuration and autonomy level.
+Describes all supported simulation scenarios
+(Profile A: A-S00..A-S14; Profile B: B-S00..B-S20) with their
+research-question mapping, policy, resource configuration and
+autonomy level.
 }
 \keyword{datasets}

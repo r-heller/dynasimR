@@ -4,13 +4,13 @@
 \alias{morris_screening}
 \title{Morris-style sensitivity screening from simulation replicates}
 \usage{
-morris_screening(data, outcome = "kia_rate", inputs)
+morris_screening(data, outcome = "event_rate", inputs)
 }
 \arguments{
 \item{data}{A \code{dynasimR_data} object or summary tibble.}
 
 \item{outcome}{Character. Column name of the outcome to screen.
-Default \code{"kia_rate"}.}
+Default \code{"event_rate"}.}
 
 \item{inputs}{Character vector. Column names of simulation inputs
 (must be numeric) to assess.}

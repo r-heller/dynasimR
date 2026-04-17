@@ -2,7 +2,7 @@
 % Please edit documentation in R/launch_app.R
 \name{launch_app}
 \alias{launch_app}
-\title{Launch the MEDTACS-SIM Shiny dashboard}
+\title{Launch the dynasimR Shiny dashboard}
 \usage{
 launch_app(data_dir = NULL, port = 3838, launch.browser = TRUE, ...)
 }
@@ -27,6 +27,6 @@ or leave it \code{NULL} to use the bundled example data.
 \examples{
 \dontrun{
 launch_app()
-launch_app(data_dir = "~/medtacs-sim/data/raw/")
+launch_app(data_dir = "~/my-simulation/data/raw/")
 }
 }

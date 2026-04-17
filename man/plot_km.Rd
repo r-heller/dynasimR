@@ -2,7 +2,7 @@
 % Please edit documentation in R/plot_survival.R
 \name{plot_km}
 \alias{plot_km}
-\title{Kaplan-Meier survival curves}
+\title{Kaplan-Meier curves}
 \usage{
 plot_km(
   km_result,
@@ -13,7 +13,7 @@ plot_km(
   color_by = "scenario",
   title = NULL,
   subtitle = NULL,
-  xlab = "Time post-injury [min]",
+  xlab = "Time",
   ylab = "Survival probability",
   xlim = NULL,
   manuscript_width = 174,
@@ -26,7 +26,7 @@ plot_km(
 \item{show_ci}{Logical. Show CI ribbon. Default \code{TRUE}.}
 
 \item{show_risktable}{Logical. Show risk table (requires survminer).
-Default \code{FALSE} (for simpler output without survminer).}
+Default \code{FALSE}.}
 
 \item{show_pval}{Logical. Annotate log-rank p-value. Default \code{TRUE}.}
 
@@ -34,14 +34,13 @@ Default \code{FALSE} (for simpler output without survminer).}
 Default \code{TRUE}.}
 
 \item{color_by}{Character. Aesthetic grouping. One of \code{"scenario"},
-\code{"identity"}, \code{"doctrine"}. Default \code{"scenario"}.}
+\code{"group"}, \code{"policy"}. Default \code{"scenario"}.}
 
 \item{title, subtitle, xlab, ylab}{Character overrides.}
 
 \item{xlim}{Numeric length-2. Restrict x range. Default \code{NULL}.}
 
-\item{manuscript_width}{Numeric. mm width hint (not directly used
-here, kept for API symmetry). Default \code{174}.}
+\item{manuscript_width}{Numeric. mm width hint. Default \code{174}.}
 
 \item{...}{Unused.}
 }
@@ -49,7 +48,5 @@ here, kept for API symmetry). Default \code{174}.}
 A ggplot2 object.
 }
 \description{
-Plots a \code{dynasimR_km} object. Use the options to control
-confidence-interval ribbons, log-rank p-value annotation and the
-colour grouping.
+Plots a \code{dynasimR_km} object.
 }

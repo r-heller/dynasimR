@@ -7,7 +7,7 @@
 plot_scenario_heatmap(
   data,
   scenarios = NULL,
-  metrics = c("kia_rate", "ihl_compliance_index")
+  metrics = c("event_rate", "compliance_index")
 )
 }
 \arguments{
@@ -17,7 +17,7 @@ plot_scenario_heatmap(
 \code{NULL} = all.}
 
 \item{metrics}{Character vector. Numeric outcome columns.
-Default \code{c("kia_rate", "ihl_compliance_index")}.}
+Default \code{c("event_rate", "compliance_index")}.}
 }
 \value{
 A ggplot2 object.

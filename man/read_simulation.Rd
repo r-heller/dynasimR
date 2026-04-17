@@ -9,7 +9,7 @@ read_simulation(data_dir, scenarios = NULL, validate = TRUE, verbose = TRUE)
 \arguments{
 \item{data_dir}{Character. Path to the directory containing
 simulation outputs. Files are expected to follow the pattern
-\verb{\{scenario_id\}_summary.csv}, \verb{\{scenario_id\}_casualties.csv} and
+\verb{\{scenario_id\}_summary.csv}, \verb{\{scenario_id\}_entities.csv} and
 (optionally) \verb{\{scenario_id\}_timeseries.csv}.}
 
 \item{scenarios}{Character vector. Scenario IDs to load. Default
@@ -22,18 +22,19 @@ loaded tables. Default \code{TRUE}.}
 }
 \value{
 An S3 object of class \code{dynasimR_data} (a list) with slots
-\code{summary}, \code{casualties}, \code{timeseries}, \code{metadata} and \code{load_info}.
+\code{summary}, \code{entities}, \code{timeseries}, \code{metadata} and \code{load_info}.
 }
 \description{
-Reads CSV outputs from the MEDTACS-SIM and/or REHASIM simulation
-frameworks and validates them against the dynasimR data schema.
+Reads CSV outputs from any discrete-event or agent-based
+simulation framework that follows the dynasimR file-naming
+convention and validates them against the dynasimR data schema.
 Returns a structured S3 object of class \code{dynasimR_data}.
 }
 \examples{
 \dontrun{
 sim <- read_simulation("data/raw/")
 sim <- read_simulation("data/raw/",
-                       scenarios = c("M-S00", "M-S07", "M-S08"))
+                       scenarios = c("A-S00", "A-S07", "A-S08"))
 sim <- read_simulation(system.file("extdata", package = "dynasimR"))
 }
 }
