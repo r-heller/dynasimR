@@ -1,4 +1,4 @@
-## Survival module ------------------------------------------------------
+## Time-to-event module -------------------------------------------------
 
 mod_survival_ui <- function(id) {
   ns <- NS(id)
@@ -11,10 +11,10 @@ mod_survival_ui <- function(id) {
           choices = NULL, multiple = TRUE,
           options = list(`actions-box` = TRUE)),
         selectInput(ns("endpoint"), "Endpoint",
-          choices = c("role2", "overall", "ttd"),
-          selected = "role2"),
-        checkboxInput(ns("stratify_identity"),
-          "Stratify by identity", FALSE),
+          choices = c("stage2", "overall", "service"),
+          selected = "stage2"),
+        checkboxInput(ns("stratify_group"),
+          "Stratify by group", FALSE),
         checkboxInput(ns("show_ci"),  "Show CI ribbon",  TRUE),
         checkboxInput(ns("show_pval"), "Show log-rank p", TRUE)
       ),
@@ -38,7 +38,7 @@ mod_survival_server <- function(id, sim_data) {
   moduleServer(id, function(input, output, session) {
 
     observe({
-      sc <- unique(sim_data$casualties$scenario)
+      sc <- unique(sim_data$entities$scenario)
       shinyWidgets::updatePickerInput(session, "scenarios",
         choices = sc, selected = sc)
     })
@@ -49,8 +49,8 @@ mod_survival_server <- function(id, sim_data) {
         sim_data,
         scenarios   = input$scenarios,
         endpoint    = input$endpoint,
-        stratify_by = if (input$stratify_identity)
-          c("scenario", "identity") else "scenario"
+        stratify_by = if (input$stratify_group)
+          c("scenario", "group") else "scenario"
       )
     })
 

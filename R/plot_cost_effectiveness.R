@@ -1,4 +1,4 @@
-#' Cost-effectiveness plane and CEAC curve (REHASIM)
+#' Cost-effectiveness plane and CEAC curve
 #'
 #' Plots the cost-effectiveness plane (delta cost vs. delta outcome)
 #' for a set of scenarios and, optionally, a cost-effectiveness
@@ -8,7 +8,8 @@
 #' @param reference Character. Scenario ID treated as the comparator.
 #' @param scenarios Character vector. Scenarios to evaluate against
 #'   `reference`.
-#' @param outcome_col Character. Outcome column. Default `"rtd_rate"`.
+#' @param outcome_col Character. Outcome column.
+#'   Default `"completion_rate"`.
 #' @param cost_col Character. Cost column. Default `"cost"`.
 #' @param wtp Numeric vector. Willingness-to-pay thresholds for CEAC.
 #'   Default `seq(0, 2e5, length.out = 40)`.
@@ -19,7 +20,7 @@
 plot_cost_effectiveness <- function(data,
                                     reference,
                                     scenarios,
-                                    outcome_col = "rtd_rate",
+                                    outcome_col = "completion_rate",
                                     cost_col    = "cost",
                                     wtp         = seq(0, 2e5,
                                                       length.out = 40),
@@ -63,7 +64,8 @@ plot_cost_effectiveness <- function(data,
         ggplot2::geom_hline(yintercept = 0, color = "gray60") +
         ggplot2::geom_vline(xintercept = 0, color = "gray60") +
         ggplot2::geom_point(size = 4) +
-        ggplot2::geom_text(nudge_y = 0.02 * max(abs(points$delta_cost))) +
+        ggplot2::geom_text(nudge_y = 0.02 *
+                                      max(abs(points$delta_cost))) +
         ggplot2::labs(
           x = glue::glue("Delta effect ({outcome_col})"),
           y = glue::glue("Delta cost ({cost_col})"),

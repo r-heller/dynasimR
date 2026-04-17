@@ -1,4 +1,4 @@
-#' Autonomy-level trade-off plot: KIA reduction vs. IHL compliance
+#' Autonomy-level trade-off plot: event reduction vs. compliance
 #'
 #' @param al_result A `dynasimR_al_analysis` object.
 #' @param label_points Logical. Annotate points with AL labels.
@@ -17,13 +17,13 @@ plot_al_tradeoff <- function(al_result,
     )
 
   d   <- al_result$tradeoff_table
-  thr <- al_result$ihl_threshold
+  thr <- al_result$compliance_threshold
   opt <- al_result$optimal_al
 
   p <- ggplot2::ggplot(
     d,
-    ggplot2::aes(x = .data$kia_reduction_pct,
-                 y = .data$ihl_index,
+    ggplot2::aes(x = .data$event_reduction_pct,
+                 y = .data$compliance,
                  color = factor(.data$al))
   ) +
     ggplot2::annotate("rect",
@@ -32,17 +32,17 @@ plot_al_tradeoff <- function(al_result,
       fill = "#E8F5E9", alpha = 0.6
     ) +
     ggplot2::annotate("text",
-      x    = max(d$kia_reduction_pct, na.rm = TRUE) * 0.75,
+      x    = max(d$event_reduction_pct, na.rm = TRUE) * 0.75,
       y    = thr + 0.01,
-      label = glue::glue("IHL compliance threshold ({thr})"),
+      label = glue::glue("Compliance threshold ({thr})"),
       color = "#2E7D32", size = 3, hjust = 0
     ) +
     ggplot2::geom_hline(yintercept = thr, linetype = "dashed",
                         color = "#2E7D32", linewidth = 0.5) +
     ggplot2::geom_errorbarh(
       ggplot2::aes(
-        xmin = .data$kia_ci_lo * 100,
-        xmax = .data$kia_ci_hi * 100
+        xmin = .data$event_ci_lo * 100,
+        xmax = .data$event_ci_hi * 100
       ),
       height = 0.005, alpha = 0.4
     ) +
@@ -62,7 +62,7 @@ plot_al_tradeoff <- function(al_result,
         ggplot2::geom_point(
           data   = opt_row,
           shape  = 1, size = 8,
-          color  = dynasimR_colors()$SAVED,
+          color  = dynasimR_colors()$POSITIVE,
           stroke = 1.5
         )
   }
@@ -74,12 +74,12 @@ plot_al_tradeoff <- function(al_result,
       begin  = 0.1, end = 0.9
     ) +
     ggplot2::labs(
-      x = "KIA reduction vs. AL0 [percentage points]",
-      y = "IHL-Compliance Index",
+      x = "Event reduction vs. AL0 [percentage points]",
+      y = "Compliance Index",
       title    = "Autonomy level trade-off",
-      subtitle = "Survival advantage vs. IHL compliance",
+      subtitle = "Event reduction vs. Compliance Index",
       caption  = glue::glue(
-        "Green band: ICI >= {thr} (IHL compliant). ",
+        "Green band: CI >= {thr} (compliant). ",
         "Optimum (circle): AL{opt}."
       )
     ) +
@@ -98,8 +98,8 @@ plot_al_tradeoff <- function(al_result,
 #' @export
 plot_radar <- function(data,
                        scenarios,
-                       metrics = c("kia_rate",
-                                   "ihl_compliance_index")) {
+                       metrics = c("event_rate",
+                                   "compliance_index")) {
 
   d <- if (inherits(data, "dynasimR_data")) data$summary else data
   d <- dplyr::filter(d, .data$scenario %in% scenarios)

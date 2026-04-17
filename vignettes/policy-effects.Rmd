@@ -1,8 +1,8 @@
 ---
-title: "Doctrine effects: MUF vs. Military Necessity"
+title: "Policy effects: Policy A vs. Policy B"
 output: rmarkdown::html_vignette
 vignette: >
-  %\VignetteIndexEntry{Doctrine effects: MUF vs. Military Necessity}
+  %\VignetteIndexEntry{Policy effects: Policy A vs. Policy B}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---
@@ -21,36 +21,36 @@ sim <- load_example_data()
 
 ## The core comparison
 
-The two MEDTACS scenarios `M-S07` (Military Necessity) and `M-S08`
-(Medical Urgency First) differ only in the triage doctrine applied.
+The two Profile A scenarios `A-S07` (policy B) and `A-S08` (policy A,
+priority by severity) differ only in the allocation policy.
 
 ```{r}
-doc <- doctrine_effect(
+pol <- policy_effect(
   sim,
-  muf_scenario    = "M-S08",
-  milnec_scenario = "M-S07",
-  n_bootstrap     = 500
+  policy_a_scenario = "A-S08",
+  policy_b_scenario = "A-S07",
+  n_bootstrap       = 500
 )
-print(doc)
+print(pol)
 ```
 
-## Delta KIA visualisation
+## Delta event-rate visualisation
 
 ```{r}
-plot_doctrine(doc)
+plot_policy(pol)
 ```
 
 ## Auto-generated narrative
 
 The `narrative` slot is a LaTeX-escaped string ready to drop into a
-manuscript:
+report:
 
 ```{r, results = "asis"}
-cat(doc$narrative)
+cat(pol$narrative)
 ```
 
 ## Effect sizes
 
 ```{r}
-doc$effect_sizes
+pol$effect_sizes
 ```

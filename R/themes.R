@@ -1,20 +1,20 @@
-#' NATO-inspired colour palette for dynasimR plots
+#' Colour palette for dynasimR plots
 #'
 #' Returns a named list of hex colours used by all `plot_*` functions.
 #'
-#' @return A named list with entries `FRIEND`, `FOE`, `CIVILIAN`,
-#'   `SAVED`, `KIA`, `NEUTRAL`, `ACCENT`, `BG`.
+#' @return A named list with entries `GROUP_A`, `GROUP_B`, `GROUP_C`,
+#'   `POSITIVE`, `NEGATIVE`, `NEUTRAL`, `ACCENT`, `BG`.
 #' @export
 #' @examples
 #' pal <- dynasimR_colors()
-#' pal$FRIEND
+#' pal$GROUP_A
 dynasimR_colors <- function() {
   list(
-    FRIEND   = "#1B3A6B",
-    FOE      = "#A61C24",
-    CIVILIAN = "#C99A2E",
-    SAVED    = "#2E7D32",
-    KIA      = "#212121",
+    GROUP_A  = "#1B3A6B",
+    GROUP_B  = "#A61C24",
+    GROUP_C  = "#C99A2E",
+    POSITIVE = "#2E7D32",
+    NEGATIVE = "#212121",
     NEUTRAL  = "#607D8B",
     ACCENT   = "#2E75B6",
     BG       = "#F5F7FA"
@@ -23,8 +23,8 @@ dynasimR_colors <- function() {
 
 #' ggplot2 theme for dynasimR figures
 #'
-#' A minimalist, Springer-Nature-friendly ggplot2 theme tuned for a
-#' 174 mm single-column layout at 11 pt base size.
+#' A minimalist ggplot2 theme tuned for publication-quality single
+#' and double-column output at 11 pt base size.
 #'
 #' @param base_size Numeric. Base font size. Default `11`.
 #' @param legend_pos Character. Legend position. Default `"bottom"`.
@@ -48,55 +48,55 @@ theme_dynasimR <- function(base_size = 11, legend_pos = "bottom") {
     )
 }
 
-#' Colour scale for combatant identity
+#' Colour scale for entity group
 #'
-#' Applies dynasimR identity colours (`FRIEND`/`FOE`/`CIVILIAN`) to a
-#' ggplot2 `color` aesthetic.
+#' Applies dynasimR group colours (`A`/`B`/`C`) to a ggplot2
+#' `color` aesthetic.
 #'
 #' @param ... Arguments passed to [ggplot2::scale_color_manual()].
 #' @return A ggplot2 scale object.
 #' @export
-scale_color_identity_dynasimR <- function(...) {
+scale_color_group_dynasimR <- function(...) {
   ggplot2::scale_color_manual(
     values = c(
-      FRIEND   = dynasimR_colors()$FRIEND,
-      FOE      = dynasimR_colors()$FOE,
-      CIVILIAN = dynasimR_colors()$CIVILIAN
+      A = dynasimR_colors()$GROUP_A,
+      B = dynasimR_colors()$GROUP_B,
+      C = dynasimR_colors()$GROUP_C
     ), ...
   )
 }
 
-#' Fill scale for combatant identity
+#' Fill scale for entity group
 #'
-#' As [scale_color_identity_dynasimR()] but for the `fill` aesthetic.
+#' As [scale_color_group_dynasimR()] but for the `fill` aesthetic.
 #'
 #' @param ... Arguments passed to [ggplot2::scale_fill_manual()].
 #' @return A ggplot2 scale object.
 #' @export
-scale_fill_identity_dynasimR <- function(...) {
+scale_fill_group_dynasimR <- function(...) {
   ggplot2::scale_fill_manual(
     values = c(
-      FRIEND   = dynasimR_colors()$FRIEND,
-      FOE      = dynasimR_colors()$FOE,
-      CIVILIAN = dynasimR_colors()$CIVILIAN
+      A = dynasimR_colors()$GROUP_A,
+      B = dynasimR_colors()$GROUP_B,
+      C = dynasimR_colors()$GROUP_C
     ), ...
   )
 }
 
-#' Colour scale for doctrine principle
+#' Colour scale for policy
 #'
 #' @param ... Arguments passed to [ggplot2::scale_color_manual()].
 #' @return A ggplot2 scale object.
 #' @export
-scale_color_doctrine_dynasimR <- function(...) {
+scale_color_policy_dynasimR <- function(...) {
   ggplot2::scale_color_manual(
     values = c(
-      MUF     = dynasimR_colors()$FRIEND,
-      MIL_NEC = dynasimR_colors()$FOE
+      policy_a = dynasimR_colors()$GROUP_A,
+      policy_b = dynasimR_colors()$GROUP_B
     ),
     labels = c(
-      MUF     = "Medical Urgency First",
-      MIL_NEC = "Military Necessity"
+      policy_a = "Policy A",
+      policy_b = "Policy B"
     ),
     ...
   )

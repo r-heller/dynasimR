@@ -1,18 +1,17 @@
 #' Kaplan-Meier estimator for simulation data
 #'
-#' Estimates survival functions from simulated casualty outcomes.
-#' Supports three endpoints (survival-to-Role-2, overall survival,
-#' time-to-first-care) and arbitrary stratification.
+#' Estimates survival functions from simulated entity outcomes.
+#' Supports several endpoints for both output profiles.
 #'
 #' @param data A `dynasimR_data` object or a tibble/data.frame
-#'   containing casualty-level columns.
+#'   containing entity-level columns.
 #' @param scenarios Character vector. Restrict to these scenario IDs.
 #'   Default `NULL` = all.
-#' @param endpoint Character. One of `"role2"`, `"overall"`, `"ttd"`,
-#'   `"ais_conversion"`, `"discharge"`, `"phase_c"`. The latter three
-#'   are REHASIM-only.
+#' @param endpoint Character. One of `"stage2"`, `"overall"`,
+#'   `"service"`, `"regression"`, `"completion"`, `"phase_c"`.
+#'   The latter three are Profile-B-only endpoints.
 #' @param stratify_by Character vector. Strata variables, e.g.
-#'   `"scenario"` or `c("scenario", "identity")`.
+#'   `"scenario"` or `c("scenario", "group")`.
 #' @param ci_method Character. Passed to [survival::survfit()] as
 #'   `conf.type`. Default `"log"`.
 #' @param n_bootstrap Integer. Bootstrap replicates for KM CIs
@@ -26,14 +25,15 @@
 #' @examples
 #' \dontrun{
 #' sim <- load_example_data()
-#' km <- km_estimate(sim, endpoint = "role2", stratify_by = "scenario")
+#' km <- km_estimate(sim, endpoint = "stage2",
+#'                   stratify_by = "scenario")
 #' print(km)
 #' plot_km(km)
 #' }
 km_estimate <- function(data,
                         scenarios   = NULL,
-                        endpoint    = c("role2", "overall", "ttd",
-                                        "ais_conversion", "discharge",
+                        endpoint    = c("stage2", "overall", "service",
+                                        "regression", "completion",
                                         "phase_c"),
                         stratify_by = "scenario",
                         ci_method   = "log",
@@ -42,34 +42,34 @@ km_estimate <- function(data,
 
   endpoint <- match.arg(endpoint)
 
-  d <- if (inherits(data, "dynasimR_data")) data$casualties else data
+  d <- if (inherits(data, "dynasimR_data")) data$entities else data
 
   if (!is.null(scenarios))
     d <- dplyr::filter(d, .data$scenario %in% scenarios)
 
   if (nrow(d) == 0)
-    cli::cli_abort("No casualty rows after filtering.")
+    cli::cli_abort("No entity rows after filtering.")
 
   ## Endpoint -> column names --------------------------------------------
   time_col <- switch(endpoint,
-    "role2"          = "time_to_role2",
-    "overall"        = "survival_time",
-    "ttd"            = "time_to_first_care",
-    "ais_conversion" = "time_to_ais_conversion",
-    "discharge"      = "time_to_discharge",
-    "phase_c"        = "time_to_phase_c"
+    "stage2"     = "time_to_stage2",
+    "overall"    = "event_time",
+    "service"    = "time_to_first_service",
+    "regression" = "time_to_regression",
+    "completion" = "time_to_completion",
+    "phase_c"    = "time_to_phase_c"
   )
   event_col <- switch(endpoint,
-    "role2"          = "reached_role2",
-    "overall"        = "died",
-    "ttd"            = "received_care",
-    "ais_conversion" = "ais_converted",
-    "discharge"      = "discharged",
-    "phase_c"        = "reached_phase_c"
+    "stage2"     = "reached_stage2",
+    "overall"    = "event",
+    "service"    = "received_service",
+    "regression" = "regressed",
+    "completion" = "completed",
+    "phase_c"    = "reached_phase_c"
   )
 
   .require_cols(d, c(time_col, event_col, stratify_by),
-                where = "casualties")
+                where = "entities")
 
   strat_str <- paste(stratify_by, collapse = " + ")
   f <- stats::as.formula(
@@ -124,26 +124,27 @@ plot.dynasimR_km <- function(x, ...) plot_km(x, ...)
 
 #' Cox proportional-hazards model for simulation data
 #'
-#' @param data A `dynasimR_data` object or casualty tibble.
+#' @param data A `dynasimR_data` object or entity tibble.
 #' @param endpoint See [km_estimate()].
 #' @param covariates Character vector. Covariates entering the Cox
-#'   model. Default `c("scenario","injury_severity","identity")`.
+#'   model. Default `c("scenario","severity","group")`.
 #' @param reference_scenario Character. Reference level for the
-#'   `scenario` factor. Default `"M-S00"`. Use `"R-S00"` for REHASIM.
+#'   `scenario` factor. Default `"A-S00"`. Use `"B-S00"` for Profile B.
 #' @return An S3 object of class `dynasimR_cox` with slots `fit`,
 #'   `tidy`, `ph_test`, `forest_data` and `params`.
 #' @export
 cox_model <- function(data,
-                      endpoint           = c("role2", "overall", "ttd"),
+                      endpoint           = c("stage2", "overall",
+                                             "service"),
                       covariates         = c("scenario",
-                                             "injury_severity",
-                                             "identity"),
-                      reference_scenario = "M-S00") {
+                                             "severity",
+                                             "group"),
+                      reference_scenario = "A-S00") {
 
   endpoint <- match.arg(endpoint)
-  d <- if (inherits(data, "dynasimR_data")) data$casualties else data
+  d <- if (inherits(data, "dynasimR_data")) data$entities else data
 
-  ## keep only existing covariates (drops "identity" for REHASIM) --------
+  ## keep only existing covariates (drops "group" for Profile B) ---------
   covariates <- intersect(covariates, names(d))
   if (length(covariates) == 0)
     cli::cli_abort("None of the requested covariates are in data.")
@@ -154,17 +155,17 @@ cox_model <- function(data,
                                  ref = reference_scenario)
 
   time_col <- switch(endpoint,
-    "role2"   = "time_to_role2",
-    "overall" = "survival_time",
-    "ttd"     = "time_to_first_care"
+    "stage2"  = "time_to_stage2",
+    "overall" = "event_time",
+    "service" = "time_to_first_service"
   )
   event_col <- switch(endpoint,
-    "role2"   = "reached_role2",
-    "overall" = "died",
-    "ttd"     = "received_care"
+    "stage2"  = "reached_stage2",
+    "overall" = "event",
+    "service" = "received_service"
   )
 
-  .require_cols(d, c(time_col, event_col), where = "casualties")
+  .require_cols(d, c(time_col, event_col), where = "entities")
 
   cov_str <- paste(covariates, collapse = " + ")
   f <- stats::as.formula(
@@ -289,7 +290,6 @@ print.dynasimR_cox <- function(x, ...) {
 .extract_medians <- function(fit) {
   s <- summary(fit)$table
   if (is.null(dim(s))) {
-    # single stratum
     med <- unname(s["median"])
     return(tibble::tibble(strata = "all", median = med))
   }

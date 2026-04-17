@@ -7,7 +7,8 @@ mod_autonomy_ui <- function(id) {
       shinydashboard::box(
         title = "Controls", status = "info",
         solidHeader = TRUE, width = 4,
-        sliderInput(ns("ihl_threshold"), "IHL threshold",
+        sliderInput(ns("compliance_threshold"),
+          "Compliance threshold",
           min = 0.5, max = 1, value = 0.8, step = 0.05),
         checkboxInput(ns("highlight"),
           "Highlight optimal AL", TRUE)
@@ -34,7 +35,7 @@ mod_autonomy_server <- function(id, sim_data) {
     al_res <- reactive({
       tryCatch(
         dynasimR::al_efficiency(sim_data,
-          ihl_threshold = input$ihl_threshold),
+          compliance_threshold = input$compliance_threshold),
         error = function(e) NULL
       )
     })

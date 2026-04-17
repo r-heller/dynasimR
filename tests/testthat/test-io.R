@@ -2,7 +2,7 @@ test_that("load_example_data returns a dynasimR_data object", {
   sim <- load_example_data()
   expect_s3_class(sim, "dynasimR_data")
   expect_true("summary" %in% names(sim))
-  expect_true("casualties" %in% names(sim))
+  expect_true("entities" %in% names(sim))
   expect_gt(nrow(sim$summary), 0)
 })
 

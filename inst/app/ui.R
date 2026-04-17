@@ -1,6 +1,5 @@
-## ui.R — dynasimR Shiny dashboard
+## ui.R - dynasimR Shiny dashboard
 
-# Source module UIs
 module_dir <- file.path("modules")
 for (m in list.files(module_dir, pattern = "\\.R$",
                      full.names = TRUE))
@@ -16,12 +15,12 @@ sidebar <- shinydashboard::dashboardSidebar(
       tabName = "overview",   icon = icon("gauge")),
     shinydashboard::menuItem("Map",
       tabName = "map",        icon = icon("map")),
-    shinydashboard::menuItem("Survival",
-      tabName = "survival",   icon = icon("heart-pulse")),
+    shinydashboard::menuItem("Time-to-event",
+      tabName = "survival",   icon = icon("chart-line")),
     shinydashboard::menuItem("Comparison",
       tabName = "comparison", icon = icon("table")),
-    shinydashboard::menuItem("Doctrine",
-      tabName = "doctrine",   icon = icon("scale-balanced")),
+    shinydashboard::menuItem("Policy",
+      tabName = "policy",     icon = icon("scale-balanced")),
     shinydashboard::menuItem("Autonomy",
       tabName = "autonomy",   icon = icon("robot")),
     shinydashboard::menuItem("Export",
@@ -39,8 +38,8 @@ body <- shinydashboard::dashboardBody(
       mod_survival_ui("survival")),
     shinydashboard::tabItem(tabName = "comparison",
       mod_comparison_ui("comparison")),
-    shinydashboard::tabItem(tabName = "doctrine",
-      mod_doctrine_ui("doctrine")),
+    shinydashboard::tabItem(tabName = "policy",
+      mod_policy_ui("policy")),
     shinydashboard::tabItem(tabName = "autonomy",
       mod_autonomy_ui("autonomy")),
     shinydashboard::tabItem(tabName = "export",

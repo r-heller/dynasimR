@@ -7,7 +7,7 @@
 #' @param metric Character. Name of the numeric column to plot.
 #' @param scenarios Character vector. Scenario IDs. Default `NULL`.
 #' @param group Character. Additional grouping variable, e.g.
-#'   `"identity"`. Default `NULL`.
+#'   `"group"`. Default `NULL`.
 #' @return A ggplot2 object.
 #' @export
 plot_timeline <- function(data,

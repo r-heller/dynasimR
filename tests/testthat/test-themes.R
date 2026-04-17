@@ -1,8 +1,9 @@
 test_that("dynasimR_colors returns a named list", {
   cols <- dynasimR_colors()
   expect_type(cols, "list")
-  expect_true(all(c("FRIEND", "FOE", "CIVILIAN", "SAVED", "KIA",
-                    "NEUTRAL", "ACCENT", "BG") %in% names(cols)))
+  expect_true(all(c("GROUP_A", "GROUP_B", "GROUP_C",
+                    "POSITIVE", "NEGATIVE", "NEUTRAL",
+                    "ACCENT", "BG") %in% names(cols)))
 })
 
 test_that("theme_dynasimR returns a ggplot theme", {

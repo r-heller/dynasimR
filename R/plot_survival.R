@@ -1,22 +1,19 @@
-#' Kaplan-Meier survival curves
+#' Kaplan-Meier curves
 #'
-#' Plots a `dynasimR_km` object. Use the options to control
-#' confidence-interval ribbons, log-rank p-value annotation and the
-#' colour grouping.
+#' Plots a `dynasimR_km` object.
 #'
 #' @param km_result A `dynasimR_km` object.
 #' @param show_ci Logical. Show CI ribbon. Default `TRUE`.
 #' @param show_risktable Logical. Show risk table (requires survminer).
-#'   Default `FALSE` (for simpler output without survminer).
+#'   Default `FALSE`.
 #' @param show_pval Logical. Annotate log-rank p-value. Default `TRUE`.
 #' @param show_median Logical. Draw horizontal 50% reference line.
 #'   Default `TRUE`.
 #' @param color_by Character. Aesthetic grouping. One of `"scenario"`,
-#'   `"identity"`, `"doctrine"`. Default `"scenario"`.
+#'   `"group"`, `"policy"`. Default `"scenario"`.
 #' @param title,subtitle,xlab,ylab Character overrides.
 #' @param xlim Numeric length-2. Restrict x range. Default `NULL`.
-#' @param manuscript_width Numeric. mm width hint (not directly used
-#'   here, kept for API symmetry). Default `174`.
+#' @param manuscript_width Numeric. mm width hint. Default `174`.
 #' @param ... Unused.
 #'
 #' @return A ggplot2 object.
@@ -29,7 +26,7 @@ plot_km <- function(km_result,
                     color_by         = "scenario",
                     title            = NULL,
                     subtitle         = NULL,
-                    xlab             = "Time post-injury [min]",
+                    xlab             = "Time",
                     ylab             = "Survival probability",
                     xlim             = NULL,
                     manuscript_width = 174,
@@ -47,8 +44,8 @@ plot_km <- function(km_result,
   }
 
   n_strata <- length(unique(d$strata))
-  palette <- if (identical(color_by, "doctrine"))
-    c(dynasimR_colors()$FRIEND, dynasimR_colors()$FOE)
+  palette <- if (identical(color_by, "policy"))
+    c(dynasimR_colors()$GROUP_A, dynasimR_colors()$GROUP_B)
   else
     .safe_viridis(max(1, n_strata))
 
@@ -145,7 +142,7 @@ plot_forest <- function(cox_result,
       size = 3
     ) +
     ggplot2::scale_color_manual(
-      values = c("TRUE"  = dynasimR_colors()$FRIEND,
+      values = c("TRUE"  = dynasimR_colors()$GROUP_A,
                  "FALSE" = dynasimR_colors()$NEUTRAL),
       labels = c("TRUE" = "p < 0.05", "FALSE" = "n.s."),
       name   = NULL

@@ -30,7 +30,7 @@ mod_comparison_server <- function(id, sim_data) {
       numeric_cols <- names(sim_data$summary)[
         vapply(sim_data$summary, is.numeric, logical(1))]
       default_metrics <- intersect(
-        c("kia_rate", "ihl_compliance_index"), numeric_cols)
+        c("event_rate", "compliance_index"), numeric_cols)
       shinyWidgets::updatePickerInput(session, "metrics",
         choices  = numeric_cols,
         selected = if (length(default_metrics) > 0)

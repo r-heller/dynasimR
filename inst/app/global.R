@@ -32,8 +32,8 @@ scenario_choices <- function(scenarios = AVAILABLE_SCENARIOS) {
   setNames(sc$id, paste0(sc$id, " - ", sc$label))
 }
 
-# MUF / MilNec guesses depending on which simulation is loaded
-.is_rehasim <- identical(SIM_DATA$load_info$simulation_type,
-                         "REHASIM")
-DEFAULT_MUF    <- if (.is_rehasim) "R-S19" else "M-S08"
-DEFAULT_MILNEC <- if (.is_rehasim) "R-S00" else "M-S07"
+# Policy A / Policy B defaults depending on which profile is loaded
+.is_profile_b <- identical(SIM_DATA$load_info$profile_type,
+                           "Profile_B")
+DEFAULT_POLICY_A <- if (.is_profile_b) "B-S19" else "A-S08"
+DEFAULT_POLICY_B <- if (.is_profile_b) "B-S00" else "A-S07"

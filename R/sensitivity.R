@@ -8,7 +8,7 @@
 #'
 #' @param data A `dynasimR_data` object or summary tibble.
 #' @param outcome Character. Column name of the outcome to screen.
-#'   Default `"kia_rate"`.
+#'   Default `"event_rate"`.
 #' @param inputs Character vector. Column names of simulation inputs
 #'   (must be numeric) to assess.
 #'
@@ -16,13 +16,12 @@
 #'   change), `sigma`, `rank`.
 #' @export
 morris_screening <- function(data,
-                             outcome = "kia_rate",
+                             outcome = "event_rate",
                              inputs) {
 
   d <- if (inherits(data, "dynasimR_data")) data$summary else data
   .require_cols(d, c(outcome, inputs), where = "summary")
 
-  # Normalise inputs and outcome, then compute pairwise linear effect
   y <- scale(d[[outcome]])[, 1]
   out <- purrr::map_dfr(inputs, function(nm) {
     x <- scale(d[[nm]])[, 1]
@@ -49,18 +48,18 @@ morris_screening <- function(data,
 #'
 #' @param data A `dynasimR_data` object or summary tibble.
 #' @param baseline Character. Scenario ID of the baseline.
-#' @param perturbations Character vector. Scenario IDs of one-at-a-time
-#'   perturbations.
+#' @param perturbations Character vector. Scenario IDs of
+#'   one-at-a-time perturbations.
 #' @param outcome Character. Column name of the outcome to measure.
-#'   Default `"kia_rate"`.
+#'   Default `"event_rate"`.
 #'
-#' @return A tibble suitable for a tornado plot with columns `scenario`,
-#'   `delta`, `lo`, `hi`, sorted by absolute delta.
+#' @return A tibble suitable for a tornado plot with columns
+#'   `scenario`, `delta`, `lo`, `hi`, sorted by absolute delta.
 #' @export
 tornado_data <- function(data,
                          baseline,
                          perturbations,
-                         outcome = "kia_rate") {
+                         outcome = "event_rate") {
 
   d <- if (inherits(data, "dynasimR_data")) data$summary else data
   .require_cols(d, c("scenario", outcome), where = "summary")

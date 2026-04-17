@@ -5,7 +5,7 @@
 #'
 #' @param plot A ggplot2 object.
 #' @param filename Character. Output path (extension determines format).
-#' @param width_mm Numeric. Width in mm. `174` = Springer single-column,
+#' @param width_mm Numeric. Width in mm. `174` = single-column,
 #'   `88` = double-column. Default `174`.
 #' @param height_mm Numeric. Height in mm. Default `120`.
 #' @param dpi Integer. Raster resolution. Default `300`.
@@ -42,17 +42,17 @@ export_figure <- function(plot,
   invisible(filename)
 }
 
-#' Export a tibble as a Springer Nature compatible LaTeX table
+#' Export a tibble as a publication-quality LaTeX table
 #'
-#' Produces a `booktabs`-style table with the sn-jnl.cls requirement of
-#' using `\\botrule` instead of `\\bottomrule` and escaping `<`/`>` in
-#' cells. Optionally appends a `tablenotes` footnote.
+#' Produces a `booktabs`-style table using `\\botrule` instead of
+#' `\\bottomrule` and escaping `<`/`>` in cells. Optionally appends
+#' a `tablenotes` footnote.
 #'
 #' @param data A tibble/data.frame.
 #' @param filename Character. Output `.tex` path.
 #' @param caption Character. Table caption.
-#' @param label Character. LaTeX label (without the `tab:` prefix; it
-#'   will be added).
+#' @param label Character. LaTeX label (without the `tab:` prefix;
+#'   it will be added).
 #' @param note Character. Optional footnote text.
 #' @param digits Integer. Digits for numeric columns. Default `3`.
 #' @param col_format Character vector. Column alignment spec
@@ -80,7 +80,6 @@ export_latex_table <- function(data,
       "Install with {.code install.packages('xtable')}."
     )
 
-  # Escape <,> in character cells
   data <- dplyr::mutate(
     data,
     dplyr::across(
@@ -134,7 +133,8 @@ export_latex_table <- function(data,
 #' Substitutes `[XX_*]` placeholders in a LaTeX source file with
 #' automatically computed simulation statistics. The mapping from
 #' placeholder to computation is assembled inside this function from
-#' [doctrine_effect()], [al_efficiency()] and [compute_ihl_index()].
+#' [policy_effect()], [al_efficiency()] and
+#' [compute_compliance_index()].
 #'
 #' @param sim_data A `dynasimR_data` object.
 #' @param tex_file Character. Path to the LaTeX source file.
@@ -142,31 +142,32 @@ export_latex_table <- function(data,
 #'   `_filled` before `.tex`.
 #' @param dry_run Logical. If `TRUE`, print replacements but do not
 #'   write a file. Default `FALSE`.
-#' @param muf_scenario Character. MUF scenario ID. Default `"M-S08"`.
-#' @param milnec_scenario Character. MilNec scenario ID.
-#'   Default `"M-S07"`.
+#' @param policy_a_scenario Character. Policy A scenario ID.
+#'   Default `"A-S08"`.
+#' @param policy_b_scenario Character. Policy B scenario ID.
+#'   Default `"A-S07"`.
 #' @param baseline_scenario Character. Baseline scenario ID.
-#'   Default `"M-S00"`.
+#'   Default `"A-S00"`.
 #' @return Named character vector of the replacements (invisibly).
 #' @export
 fill_placeholders <- function(sim_data,
                               tex_file,
                               output_file        = NULL,
                               dry_run            = FALSE,
-                              muf_scenario       = "M-S08",
-                              milnec_scenario    = "M-S07",
-                              baseline_scenario  = "M-S00") {
+                              policy_a_scenario  = "A-S08",
+                              policy_b_scenario  = "A-S07",
+                              baseline_scenario  = "A-S00") {
 
   if (!file.exists(tex_file))
     cli::cli_abort("File not found: {.path {tex_file}}")
 
-  doc <- try(doctrine_effect(
+  pol <- try(policy_effect(
     sim_data,
-    muf_scenario    = muf_scenario,
-    milnec_scenario = milnec_scenario
+    policy_a_scenario = policy_a_scenario,
+    policy_b_scenario = policy_b_scenario
   ), silent = TRUE)
   al  <- try(al_efficiency(sim_data), silent = TRUE)
-  ihl <- try(compute_ihl_index(sim_data, by_identity = FALSE),
+  ci  <- try(compute_compliance_index(sim_data, by_group = FALSE),
              silent = TRUE)
 
   get_num <- function(tbl, filter_expr, column) {
@@ -179,33 +180,35 @@ fill_placeholders <- function(sim_data,
   s <- sim_data$summary
 
   replacements <- c(
-    "[XX_DOCTRINE_DELTA_KIA]"   =
-      if (inherits(doc, "try-error")) "NA" else
+    "[XX_POLICY_DELTA_EVENT]" =
+      if (inherits(pol, "try-error")) "NA" else
         as.character(round(abs(
-          doc$delta_kia$median_pct_points[
-            doc$delta_kia$identity == "all"][1]), 1)),
-    "[XX_DOCTRINE_DELTA_CI_LO]" =
-      if (inherits(doc, "try-error")) "NA" else
+          pol$delta_event$median_pct_points[
+            pol$delta_event$group == "all"][1]), 1)),
+    "[XX_POLICY_DELTA_CI_LO]" =
+      if (inherits(pol, "try-error")) "NA" else
         as.character(round(
-          doc$delta_kia$ci_lo[doc$delta_kia$identity == "all"][1], 1)),
-    "[XX_DOCTRINE_DELTA_CI_HI]" =
-      if (inherits(doc, "try-error")) "NA" else
+          pol$delta_event$ci_lo[
+            pol$delta_event$group == "all"][1], 1)),
+    "[XX_POLICY_DELTA_CI_HI]" =
+      if (inherits(pol, "try-error")) "NA" else
         as.character(round(
-          doc$delta_kia$ci_hi[doc$delta_kia$identity == "all"][1], 1)),
-    "[XX_IHL_MUF]" =
-      as.character(round(get_num(ihl,
-        glue::glue("scenario == '{muf_scenario}'"),  "ici"), 3)),
-    "[XX_IHL_MILNEC]" =
-      as.character(round(get_num(ihl,
-        glue::glue("scenario == '{milnec_scenario}'"), "ici"), 3)),
+          pol$delta_event$ci_hi[
+            pol$delta_event$group == "all"][1], 1)),
+    "[XX_COMPLIANCE_A]" =
+      as.character(round(get_num(ci,
+        glue::glue("scenario == '{policy_a_scenario}'"), "ci"), 3)),
+    "[XX_COMPLIANCE_B]" =
+      as.character(round(get_num(ci,
+        glue::glue("scenario == '{policy_b_scenario}'"), "ci"), 3)),
     "[XX_OPTIMAL_AL]" =
       if (inherits(al, "try-error")) "NA" else
         as.character(al$optimal_al),
-    "[XX_KIA_BASELINE]" = as.character(round(
-      stats::median(s$kia_rate[s$scenario == baseline_scenario],
+    "[XX_EVENT_BASELINE]" = as.character(round(
+      stats::median(s$event_rate[s$scenario == baseline_scenario],
                     na.rm = TRUE) * 100, 1)),
-    "[XX_KIA_BEST]" = as.character(round(
-      min(tapply(s$kia_rate, s$scenario,
+    "[XX_EVENT_BEST]" = as.character(round(
+      min(tapply(s$event_rate, s$scenario,
                  stats::median, na.rm = TRUE), na.rm = TRUE) * 100,
       1))
   )

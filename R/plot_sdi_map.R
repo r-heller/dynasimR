@@ -1,4 +1,4 @@
-#' Supply-Demand Index choropleth (REHASIM)
+#' Supply-Demand Index choropleth
 #'
 #' Visualises per-region SDI as a tiled map. If the data contain `x`
 #' and `y` region centroid columns, tiles are placed at those
@@ -24,9 +24,9 @@ plot_sdi_map <- function(sdi) {
         size = 2.5, color = "white"
       ) +
       ggplot2::scale_fill_gradient2(
-        low = dynasimR_colors()$FOE,
+        low = dynasimR_colors()$GROUP_B,
         mid = "white",
-        high = dynasimR_colors()$SAVED,
+        high = dynasimR_colors()$POSITIVE,
         midpoint = 1
       ) +
       ggplot2::coord_fixed() +
@@ -43,9 +43,9 @@ plot_sdi_map <- function(sdi) {
       ggplot2::geom_hline(yintercept = 1, linetype = "dashed",
                           color = "gray40") +
       ggplot2::scale_fill_gradient2(
-        low = dynasimR_colors()$FOE,
+        low = dynasimR_colors()$GROUP_B,
         mid = "white",
-        high = dynasimR_colors()$SAVED,
+        high = dynasimR_colors()$POSITIVE,
         midpoint = 1
       ) +
       ggplot2::coord_flip() +

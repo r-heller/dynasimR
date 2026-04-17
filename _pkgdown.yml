@@ -10,8 +10,8 @@ template:
 home:
   title: dynasimR - Dynamic Agent-Node Simulation Analysis
   description: >
-    Analysis and visualisation layer for discrete-event, agent-based and
-    node-actor simulation outputs (MEDTACS-SIM and REHASIM).
+    A domain-neutral analysis and visualisation layer for
+    discrete-event, agent-based and node-actor simulation outputs.
 
 navbar:
   structure:
@@ -28,7 +28,7 @@ reference:
       - scenario_meta
       - survival_params
 
-  - title: Survival analysis
+  - title: Time-to-event analysis
     desc: Kaplan-Meier, Cox regression and associated plots.
     contents:
       - km_estimate
@@ -36,41 +36,40 @@ reference:
       - plot_km
       - plot_forest
 
-  - title: Doctrine effects
-    desc: MUF vs. Military Necessity quantification.
+  - title: Policy effects
+    desc: Policy A vs. Policy B quantification.
     contents:
-      - doctrine_effect
-      - plot_doctrine
+      - policy_effect
+      - plot_policy
 
   - title: Autonomy trade-off
-    desc: AL0-AL5 survival-vs-IHL analysis.
+    desc: AL0-AL5 event-vs-compliance analysis.
     contents:
       - al_efficiency
       - plot_al_tradeoff
       - plot_radar
 
-  - title: IHL / Patient flow
-    desc: Compliance index, throughput, bottlenecks.
+  - title: Compliance / Entity flow
+    desc: Compliance Index, throughput, bottlenecks.
     contents:
-      - compute_ihl_index
-      - role_throughput
+      - compute_compliance_index
+      - stage_throughput
       - detect_bottlenecks
-      - uav_comparison
+      - resource_comparison
 
   - title: Sensitivity analysis
     contents:
       - morris_screening
       - tornado_data
 
-  - title: REHASIM extensions
-    desc: Rehabilitation flow analysis.
+  - title: Profile B helpers
     contents:
-      - fim_trajectory_analysis
-      - compute_waiting_gap_index
-      - mil_civil_effect
-      - compute_rtd_analysis
+      - progress_trajectory
+      - compute_wait_gap_index
+      - group_effect
+      - compute_completion_analysis
       - spatial_supply_demand
-      - plot_fim_curves
+      - plot_progress_curves
       - plot_sdi_map
       - plot_cost_effectiveness
 
@@ -81,9 +80,9 @@ reference:
       - plot_timeline
       - theme_dynasimR
       - dynasimR_colors
-      - scale_color_identity_dynasimR
-      - scale_fill_identity_dynasimR
-      - scale_color_doctrine_dynasimR
+      - scale_color_group_dynasimR
+      - scale_fill_group_dynasimR
+      - scale_color_policy_dynasimR
 
   - title: Manuscript export
     contents:
@@ -101,7 +100,7 @@ articles:
     navbar: ~
     contents:
       - getting-started
-      - patient-flow-analysis
-      - doctrine-effects
+      - entity-flow-analysis
+      - policy-effects
       - autonomy-tradeoff
       - manuscript-export

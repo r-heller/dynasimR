@@ -26,34 +26,35 @@ sim <- load_example_data()
 print(sim)
 ```
 
-## Survival analysis
+## Time-to-event analysis
 
 ```{r}
-km <- km_estimate(sim, endpoint = "role2", stratify_by = "scenario")
-plot_km(km, title = "Survival-to-Role-2")
+km <- km_estimate(sim, endpoint = "stage2",
+                  stratify_by = "scenario")
+plot_km(km, title = "Time-to-stage-2")
 ```
 
-## Doctrine effect
+## Policy effect
 
 ```{r}
-doc <- doctrine_effect(sim,
-  muf_scenario    = "M-S08",
-  milnec_scenario = "M-S07",
-  n_bootstrap     = 200)
-cat(doc$narrative)
+pol <- policy_effect(sim,
+  policy_a_scenario = "A-S08",
+  policy_b_scenario = "A-S07",
+  n_bootstrap       = 200)
+cat(pol$narrative)
 ```
 
 ## Autonomy trade-off
 
 Only two AL points are present in the shipped example data, but the
-machinery is the same with the full MEDTACS-SIM output.
+machinery is the same for a full AL sweep.
 
 ```{r}
 al <- al_efficiency(
   sim,
-  al_scenarios  = c("0" = "M-S00", "1" = "M-S01"),
-  ihl_threshold = 0.80,
-  n_bootstrap   = 200
+  al_scenarios         = c("0" = "A-S00", "1" = "A-S01"),
+  compliance_threshold = 0.80,
+  n_bootstrap          = 200
 )
 plot_al_tradeoff(al)
 ```
@@ -62,16 +63,16 @@ plot_al_tradeoff(al)
 
 ```{r, eval = FALSE}
 export_latex_table(
-  data     = doc$effect_sizes,
-  filename = "doctrine_table.tex",
-  caption  = "Doctrine effect sizes.",
-  label    = "doctrine"
+  data     = pol$effect_sizes,
+  filename = "policy_table.tex",
+  caption  = "Policy effect sizes.",
+  label    = "policy"
 )
 ```
 
 ## Launching the dashboard
 
 ```{r, eval = FALSE}
-launch_app()                                   # example data
-launch_app(data_dir = "~/medtacs-sim/data/raw")
+launch_app()                                        # example data
+launch_app(data_dir = "~/my-simulation/data/raw")
 ```

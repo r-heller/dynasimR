@@ -6,19 +6,19 @@ mod_overview_ui <- function(id) {
     fluidRow(
       shinydashboard::valueBoxOutput(ns("box_scenarios"), width = 3),
       shinydashboard::valueBoxOutput(ns("box_reps"),      width = 3),
-      shinydashboard::valueBoxOutput(ns("box_cas"),       width = 3),
-      shinydashboard::valueBoxOutput(ns("box_sim_type"),  width = 3)
+      shinydashboard::valueBoxOutput(ns("box_ent"),       width = 3),
+      shinydashboard::valueBoxOutput(ns("box_profile"),   width = 3)
     ),
     fluidRow(
       shinydashboard::box(
-        title = "KIA rate distribution",
+        title = "Event-rate distribution",
         status = "primary", solidHeader = TRUE, width = 6,
-        plotly::plotlyOutput(ns("kia_dist"), height = 320)
+        plotly::plotlyOutput(ns("event_dist"), height = 320)
       ),
       shinydashboard::box(
-        title = "IHL Compliance Index",
+        title = "Compliance Index",
         status = "primary", solidHeader = TRUE, width = 6,
-        plotly::plotlyOutput(ns("ihl_dist"), height = 320)
+        plotly::plotlyOutput(ns("compliance_dist"), height = 320)
       )
     ),
     fluidRow(
@@ -47,42 +47,43 @@ mod_overview_server <- function(id, sim_data) {
         color = "teal"
       )
     })
-    output$box_cas <- shinydashboard::renderValueBox({
+    output$box_ent <- shinydashboard::renderValueBox({
       shinydashboard::valueBox(
-        nrow(sim_data$casualties),
-        "Casualty events", icon = icon("user-injured"),
+        nrow(sim_data$entities),
+        "Entity events", icon = icon("dot-circle"),
         color = "orange"
       )
     })
-    output$box_sim_type <- shinydashboard::renderValueBox({
+    output$box_profile <- shinydashboard::renderValueBox({
       shinydashboard::valueBox(
-        sim_data$load_info$simulation_type,
-        "Simulation type", icon = icon("microchip"),
+        sim_data$load_info$profile_type,
+        "Profile type", icon = icon("microchip"),
         color = "purple"
       )
     })
 
-    output$kia_dist <- plotly::renderPlotly({
-      if (!"kia_rate" %in% names(sim_data$summary))
+    output$event_dist <- plotly::renderPlotly({
+      if (!"event_rate" %in% names(sim_data$summary))
         return(plotly::plotly_empty())
       p <- ggplot2::ggplot(sim_data$summary,
-        ggplot2::aes(x = .data$kia_rate,
+        ggplot2::aes(x = .data$event_rate,
                      fill = .data$scenario)) +
         ggplot2::geom_density(alpha = 0.4) +
-        ggplot2::labs(x = "KIA rate", y = "Density", fill = NULL) +
+        ggplot2::labs(x = "Event rate", y = "Density",
+                      fill = NULL) +
         dynasimR::theme_dynasimR()
       plotly::ggplotly(p)
     })
 
-    output$ihl_dist <- plotly::renderPlotly({
-      if (!"ihl_compliance_index" %in% names(sim_data$summary))
+    output$compliance_dist <- plotly::renderPlotly({
+      if (!"compliance_index" %in% names(sim_data$summary))
         return(plotly::plotly_empty())
       p <- ggplot2::ggplot(sim_data$summary,
-        ggplot2::aes(x = .data$ihl_compliance_index,
+        ggplot2::aes(x = .data$compliance_index,
                      fill = .data$scenario)) +
         ggplot2::geom_density(alpha = 0.4) +
-        ggplot2::labs(x = "IHL Compliance Index",
-                      y = "Density", fill = NULL) +
+        ggplot2::labs(x = "Compliance Index", y = "Density",
+                      fill = NULL) +
         dynasimR::theme_dynasimR()
       plotly::ggplotly(p)
     })

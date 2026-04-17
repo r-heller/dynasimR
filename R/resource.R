@@ -1,34 +1,34 @@
-#' Compare outcomes across UAV configurations
+#' Compare outcomes across resource configurations
 #'
-#' Aggregates primary outcome metrics (KIA rate, IHL-Compliance Index
-#' and — if present — median time-to-first-care) by the `uav` column
-#' of the joined scenario metadata.
+#' Aggregates primary outcome metrics (event rate, Compliance Index
+#' and - if present - median time-to-first-service) by the
+#' `resource` column of the joined scenario metadata.
 #'
 #' @param data A `dynasimR_data` object or summary tibble.
 #' @param scenarios Character vector. Restrict to these IDs.
 #'   Default `NULL` = all.
 #' @param metrics Character vector. Which metrics to report.
-#'   Default `c("kia_rate", "ihl_compliance_index")`.
+#'   Default `c("event_rate", "compliance_index")`.
 #'
-#' @return A tibble with one row per UAV configuration and columns
-#'   `uav`, `n_scenarios`, `n_reps`, and for each metric the median
-#'   and 2.5%/97.5% quantile.
+#' @return A tibble with one row per resource configuration and
+#'   columns `resource`, `n_scenarios`, `n_reps`, and for each
+#'   metric the median and 2.5%/97.5% quantile.
 #' @export
 #' @examples
 #' \dontrun{
 #' sim <- load_example_data()
-#' uav_comparison(sim)
+#' resource_comparison(sim)
 #' }
-uav_comparison <- function(data,
-                           scenarios = NULL,
-                           metrics   = c("kia_rate",
-                                         "ihl_compliance_index")) {
+resource_comparison <- function(data,
+                                scenarios = NULL,
+                                metrics   = c("event_rate",
+                                              "compliance_index")) {
 
   d <- if (inherits(data, "dynasimR_data")) data$summary else data
 
-  if (!"uav" %in% names(d))
+  if (!"resource" %in% names(d))
     cli::cli_abort(
-      "Summary table does not contain a 'uav' column. ",
+      "Summary table does not contain a 'resource' column. ",
       "Run {.fn read_simulation} with bundled scenario_meta."
     )
 
@@ -40,7 +40,7 @@ uav_comparison <- function(data,
     cli::cli_abort("None of the requested metrics are in summary.")
 
   summ <- d |>
-    dplyr::group_by(.data$uav) |>
+    dplyr::group_by(.data$resource) |>
     dplyr::summarise(
       n_scenarios = dplyr::n_distinct(.data$scenario),
       n_reps      = dplyr::n(),

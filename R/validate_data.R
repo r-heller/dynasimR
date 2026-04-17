@@ -4,7 +4,7 @@
 #' reports out-of-range values. Does not modify the data; returns it
 #' unchanged (with warnings when problems are found).
 #'
-#' @param x A `dynasimR_data` object (list with `summary`, `casualties`,
+#' @param x A `dynasimR_data` object (list with `summary`, `entities`,
 #'   `timeseries`).
 #' @param strict Logical. If `TRUE`, missing required columns abort;
 #'   if `FALSE` (default), they produce a warning and the function
@@ -26,26 +26,26 @@ validate_dynasimR_data <- function(x, strict = FALSE) {
       if (strict) cli::cli_abort(msg)
       cli::cli_warn(msg)
     }
-    if ("kia_rate" %in% names(x$summary))
-      .in_range(x$summary$kia_rate, 0, 1, "kia_rate")
-    if ("ihl_compliance_index" %in% names(x$summary))
-      .in_range(x$summary$ihl_compliance_index, 0, 1,
-                "ihl_compliance_index")
+    if ("event_rate" %in% names(x$summary))
+      .in_range(x$summary$event_rate, 0, 1, "event_rate")
+    if ("compliance_index" %in% names(x$summary))
+      .in_range(x$summary$compliance_index, 0, 1,
+                "compliance_index")
   }
 
-  ## casualties ------------------------------------------------------
-  if (!is.null(x$casualties) && nrow(x$casualties) > 0) {
+  ## entities --------------------------------------------------------
+  if (!is.null(x$entities) && nrow(x$entities) > 0) {
     req <- c("scenario", "replication")
-    missing <- setdiff(req, names(x$casualties))
+    missing <- setdiff(req, names(x$entities))
     if (length(missing) > 0) {
       msg <- glue::glue(
-        "casualties missing: {paste(missing, collapse=', ')}")
+        "entities missing: {paste(missing, collapse=', ')}")
       issues <- c(issues, msg)
       if (strict) cli::cli_abort(msg)
       cli::cli_warn(msg)
     }
-    if ("injury_severity" %in% names(x$casualties))
-      .in_range(x$casualties$injury_severity, 0, 1, "injury_severity")
+    if ("severity" %in% names(x$entities))
+      .in_range(x$entities$severity, 0, 1, "severity")
   }
 
   ## timeseries ------------------------------------------------------

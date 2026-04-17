@@ -1,13 +1,13 @@
-#' Waiting-Gap Index (REHASIM)
+#' Wait-Gap Index (Profile B)
 #'
-#' Analogue of the IHL-Compliance Index for rehabilitation flow:
-#' fraction of casualties who wait no longer than a threshold number
-#' of days (default 14) between injury and rehabilitation start.
-#' A value below `0.80` is flagged as a policy-relevant violation.
+#' Analogue of the Compliance Index for entity-flow profiles:
+#' fraction of entities whose wait time from arrival to activation
+#' does not exceed a threshold number of days (default 14). A value
+#' below `0.80` is flagged as a critical wait-gap.
 #'
-#' @param data A `dynasimR_data` object or casualty tibble with a
-#'   `waiting_days` column (or `waiting_days_to_min` in minutes).
-#' @param window_days Numeric. Allowed waiting time in days.
+#' @param data A `dynasimR_data` object or entity tibble with a
+#'   `wait_days` column (or `wait_days_to_min` in minutes).
+#' @param window_days Numeric. Allowed wait time in days.
 #'   Default `14`.
 #' @param by_scenario Logical. Stratify by scenario. Default `TRUE`.
 #' @param by_cohort Logical. Stratify by `cohort` (if present).
@@ -19,26 +19,26 @@
 #'   `cohort` (if stratified), `wgi`, `wgi_ci_lo`, `wgi_ci_hi`,
 #'   `n_total`, `n_in_window`, `wgi_critical`, `window_days`.
 #' @export
-compute_waiting_gap_index <- function(data,
-                                      window_days  = 14,
-                                      by_scenario  = TRUE,
-                                      by_cohort    = TRUE,
-                                      n_bootstrap  = 1000) {
+compute_wait_gap_index <- function(data,
+                                   window_days  = 14,
+                                   by_scenario  = TRUE,
+                                   by_cohort    = TRUE,
+                                   n_bootstrap  = 1000) {
 
-  d <- if (inherits(data, "dynasimR_data")) data$casualties else data
+  d <- if (inherits(data, "dynasimR_data")) data$entities else data
   if (nrow(d) == 0) return(tibble::tibble())
 
-  col <- if ("waiting_days" %in% names(d)) "waiting_days"
-         else if ("waiting_days_to_min" %in% names(d))
-           "waiting_days_to_min"
+  col <- if ("wait_days" %in% names(d)) "wait_days"
+         else if ("wait_days_to_min" %in% names(d))
+           "wait_days_to_min"
          else NA_character_
   if (is.na(col))
     cli::cli_abort(
-      "Casualty table needs 'waiting_days' or 'waiting_days_to_min'."
+      "Entity table needs 'wait_days' or 'wait_days_to_min'."
     )
 
   # Normalise to days if column is in minutes
-  vals <- if (col == "waiting_days_to_min")
+  vals <- if (col == "wait_days_to_min")
     d[[col]] / 1440 else d[[col]]
 
   d <- dplyr::mutate(d, .__wait = vals)

@@ -8,14 +8,14 @@
 #' @param scenarios Character vector. Scenario IDs to show. Default
 #'   `NULL` = all.
 #' @param metrics Character vector. Numeric outcome columns.
-#'   Default `c("kia_rate", "ihl_compliance_index")`.
+#'   Default `c("event_rate", "compliance_index")`.
 #' @return A ggplot2 object.
 #' @export
 plot_scenario_heatmap <- function(data,
                                   scenarios = NULL,
                                   metrics   = c(
-                                    "kia_rate",
-                                    "ihl_compliance_index"
+                                    "event_rate",
+                                    "compliance_index"
                                   )) {
 
   d <- if (inherits(data, "dynasimR_data")) data$summary else data

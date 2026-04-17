@@ -21,16 +21,16 @@ sim <- load_example_data()
 
 ## AL-Efficiency ratio
 
-We trade off KIA reduction versus IHL compliance. The default AL
-scenario mapping requires the full MEDTACS-SIM sweep; here we
+We trade off event-rate reduction versus the Compliance Index. The
+default AL scenario mapping requires the full sweep; here we
 demonstrate with the two AL points in the shipped example data.
 
 ```{r}
 al <- al_efficiency(
   sim,
-  al_scenarios = c("0" = "M-S00", "1" = "M-S01"),
-  ihl_threshold = 0.80,
-  n_bootstrap   = 200
+  al_scenarios         = c("0" = "A-S00", "1" = "A-S01"),
+  compliance_threshold = 0.80,
+  n_bootstrap          = 200
 )
 al$tradeoff_table
 ```
@@ -43,15 +43,15 @@ plot_al_tradeoff(al)
 
 ## Interpretation
 
-The `optimal_al` slot holds the AL level with the highest KIA
-reduction while staying above the IHL threshold:
+The `optimal_al` slot holds the AL level with the highest event-rate
+reduction while staying above the compliance threshold:
 
 ```{r}
 al$optimal_al
 ```
 
-IHL violations (if any):
+Compliance violations (if any):
 
 ```{r}
-al$ihl_violations
+al$compliance_violations
 ```
