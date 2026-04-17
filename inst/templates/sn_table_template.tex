@@ -1,0 +1,18 @@
+% Springer Nature sn-jnl.cls compatible table template
+% Use via dynasimR::export_latex_table().
+%
+% Required preamble packages: booktabs, threeparttable, caption.
+%
+\begin{table}[h]
+\caption{[CAPTION]}\label{tab:[LABEL]}
+\begin{tabular}{[COLUMN_FORMAT]}
+\toprule
+[HEADER_ROW] \\
+\midrule
+[BODY_ROWS]
+\botrule
+\end{tabular}
+\begin{tablenotes}
+\item [NOTE]
+\end{tablenotes}
+\end{table}

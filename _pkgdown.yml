@@ -1,0 +1,107 @@
+url: https://rabanheller.github.io/dynasimR/
+
+template:
+  bootstrap: 5
+  bslib:
+    primary: "#1B3A6B"
+    bg: "#FFFFFF"
+    fg: "#212121"
+
+home:
+  title: dynasimR - Dynamic Agent-Node Simulation Analysis
+  description: >
+    Analysis and visualisation layer for discrete-event, agent-based and
+    node-actor simulation outputs (MEDTACS-SIM and REHASIM).
+
+navbar:
+  structure:
+    left:  [intro, reference, articles, news]
+    right: [search, github]
+
+reference:
+  - title: Data I/O
+    desc: Load, validate and inspect simulation outputs.
+    contents:
+      - read_simulation
+      - load_example_data
+      - validate_dynasimR_data
+      - scenario_meta
+      - survival_params
+
+  - title: Survival analysis
+    desc: Kaplan-Meier, Cox regression and associated plots.
+    contents:
+      - km_estimate
+      - cox_model
+      - plot_km
+      - plot_forest
+
+  - title: Doctrine effects
+    desc: MUF vs. Military Necessity quantification.
+    contents:
+      - doctrine_effect
+      - plot_doctrine
+
+  - title: Autonomy trade-off
+    desc: AL0-AL5 survival-vs-IHL analysis.
+    contents:
+      - al_efficiency
+      - plot_al_tradeoff
+      - plot_radar
+
+  - title: IHL / Patient flow
+    desc: Compliance index, throughput, bottlenecks.
+    contents:
+      - compute_ihl_index
+      - role_throughput
+      - detect_bottlenecks
+      - uav_comparison
+
+  - title: Sensitivity analysis
+    contents:
+      - morris_screening
+      - tornado_data
+
+  - title: REHASIM extensions
+    desc: Rehabilitation flow analysis.
+    contents:
+      - fim_trajectory_analysis
+      - compute_waiting_gap_index
+      - mil_civil_effect
+      - compute_rtd_analysis
+      - spatial_supply_demand
+      - plot_fim_curves
+      - plot_sdi_map
+      - plot_cost_effectiveness
+
+  - title: Visualisation
+    contents:
+      - plot_map
+      - plot_scenario_heatmap
+      - plot_timeline
+      - theme_dynasimR
+      - dynasimR_colors
+      - scale_color_identity_dynasimR
+      - scale_fill_identity_dynasimR
+      - scale_color_doctrine_dynasimR
+
+  - title: Manuscript export
+    contents:
+      - export_figure
+      - export_latex_table
+      - fill_placeholders
+
+  - title: Shiny dashboard
+    contents:
+      - launch_app
+      - check_app_dependencies
+
+articles:
+  - title: Workflows
+    navbar: ~
+    contents:
+      - getting-started
+      - patient-flow-analysis
+      - doctrine-effects
+      - autonomy-tradeoff
+      - manuscript-export

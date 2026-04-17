@@ -1,0 +1,77 @@
+---
+title: "Getting started with dynasimR"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Getting started with dynasimR}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r setup, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment  = "#>",
+  fig.width = 6, fig.height = 4
+)
+```
+
+```{r}
+library(dynasimR)
+```
+
+## Load data
+
+```{r}
+sim <- load_example_data()
+print(sim)
+```
+
+## Survival analysis
+
+```{r}
+km <- km_estimate(sim, endpoint = "role2", stratify_by = "scenario")
+plot_km(km, title = "Survival-to-Role-2")
+```
+
+## Doctrine effect
+
+```{r}
+doc <- doctrine_effect(sim,
+  muf_scenario    = "M-S08",
+  milnec_scenario = "M-S07",
+  n_bootstrap     = 200)
+cat(doc$narrative)
+```
+
+## Autonomy trade-off
+
+Only two AL points are present in the shipped example data, but the
+machinery is the same with the full MEDTACS-SIM output.
+
+```{r}
+al <- al_efficiency(
+  sim,
+  al_scenarios  = c("0" = "M-S00", "1" = "M-S01"),
+  ihl_threshold = 0.80,
+  n_bootstrap   = 200
+)
+plot_al_tradeoff(al)
+```
+
+## Manuscript-ready export
+
+```{r, eval = FALSE}
+export_latex_table(
+  data     = doc$effect_sizes,
+  filename = "doctrine_table.tex",
+  caption  = "Doctrine effect sizes.",
+  label    = "doctrine"
+)
+```
+
+## Launching the dashboard
+
+```{r, eval = FALSE}
+launch_app()                                   # example data
+launch_app(data_dir = "~/medtacs-sim/data/raw")
+```

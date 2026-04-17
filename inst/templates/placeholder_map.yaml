@@ -1,0 +1,21 @@
+# Placeholder -> computed value mapping used by fill_placeholders().
+# Values listed here are for documentation; the actual computation lives
+# in R/write_manuscript.R::fill_placeholders().
+#
+# Keys = the exact string the placeholder appears as in the .tex source.
+
+doctrine:
+  "[XX_DOCTRINE_DELTA_KIA]":    "abs(delta_kia median, identity='all')"
+  "[XX_DOCTRINE_DELTA_CI_LO]":  "delta_kia ci_lo, identity='all'"
+  "[XX_DOCTRINE_DELTA_CI_HI]":  "delta_kia ci_hi, identity='all'"
+
+ihl:
+  "[XX_IHL_MUF]":    "compute_ihl_index() median for MUF scenario"
+  "[XX_IHL_MILNEC]": "compute_ihl_index() median for MilNec scenario"
+
+autonomy:
+  "[XX_OPTIMAL_AL]": "al_efficiency()$optimal_al"
+
+baseline:
+  "[XX_KIA_BASELINE]": "median KIA rate at baseline scenario (pct)"
+  "[XX_KIA_BEST]":     "minimum median KIA rate across scenarios (pct)"

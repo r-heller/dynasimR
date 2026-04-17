@@ -1,0 +1,56 @@
+---
+title: "Doctrine effects: MUF vs. Military Necessity"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Doctrine effects: MUF vs. Military Necessity}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r setup, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE, comment = "#>",
+  fig.width = 6, fig.height = 4
+)
+```
+
+```{r}
+library(dynasimR)
+sim <- load_example_data()
+```
+
+## The core comparison
+
+The two MEDTACS scenarios `M-S07` (Military Necessity) and `M-S08`
+(Medical Urgency First) differ only in the triage doctrine applied.
+
+```{r}
+doc <- doctrine_effect(
+  sim,
+  muf_scenario    = "M-S08",
+  milnec_scenario = "M-S07",
+  n_bootstrap     = 500
+)
+print(doc)
+```
+
+## Delta KIA visualisation
+
+```{r}
+plot_doctrine(doc)
+```
+
+## Auto-generated narrative
+
+The `narrative` slot is a LaTeX-escaped string ready to drop into a
+manuscript:
+
+```{r, results = "asis"}
+cat(doc$narrative)
+```
+
+## Effect sizes
+
+```{r}
+doc$effect_sizes
+```
