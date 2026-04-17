@@ -1,39 +1,42 @@
-#' Scenario metadata for MEDTACS-SIM and REHASIM
+#' Scenario metadata for Profile A and Profile B
 #'
-#' Describes all simulation scenarios (MEDTACS M-S00..M-S14 and REHASIM
-#' R-S00..R-S20) with their research-question mapping, doctrine
-#' principle, UAV configuration and autonomy level.
+#' Describes all supported simulation scenarios
+#' (Profile A: A-S00..A-S14; Profile B: B-S00..B-S20) with their
+#' research-question mapping, policy, resource configuration and
+#' autonomy level.
 #'
-#' @format A tibble with 35 rows and the following columns:
+#' @format A tibble with 36 rows and the following columns:
 #' \describe{
 #'   \item{id}{Character. Scenario identifier with prefix
-#'     (`"M-"` for MEDTACS, `"R-"` for REHASIM).}
-#'   \item{simulation}{Character. `"MEDTACS"` or `"REHASIM"`.}
+#'     (`"A-"` for Profile A, `"B-"` for Profile B).}
+#'   \item{profile}{Character. `"Profile_A"` or `"Profile_B"`.}
 #'   \item{label}{Character. Human-readable scenario name.}
-#'   \item{rq}{Character. Associated research question
+#'   \item{rq}{Character. Associated research question tag
 #'     (`"RQ1"`..`"RQ4"`, `"SENS"`, `"PIPE"`).}
-#'   \item{doctrine}{Character. Doctrine principle
-#'     (`"MUF"`, `"MIL_NEC"`, `"MIXED"`, `"NA"`).}
-#'   \item{uav}{Character. UAV configuration
-#'     (`"NONE"`, `"ISR"`, `"CASEVAC"`, `"ARMED"`, `"MIXED"`).}
-#'   \item{al}{Integer. Autonomy level (0-5) or NA.}
+#'   \item{policy}{Character. Policy type
+#'     (`"policy_a"`, `"policy_b"`, `"mixed"`, `"NA"`).}
+#'   \item{resource}{Character. Auxiliary-resource configuration
+#'     (`"none"`, `"observation"`, `"transport"`, `"active"`,
+#'     `"mixed"`).}
+#'   \item{al}{Integer. Autonomy level (0-5) or `NA`.}
 #' }
-#' @source MEDTACS-SIM and REHASIM concept papers (Heller 2026).
+#' @source Package example data.
 "scenario_meta"
 
-#' Weibull survival parameters by triage category
+#' Example Weibull event-time parameters by priority category
 #'
-#' Literature-derived Weibull shape and scale parameters for modelling
-#' time-to-death in combat casualties, stratified by Triage category
-#' (T1-T4).
+#' Illustrative Weibull shape and scale parameters for modelling
+#' time-to-event trajectories, stratified by priority category
+#' (P1-P4). Values are provided as a starting point and can be
+#' replaced by domain-specific values for a particular application.
 #'
 #' @format A tibble with 4 rows and the following columns:
 #' \describe{
-#'   \item{category}{Character. Triage category (`"T1"`..`"T4"`).}
+#'   \item{category}{Character. Priority category
+#'     (`"P1"`..`"P4"`).}
 #'   \item{k}{Numeric. Weibull shape parameter.}
-#'   \item{lambda}{Numeric. Weibull scale parameter in minutes.}
-#'   \item{source}{Character. Primary literature source.}
+#'   \item{lambda}{Numeric. Weibull scale parameter (time units).}
+#'   \item{source}{Character. Source note.}
 #' }
-#' @source Eastridge et al. (2012) J Trauma 73:S431; Kotwal et al.
-#'   (2016) JAMA Surg 151:15.
+#' @source Package example data.
 "survival_params"

@@ -1,21 +1,19 @@
 # Placeholder -> computed value mapping used by fill_placeholders().
-# Values listed here are for documentation; the actual computation lives
-# in R/write_manuscript.R::fill_placeholders().
-#
-# Keys = the exact string the placeholder appears as in the .tex source.
+# Values listed here are for documentation; the actual computation
+# lives in R/write_manuscript.R::fill_placeholders().
 
-doctrine:
-  "[XX_DOCTRINE_DELTA_KIA]":    "abs(delta_kia median, identity='all')"
-  "[XX_DOCTRINE_DELTA_CI_LO]":  "delta_kia ci_lo, identity='all'"
-  "[XX_DOCTRINE_DELTA_CI_HI]":  "delta_kia ci_hi, identity='all'"
+policy:
+  "[XX_POLICY_DELTA_EVENT]":    "abs(delta_event median, group='all')"
+  "[XX_POLICY_DELTA_CI_LO]":    "delta_event ci_lo, group='all'"
+  "[XX_POLICY_DELTA_CI_HI]":    "delta_event ci_hi, group='all'"
 
-ihl:
-  "[XX_IHL_MUF]":    "compute_ihl_index() median for MUF scenario"
-  "[XX_IHL_MILNEC]": "compute_ihl_index() median for MilNec scenario"
+compliance:
+  "[XX_COMPLIANCE_A]":   "compute_compliance_index() median for policy A scenario"
+  "[XX_COMPLIANCE_B]":   "compute_compliance_index() median for policy B scenario"
 
 autonomy:
-  "[XX_OPTIMAL_AL]": "al_efficiency()$optimal_al"
+  "[XX_OPTIMAL_AL]":     "al_efficiency()$optimal_al"
 
 baseline:
-  "[XX_KIA_BASELINE]": "median KIA rate at baseline scenario (pct)"
-  "[XX_KIA_BEST]":     "minimum median KIA rate across scenarios (pct)"
+  "[XX_EVENT_BASELINE]": "median event rate at baseline scenario (pct)"
+  "[XX_EVENT_BEST]":     "minimum median event rate across scenarios (pct)"

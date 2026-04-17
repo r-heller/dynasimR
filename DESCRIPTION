@@ -8,24 +8,23 @@ Authors@R: c(
       given   = "Raban A.",
       family  = "Heller",
       role    = c("aut", "cre"),
-      email   = "rabanheller@bundeswehr.org"
+      email   = "r-heller@example.org"
     )
   )
 Description:
-    Provides a domain-neutral framework for the analysis and visualization of
-    discrete-event, agent-based, and node-actor simulation outputs. Designed as
-    a general-purpose toolkit for systems where entities (actors, nodes, agents)
-    move through states and interact within spatial or network environments.
-    Primary application: MEDTACS-SIM military medical simulation (casualty
-    flow, IHL compliance, UAV autonomy trade-offs, doctrine effects).
-    Extensible to epidemiology, logistics, evacuation, and social dynamics.
-    Includes an interactive Shiny dashboard and manuscript-ready export
-    functions for Springer Nature journal templates.
+    A domain-neutral framework for analysis and visualisation of
+    discrete-event, agent-based and node-actor simulation outputs.
+    Designed as a general-purpose toolkit for systems in which entities
+    (actors, nodes, agents) move through states and interact within
+    spatial or network environments. Supports two interchangeable
+    output schemas (Profile A and Profile B) that can be analysed with
+    a single API. Includes an interactive Shiny dashboard and
+    publication-ready export helpers.
 License: MIT + file LICENSE
 Encoding: UTF-8
 LazyData: true
 LazyDataCompression: xz
-RoxygenNote: 7.3.3
+RoxygenNote: 7.3.2
 Roxygen: list(markdown = TRUE)
 Depends:
     R (>= 4.1.0)

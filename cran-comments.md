@@ -10,11 +10,10 @@
 
 ## This is a new submission.
 
-The package provides an analysis and visualisation layer for
-discrete-event and agent-based simulation outputs, primarily applied
-to the MEDTACS-SIM and REHASIM military/medical simulation projects.
-All external, non-base dependencies are widely used CRAN packages
+The package provides a domain-neutral analysis and visualisation
+layer for discrete-event and agent-based simulation outputs. All
+external, non-base dependencies are widely used CRAN packages
 (dplyr, ggplot2, survival, rlang, cli, glue, readr, tibble, tidyr,
 purrr). Optional integrations (shiny, plotly, xtable, broom, nnet,
-viridis, patchwork, kableExtra, etc.) are declared as `Suggests:` and
-accessed through `requireNamespace()` guards.
+viridis, patchwork, kableExtra, etc.) are declared as `Suggests:`
+and accessed through `requireNamespace()` guards.
