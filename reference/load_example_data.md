@@ -25,6 +25,6 @@ print(sim)
 #> • Simulation: "MEDTACS"
 #> • Summary rows: 200
 #> • Casualty events: 16000
-#> • Loaded: "2026-04-17 15:03"
+#> • Loaded: "2026-04-17 15:25"
 #> • Path: /home/runner/work/_temp/Library/dynasimR/extdata
 ```
