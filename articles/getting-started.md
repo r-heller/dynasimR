@@ -1,12 +1,14 @@
 # Getting started with dynasimR
 
 ``` r
+
 library(dynasimR)
 ```
 
 ## Load data
 
 ``` r
+
 sim <- load_example_data()
 print(sim)
 #> 
@@ -15,13 +17,14 @@ print(sim)
 #> • Profile: "Profile_A"
 #> • Summary rows: 200
 #> • Entity events: 16000
-#> • Loaded: "2026-04-17 15:46"
+#> • Loaded: "2026-05-04 18:14"
 #> • Path: /home/runner/work/_temp/Library/dynasimR/extdata
 ```
 
 ## Time-to-event analysis
 
 ``` r
+
 km <- km_estimate(sim, endpoint = "stage2",
                   stratify_by = "scenario")
 plot_km(km, title = "Time-to-stage-2")
@@ -34,6 +37,7 @@ plot_km(km, title = "Time-to-stage-2")
 ## Policy effect
 
 ``` r
+
 pol <- policy_effect(sim,
   policy_a_scenario = "A-S08",
   policy_b_scenario = "A-S07",
@@ -48,6 +52,7 @@ Only two AL points are present in the shipped example data, but the
 machinery is the same for a full AL sweep.
 
 ``` r
+
 al <- al_efficiency(
   sim,
   al_scenarios         = c("0" = "A-S00", "1" = "A-S01"),
@@ -63,6 +68,7 @@ plot_al_tradeoff(al)
 ## Manuscript-ready export
 
 ``` r
+
 export_latex_table(
   data     = pol$effect_sizes,
   filename = "policy_table.tex",
@@ -74,6 +80,7 @@ export_latex_table(
 ## Launching the dashboard
 
 ``` r
+
 launch_app()                                        # example data
 launch_app(data_dir = "~/my-simulation/data/raw")
 ```

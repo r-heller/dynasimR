@@ -5,6 +5,7 @@ Many simulations move entities through sequential processing stages
 to quantify throughput and identify bottlenecks.
 
 ``` r
+
 library(dynasimR)
 sim <- load_example_data()
 ```
@@ -12,6 +13,7 @@ sim <- load_example_data()
 ## Stage throughput
 
 ``` r
+
 st <- stage_throughput(sim)
 st
 #> # A tibble: 4 × 7
@@ -30,6 +32,7 @@ your simulation output.
 ## Bottleneck detection
 
 ``` r
+
 detect_bottlenecks(st, threshold = 0.75)
 #> # A tibble: 1 × 8
 #>   scenario stage      n median_time   q25   q75 completed_frac is_bottleneck
@@ -40,6 +43,7 @@ detect_bottlenecks(st, threshold = 0.75)
 ## Visualising first-service times
 
 ``` r
+
 plot_scenario_heatmap(
   sim,
   metrics = c("median_time_to_first_service",

@@ -1,6 +1,7 @@
 # Autonomy-level trade-off (AL0-AL5)
 
 ``` r
+
 library(dynasimR)
 sim <- load_example_data()
 ```
@@ -12,6 +13,7 @@ default AL scenario mapping requires the full sweep; here we demonstrate
 with the two AL points in the shipped example data.
 
 ``` r
+
 al <- al_efficiency(
   sim,
   al_scenarios         = c("0" = "A-S00", "1" = "A-S01"),
@@ -31,6 +33,7 @@ al$tradeoff_table
 ## Trade-off plot
 
 ``` r
+
 plot_al_tradeoff(al)
 #> `height` was translated to `width`.
 ```
@@ -43,6 +46,7 @@ The `optimal_al` slot holds the AL level with the highest event-rate
 reduction while staying above the compliance threshold:
 
 ``` r
+
 al$optimal_al
 #> [1] 1
 ```
@@ -50,6 +54,7 @@ al$optimal_al
 Compliance violations (if any):
 
 ``` r
+
 al$compliance_violations
 #> # A tibble: 1 × 11
 #>      al scenario event_median event_ci_lo event_ci_hi event_reduction_pct

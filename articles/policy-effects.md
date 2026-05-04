@@ -1,6 +1,7 @@
 # Policy effects: Policy A vs. Policy B
 
 ``` r
+
 library(dynasimR)
 sim <- load_example_data()
 ```
@@ -11,6 +12,7 @@ The two Profile A scenarios `A-S07` (policy B) and `A-S08` (policy A,
 priority by severity) differ only in the allocation policy.
 
 ``` r
+
 pol <- policy_effect(
   sim,
   policy_a_scenario = "A-S08",
@@ -40,6 +42,7 @@ print(pol)
 ## Delta event-rate visualisation
 
 ``` r
+
 plot_policy(pol)
 #> `height` was translated to `width`.
 ```
@@ -52,6 +55,7 @@ The `narrative` slot is a LaTeX-escaped string ready to drop into a
 report:
 
 ``` r
+
 cat(pol$narrative)
 ```
 
@@ -63,6 +67,7 @@ Index was higher under policy A (0.919 vs. 0.658).
 ## Effect sizes
 
 ``` r
+
 pol$effect_sizes
 #> # A tibble: 3 × 2
 #>   metric                  value
