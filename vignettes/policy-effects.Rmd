@@ -1,0 +1,56 @@
+---
+title: "Policy effects: Policy A vs. Policy B"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Policy effects: Policy A vs. Policy B}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r setup, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE, comment = "#>",
+  fig.width = 6, fig.height = 4
+)
+```
+
+```{r}
+library(dynasimR)
+sim <- load_example_data()
+```
+
+## The core comparison
+
+The two Profile A scenarios `A-S07` (policy B) and `A-S08` (policy A,
+priority by severity) differ only in the allocation policy.
+
+```{r}
+pol <- policy_effect(
+  sim,
+  policy_a_scenario = "A-S08",
+  policy_b_scenario = "A-S07",
+  n_bootstrap       = 500
+)
+print(pol)
+```
+
+## Delta event-rate visualisation
+
+```{r}
+plot_policy(pol)
+```
+
+## Auto-generated narrative
+
+The `narrative` slot is a LaTeX-escaped string ready to drop into a
+report:
+
+```{r, results = "asis"}
+cat(pol$narrative)
+```
+
+## Effect sizes
+
+```{r}
+pol$effect_sizes
+```

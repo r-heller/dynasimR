@@ -1,0 +1,106 @@
+url: https://r-heller.github.io/dynasimR/
+
+template:
+  bootstrap: 5
+  bslib:
+    primary: "#1B3A6B"
+    bg: "#FFFFFF"
+    fg: "#212121"
+
+home:
+  title: dynasimR - Dynamic Agent-Node Simulation Analysis
+  description: >
+    A domain-neutral analysis and visualisation layer for
+    discrete-event, agent-based and node-actor simulation outputs.
+
+navbar:
+  structure:
+    left:  [intro, reference, articles, news]
+    right: [search, github]
+
+reference:
+  - title: Data I/O
+    desc: Load, validate and inspect simulation outputs.
+    contents:
+      - read_simulation
+      - load_example_data
+      - validate_dynasimR_data
+      - scenario_meta
+      - survival_params
+
+  - title: Time-to-event analysis
+    desc: Kaplan-Meier, Cox regression and associated plots.
+    contents:
+      - km_estimate
+      - cox_model
+      - plot_km
+      - plot_forest
+
+  - title: Policy effects
+    desc: Policy A vs. Policy B quantification.
+    contents:
+      - policy_effect
+      - plot_policy
+
+  - title: Autonomy trade-off
+    desc: AL0-AL5 event-vs-compliance analysis.
+    contents:
+      - al_efficiency
+      - plot_al_tradeoff
+      - plot_radar
+
+  - title: Compliance / Entity flow
+    desc: Compliance Index, throughput, bottlenecks.
+    contents:
+      - compute_compliance_index
+      - stage_throughput
+      - detect_bottlenecks
+      - resource_comparison
+
+  - title: Sensitivity analysis
+    contents:
+      - morris_screening
+      - tornado_data
+
+  - title: Profile B helpers
+    contents:
+      - progress_trajectory
+      - compute_wait_gap_index
+      - group_effect
+      - compute_completion_analysis
+      - spatial_supply_demand
+      - plot_progress_curves
+      - plot_sdi_map
+      - plot_cost_effectiveness
+
+  - title: Visualisation
+    contents:
+      - plot_map
+      - plot_scenario_heatmap
+      - plot_timeline
+      - theme_dynasimR
+      - dynasimR_colors
+      - scale_color_group_dynasimR
+      - scale_fill_group_dynasimR
+      - scale_color_policy_dynasimR
+
+  - title: Manuscript export
+    contents:
+      - export_figure
+      - export_latex_table
+      - fill_placeholders
+
+  - title: Shiny dashboard
+    contents:
+      - launch_app
+      - check_app_dependencies
+
+articles:
+  - title: Workflows
+    navbar: ~
+    contents:
+      - getting-started
+      - entity-flow-analysis
+      - policy-effects
+      - autonomy-tradeoff
+      - manuscript-export

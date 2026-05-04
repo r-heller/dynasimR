@@ -1,0 +1,57 @@
+---
+title: "Autonomy-level trade-off (AL0-AL5)"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Autonomy-level trade-off (AL0-AL5)}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r setup, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE, comment = "#>",
+  fig.width = 6, fig.height = 4
+)
+```
+
+```{r}
+library(dynasimR)
+sim <- load_example_data()
+```
+
+## AL-Efficiency ratio
+
+We trade off event-rate reduction versus the Compliance Index. The
+default AL scenario mapping requires the full sweep; here we
+demonstrate with the two AL points in the shipped example data.
+
+```{r}
+al <- al_efficiency(
+  sim,
+  al_scenarios         = c("0" = "A-S00", "1" = "A-S01"),
+  compliance_threshold = 0.80,
+  n_bootstrap          = 200
+)
+al$tradeoff_table
+```
+
+## Trade-off plot
+
+```{r}
+plot_al_tradeoff(al)
+```
+
+## Interpretation
+
+The `optimal_al` slot holds the AL level with the highest event-rate
+reduction while staying above the compliance threshold:
+
+```{r}
+al$optimal_al
+```
+
+Compliance violations (if any):
+
+```{r}
+al$compliance_violations
+```

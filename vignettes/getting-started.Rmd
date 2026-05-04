@@ -1,0 +1,78 @@
+---
+title: "Getting started with dynasimR"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Getting started with dynasimR}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r setup, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment  = "#>",
+  fig.width = 6, fig.height = 4
+)
+```
+
+```{r}
+library(dynasimR)
+```
+
+## Load data
+
+```{r}
+sim <- load_example_data()
+print(sim)
+```
+
+## Time-to-event analysis
+
+```{r}
+km <- km_estimate(sim, endpoint = "stage2",
+                  stratify_by = "scenario")
+plot_km(km, title = "Time-to-stage-2")
+```
+
+## Policy effect
+
+```{r}
+pol <- policy_effect(sim,
+  policy_a_scenario = "A-S08",
+  policy_b_scenario = "A-S07",
+  n_bootstrap       = 200)
+cat(pol$narrative)
+```
+
+## Autonomy trade-off
+
+Only two AL points are present in the shipped example data, but the
+machinery is the same for a full AL sweep.
+
+```{r}
+al <- al_efficiency(
+  sim,
+  al_scenarios         = c("0" = "A-S00", "1" = "A-S01"),
+  compliance_threshold = 0.80,
+  n_bootstrap          = 200
+)
+plot_al_tradeoff(al)
+```
+
+## Manuscript-ready export
+
+```{r, eval = FALSE}
+export_latex_table(
+  data     = pol$effect_sizes,
+  filename = "policy_table.tex",
+  caption  = "Policy effect sizes.",
+  label    = "policy"
+)
+```
+
+## Launching the dashboard
+
+```{r, eval = FALSE}
+launch_app()                                        # example data
+launch_app(data_dir = "~/my-simulation/data/raw")
+```

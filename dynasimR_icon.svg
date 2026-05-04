@@ -1,0 +1,303 @@
+<svg width="500" height="580" viewBox="0 0 500 580" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bgdyn" x1="0" y1="0" x2="0.2" y2="1">
+      <stop offset="0%" stop-color="#050d0f"/>
+      <stop offset="100%" stop-color="#020608"/>
+    </linearGradient>
+    <!-- Node glows -->
+    <radialGradient id="nodeA" cx="50%" cy="50%" r="50%">
+      <stop offset="0%"   stop-color="#00BFA5" stop-opacity="0.9"/>
+      <stop offset="100%" stop-color="#00695C" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="nodeB" cx="50%" cy="50%" r="50%">
+      <stop offset="0%"   stop-color="#7C3AED" stop-opacity="0.9"/>
+      <stop offset="100%" stop-color="#3C3489" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="nodeC" cx="50%" cy="50%" r="50%">
+      <stop offset="0%"   stop-color="#EF5350" stop-opacity="0.9"/>
+      <stop offset="100%" stop-color="#B71C1C" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="nodeD" cx="50%" cy="50%" r="50%">
+      <stop offset="0%"   stop-color="#FFB300" stop-opacity="0.9"/>
+      <stop offset="100%" stop-color="#E65100" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="nodeE" cx="50%" cy="50%" r="50%">
+      <stop offset="0%"   stop-color="#42A5F5" stop-opacity="0.9"/>
+      <stop offset="100%" stop-color="#0D47A1" stop-opacity="0"/>
+    </radialGradient>
+    <clipPath id="hexdyn">
+      <polygon points="250,30 455,145 455,375 250,490 45,375 45,145"/>
+    </clipPath>
+  </defs>
+
+  <polygon points="250,30 455,145 455,375 250,490 45,375 45,145" fill="url(#bgdyn)"/>
+
+  <g clip-path="url(#hexdyn)">
+
+    <!-- ══════════════════════════════════════════════════════ -->
+    <!-- SPATIAL GRID — background node network                 -->
+    <!-- ══════════════════════════════════════════════════════ -->
+    <!-- Faint grid cells -->
+    <line x1="45"  y1="178" x2="455" y2="178" stroke="#0d2a2a" stroke-width="0.5" opacity="0.5"/>
+    <line x1="45"  y1="218" x2="455" y2="218" stroke="#0d2a2a" stroke-width="0.5" opacity="0.5"/>
+    <line x1="45"  y1="258" x2="455" y2="258" stroke="#0d2a2a" stroke-width="0.5" opacity="0.5"/>
+    <line x1="45"  y1="298" x2="455" y2="298" stroke="#0d2a2a" stroke-width="0.5" opacity="0.5"/>
+    <line x1="45"  y1="338" x2="455" y2="338" stroke="#0d2a2a" stroke-width="0.5" opacity="0.5"/>
+    <line x1="45"  y1="378" x2="455" y2="378" stroke="#0d2a2a" stroke-width="0.5" opacity="0.5"/>
+    <line x1="45"  y1="418" x2="455" y2="418" stroke="#0d2a2a" stroke-width="0.5" opacity="0.5"/>
+    <line x1="100" y1="145" x2="100" y2="490" stroke="#0d2a2a" stroke-width="0.5" opacity="0.5"/>
+    <line x1="140" y1="145" x2="140" y2="490" stroke="#0d2a2a" stroke-width="0.5" opacity="0.5"/>
+    <line x1="180" y1="145" x2="180" y2="490" stroke="#0d2a2a" stroke-width="0.5" opacity="0.5"/>
+    <line x1="220" y1="145" x2="220" y2="490" stroke="#0d2a2a" stroke-width="0.5" opacity="0.5"/>
+    <line x1="260" y1="145" x2="260" y2="490" stroke="#0d2a2a" stroke-width="0.5" opacity="0.5"/>
+    <line x1="300" y1="145" x2="300" y2="490" stroke="#0d2a2a" stroke-width="0.5" opacity="0.5"/>
+    <line x1="340" y1="145" x2="340" y2="490" stroke="#0d2a2a" stroke-width="0.5" opacity="0.5"/>
+    <line x1="380" y1="145" x2="380" y2="490" stroke="#0d2a2a" stroke-width="0.5" opacity="0.5"/>
+    <line x1="420" y1="145" x2="420" y2="490" stroke="#0d2a2a" stroke-width="0.5" opacity="0.5"/>
+
+    <!-- ══════════════════════════════════════════════════════ -->
+    <!-- NETWORK EDGES — connecting nodes                       -->
+    <!-- ══════════════════════════════════════════════════════ -->
+
+    <!-- Node positions:
+         A (teal)   cx=180 cy=198  — entry/spawn
+         B (purple) cx=300 cy=178  — processing
+         C (red)    cx=390 cy=258  — exit/death
+         D (amber)  cx=250 cy=298  — central hub
+         E (blue)   cx=130 cy=298  — side branch
+         F (teal)   cx=180 cy=378  — recycle
+         G (amber)  cx=330 cy=378  — output
+         H (blue)   cx=410 cy=358  — terminal
+    -->
+
+    <!-- Edge A → B -->
+    <line x1="195" y1="195" x2="285" y2="182"
+      stroke="#1a3a3a" stroke-width="1.5" opacity="0.6"/>
+    <!-- Edge A → D -->
+    <line x1="190" y1="208" x2="240" y2="288"
+      stroke="#1a3a3a" stroke-width="1.5" opacity="0.6"/>
+    <!-- Edge B → C -->
+    <line x1="315" y1="183" x2="378" y2="248"
+      stroke="#1a3a3a" stroke-width="1.5" opacity="0.55"/>
+    <!-- Edge B → D -->
+    <line x1="292" y1="193" x2="262" y2="283"
+      stroke="#1a3a3a" stroke-width="1.5" opacity="0.55"/>
+    <!-- Edge D → E -->
+    <line x1="238" y1="298" x2="148" y2="298"
+      stroke="#1a3a3a" stroke-width="1.5" opacity="0.55"/>
+    <!-- Edge D → G -->
+    <line x1="262" y1="308" x2="318" y2="368"
+      stroke="#1a3a3a" stroke-width="1.5" opacity="0.55"/>
+    <!-- Edge D → F -->
+    <line x1="240" y1="310" x2="190" y2="368"
+      stroke="#1a3a3a" stroke-width="1.5" opacity="0.5"/>
+    <!-- Edge E → F -->
+    <line x1="138" y1="312" x2="172" y2="364"
+      stroke="#1a3a3a" stroke-width="1.5" opacity="0.5"/>
+    <!-- Edge G → H -->
+    <line x1="344" y1="372" x2="398" y2="360"
+      stroke="#1a3a3a" stroke-width="1.5" opacity="0.5"/>
+    <!-- Edge C → H -->
+    <line x1="394" y1="272" x2="410" y2="344"
+      stroke="#1a3a3a" stroke-width="1.5" opacity="0.48"/>
+
+    <!-- ══════════════════════════════════════════════════════ -->
+    <!-- AGENT FLOW TRAILS — animated-feel dotted paths        -->
+    <!-- ══════════════════════════════════════════════════════ -->
+
+    <!-- Trail A → D (teal agents) -->
+    <line x1="190" y1="208" x2="240" y2="288"
+      stroke="#00BFA5" stroke-width="1.2" stroke-dasharray="4 3" opacity="0.45"/>
+    <!-- Trail B → D (purple agents) -->
+    <line x1="292" y1="193" x2="262" y2="283"
+      stroke="#7C3AED" stroke-width="1.2" stroke-dasharray="4 3" opacity="0.45"/>
+    <!-- Trail D → G (amber agents) -->
+    <line x1="262" y1="308" x2="318" y2="368"
+      stroke="#FFB300" stroke-width="1.2" stroke-dasharray="4 3" opacity="0.45"/>
+    <!-- Trail D → E (blue agents) -->
+    <line x1="238" y1="298" x2="148" y2="298"
+      stroke="#42A5F5" stroke-width="1.2" stroke-dasharray="4 3" opacity="0.45"/>
+
+    <!-- Agent dots in transit on edges -->
+    <!-- On A→D trail -->
+    <circle cx="208" cy="237" r="3.5" fill="#00BFA5" opacity="0.85"/>
+    <circle cx="222" cy="260" r="2.5" fill="#00BFA5" opacity="0.65"/>
+    <!-- On B→D trail -->
+    <circle cx="280" cy="223" r="3.5" fill="#7C3AED" opacity="0.85"/>
+    <circle cx="271" cy="251" r="2.5" fill="#7C3AED" opacity="0.65"/>
+    <!-- On D→G trail -->
+    <circle cx="284" cy="332" r="3.5" fill="#FFB300" opacity="0.85"/>
+    <circle cx="300" cy="350" r="2.5" fill="#FFB300" opacity="0.65"/>
+    <!-- On D→E trail -->
+    <circle cx="208" cy="298" r="3.5" fill="#42A5F5" opacity="0.82"/>
+    <circle cx="180" cy="298" r="2.5" fill="#42A5F5" opacity="0.6"/>
+    <!-- On B→C trail -->
+    <circle cx="345" cy="212" r="3"   fill="#EF5350" opacity="0.75"/>
+    <!-- On G→H trail -->
+    <circle cx="368" cy="367" r="3"   fill="#FFB300" opacity="0.72"/>
+
+    <!-- ══════════════════════════════════════════════════════ -->
+    <!-- NODE GLOWS                                             -->
+    <!-- ══════════════════════════════════════════════════════ -->
+    <circle cx="180" cy="198" r="22" fill="url(#nodeA)" opacity="0.4"/>
+    <circle cx="300" cy="178" r="20" fill="url(#nodeB)" opacity="0.4"/>
+    <circle cx="390" cy="258" r="18" fill="url(#nodeC)" opacity="0.35"/>
+    <circle cx="250" cy="298" r="26" fill="url(#nodeD)" opacity="0.45"/>
+    <circle cx="130" cy="298" r="18" fill="url(#nodeE)" opacity="0.35"/>
+    <circle cx="180" cy="378" r="18" fill="url(#nodeA)" opacity="0.32"/>
+    <circle cx="330" cy="378" r="18" fill="url(#nodeD)" opacity="0.32"/>
+    <circle cx="410" cy="358" r="16" fill="url(#nodeE)" opacity="0.3"/>
+
+    <!-- ══════════════════════════════════════════════════════ -->
+    <!-- NODES — filled circles with labels                    -->
+    <!-- ══════════════════════════════════════════════════════ -->
+
+    <!-- Node A — entry -->
+    <circle cx="180" cy="198" r="14" fill="#061818" stroke="#00BFA5" stroke-width="2" opacity="0.95"/>
+    <text font-family="monospace" font-size="8" font-weight="700"
+      fill="#80CBC4" text-anchor="middle" x="180" y="202" opacity="0.95">ENTRY</text>
+
+    <!-- Node B — processing -->
+    <circle cx="300" cy="178" r="14" fill="#0d0828" stroke="#7C3AED" stroke-width="2" opacity="0.95"/>
+    <text font-family="monospace" font-size="8" font-weight="700"
+      fill="#C4B5F7" text-anchor="middle" x="300" y="182" opacity="0.95">PROC</text>
+
+    <!-- Node C — exit/absorbing -->
+    <circle cx="390" cy="258" r="13" fill="#180808" stroke="#EF5350" stroke-width="2" opacity="0.95"/>
+    <text font-family="monospace" font-size="7.5" font-weight="700"
+      fill="#EF9A9A" text-anchor="middle" x="390" y="262" opacity="0.95">EXIT</text>
+
+    <!-- Node D — central hub (larger) -->
+    <circle cx="250" cy="298" r="18" fill="#0a1008" stroke="#FFB300" stroke-width="2.2" opacity="0.97"/>
+    <text font-family="monospace" font-size="8" font-weight="700"
+      fill="#FFD54F" text-anchor="middle" x="250" y="302" opacity="0.97">HUB</text>
+
+    <!-- Node E — side branch -->
+    <circle cx="130" cy="298" r="13" fill="#06101a" stroke="#42A5F5" stroke-width="1.8" opacity="0.92"/>
+    <text font-family="monospace" font-size="7.5" font-weight="700"
+      fill="#90CAF9" text-anchor="middle" x="130" y="302" opacity="0.92">WAIT</text>
+
+    <!-- Node F — recycle -->
+    <circle cx="180" cy="378" r="12" fill="#061818" stroke="#00BFA5" stroke-width="1.8" opacity="0.88"/>
+    <text font-family="monospace" font-size="7" font-weight="700"
+      fill="#80CBC4" text-anchor="middle" x="180" y="382" opacity="0.88">LOOP</text>
+
+    <!-- Node G — output -->
+    <circle cx="330" cy="378" r="13" fill="#0a1008" stroke="#FFB300" stroke-width="1.8" opacity="0.88"/>
+    <text font-family="monospace" font-size="7.5" font-weight="700"
+      fill="#FFD54F" text-anchor="middle" x="330" y="382" opacity="0.88">OUT</text>
+
+    <!-- Node H — terminal -->
+    <circle cx="410" cy="358" r="11" fill="#06101a" stroke="#42A5F5" stroke-width="1.5" opacity="0.85"/>
+    <text font-family="monospace" font-size="6.5" font-weight="700"
+      fill="#90CAF9" text-anchor="middle" x="410" y="362" opacity="0.85">TERM</text>
+
+    <!-- ══════════════════════════════════════════════════════ -->
+    <!-- SURVIVAL CURVE — bottom left                          -->
+    <!-- Kaplan-Meier style, from simulation output            -->
+    <!-- ══════════════════════════════════════════════════════ -->
+    <rect x="56" y="400" width="130" height="72" rx="4"
+      fill="#020608" stroke="#1a3a3a" stroke-width="1" opacity="0.95"/>
+    <!-- Axes -->
+    <line x1="70" y1="404" x2="70" y2="464" stroke="#1a3a3a" stroke-width="1" opacity="0.8"/>
+    <line x1="70" y1="464" x2="178" y2="464" stroke="#1a3a3a" stroke-width="1" opacity="0.8"/>
+    <!-- KM curve — scenario 1 (teal) -->
+    <polyline
+      points="70,406 85,406 85,418 100,418 100,428 115,428 115,442 130,442 130,454 145,454 145,460 178,460"
+      fill="none" stroke="#00BFA5" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" opacity="0.88"/>
+    <!-- KM curve — scenario 2 (amber, worse survival) -->
+    <polyline
+      points="70,406 82,406 82,422 95,422 95,436 108,436 108,448 122,448 122,456 140,456 140,462 178,462"
+      fill="none" stroke="#FFB300" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" opacity="0.82"/>
+    <!-- Tick marks on KM censoring -->
+    <line x1="100" y1="418" x2="100" y2="414" stroke="#00BFA5" stroke-width="1" opacity="0.5"/>
+    <line x1="130" y1="442" x2="130" y2="438" stroke="#00BFA5" stroke-width="1" opacity="0.5"/>
+    <line x1="108" y1="436" x2="108" y2="432" stroke="#FFB300" stroke-width="1" opacity="0.5"/>
+    <!-- axis labels -->
+    <text font-family="monospace" font-size="6" fill="#3a5a5a" opacity="0.7"
+      text-anchor="middle" x="124" y="472">time</text>
+    <text font-family="monospace" font-size="5.5" fill="#3a5a5a" opacity="0.6"
+      x="56" y="436" transform="rotate(-90 56 436)">S(t)</text>
+    <!-- panel label -->
+    <text font-family="monospace" font-size="6.5" fill="#00BFA5" opacity="0.55"
+      text-anchor="middle" x="121" y="396">survival</text>
+
+    <!-- ══════════════════════════════════════════════════════ -->
+    <!-- STATE TRANSITION DIAGRAM — bottom right               -->
+    <!-- Small 3-state machine                                 -->
+    <!-- ══════════════════════════════════════════════════════ -->
+    <rect x="200" y="400" width="240" height="72" rx="4"
+      fill="#020608" stroke="#1a3a3a" stroke-width="1" opacity="0.95"/>
+    <!-- States -->
+    <!-- S1: Susceptible -->
+    <circle cx="228" cy="436" r="14" fill="#061818" stroke="#00BFA5" stroke-width="1.5" opacity="0.9"/>
+    <text font-family="monospace" font-size="6.5" font-weight="700"
+      fill="#80CBC4" text-anchor="middle" x="228" y="440" opacity="0.9">S</text>
+    <!-- S2: Infected -->
+    <circle cx="290" cy="436" r="14" fill="#180808" stroke="#EF5350" stroke-width="1.5" opacity="0.9"/>
+    <text font-family="monospace" font-size="6.5" font-weight="700"
+      fill="#EF9A9A" text-anchor="middle" x="290" y="440" opacity="0.9">I</text>
+    <!-- S3: Recovered -->
+    <circle cx="352" cy="436" r="14" fill="#0a1008" stroke="#7C3AED" stroke-width="1.5" opacity="0.9"/>
+    <text font-family="monospace" font-size="6.5" font-weight="700"
+      fill="#C4B5F7" text-anchor="middle" x="352" y="440" opacity="0.9">R</text>
+    <!-- S4: Dead -->
+    <circle cx="414" cy="436" r="12" fill="#0a0a0a" stroke="#888888" stroke-width="1.2" opacity="0.85"/>
+    <text font-family="monospace" font-size="6.5" font-weight="700"
+      fill="#888888" text-anchor="middle" x="414" y="440" opacity="0.85">D</text>
+
+    <!-- Transitions S→I -->
+    <line x1="242" y1="436" x2="276" y2="436" stroke="#EF5350" stroke-width="1.2" opacity="0.75"/>
+    <polygon points="273,432 280,436 273,440" fill="#EF5350" opacity="0.75"/>
+    <!-- I→R -->
+    <line x1="304" y1="436" x2="338" y2="436" stroke="#7C3AED" stroke-width="1.2" opacity="0.75"/>
+    <polygon points="335,432 342,436 335,440" fill="#7C3AED" opacity="0.75"/>
+    <!-- I→D -->
+    <line x1="296" y1="422" x2="408" y2="426"
+      stroke="#888888" stroke-width="1" stroke-dasharray="3 2" opacity="0.5"/>
+    <polygon points="405,422 414,426 406,430" fill="#888888" opacity="0.5"/>
+    <!-- R→S loop (recovery) -->
+    <path d="M 352,422 Q 290,402 228,422"
+      fill="none" stroke="#00BFA5" stroke-width="1" stroke-dasharray="3 2" opacity="0.4"/>
+    <polygon points="225,419 228,427 232,420" fill="#00BFA5" opacity="0.4"/>
+
+    <!-- λ rate labels -->
+    <text font-family="monospace" font-size="5.5" fill="#EF5350" opacity="0.6"
+      text-anchor="middle" x="259" y="430">β</text>
+    <text font-family="monospace" font-size="5.5" fill="#7C3AED" opacity="0.6"
+      text-anchor="middle" x="321" y="430">γ</text>
+    <text font-family="monospace" font-size="5.5" fill="#888888" opacity="0.5"
+      text-anchor="middle" x="352" y="418">μ</text>
+
+    <!-- panel label -->
+    <text font-family="monospace" font-size="6.5" fill="#7C3AED" opacity="0.55"
+      text-anchor="middle" x="310" y="396">state transitions</text>
+
+    <!-- ══════════════════════════════════════════════════════ -->
+    <!-- SCENARIO COMPARISON BADGE — top left                  -->
+    <!-- ══════════════════════════════════════════════════════ -->
+    <rect x="56" y="152" width="100" height="44" rx="4"
+      fill="#020608" stroke="#1a3a3a" stroke-width="1" opacity="0.92"/>
+    <!-- Tiny bar chart — 3 scenarios -->
+    <rect x="64"  y="182" width="12" height="10" rx="1.5" fill="#00BFA5" opacity="0.8"/>
+    <rect x="79"  y="170" width="12" height="22" rx="1.5" fill="#FFB300" opacity="0.8"/>
+    <rect x="94"  y="176" width="12" height="16" rx="1.5" fill="#EF5350" opacity="0.8"/>
+    <rect x="109" y="178" width="12" height="14" rx="1.5" fill="#7C3AED" opacity="0.8"/>
+    <line x1="62" y1="192" x2="123" y2="192" stroke="#1a3a3a" stroke-width="0.8" opacity="0.7"/>
+    <text font-family="monospace" font-size="6.5" fill="#3a5a5a" opacity="0.7"
+      text-anchor="middle" x="92" y="202">scenarios</text>
+    <text font-family="monospace" font-size="6" fill="#888899" opacity="0.55"
+      text-anchor="middle" x="92" y="160">n = 4</text>
+
+  </g>
+
+  <!-- Hex border — teal/dark -->
+  <polygon points="250,30 455,145 455,375 250,490 45,375 45,145"
+    fill="none" stroke="#00695C" stroke-width="11" stroke-linejoin="round"/>
+  <polygon points="250,44 441,153 441,367 250,476 59,367 59,153"
+    fill="none" stroke="#00BFA5" stroke-width="1.5" stroke-linejoin="round" opacity="0.5"/>
+
+  <!-- Package name -->
+  <text font-family="monospace" font-weight="700" font-size="26"
+    fill="#80CBC4" text-anchor="middle" x="250" y="545" letter-spacing="1">dynasimR</text>
+</svg>
