@@ -1,5 +1,7 @@
 # dynasimR — Dynamic Agent-Node Simulation Analysis
 
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.21889932.svg)](https://doi.org/10.5281/zenodo.21889932)
+
 A domain-neutral analysis and visualisation layer for discrete-event,
 agent-based and node-actor simulation outputs. The package is
 schema-harmonised so that two output profiles (**Profile A** and
@@ -95,3 +97,14 @@ was verified against its DOI, arXiv ID, or ISBN.
 ## License
 
 MIT (c) R. Heller
+
+## Citation
+
+If you use this software, please cite it as:
+
+> Heller, R. (2026). *dynasimR: Analysis and visualisation of
+> agent-based and discrete-event simulation output* (Version 0.1.0)
+> \[Computer software\]. Zenodo.
+> <https://doi.org/10.5281/zenodo.21889932>
+
+DOI: [10.5281/zenodo.21889932](https://doi.org/10.5281/zenodo.21889932)
